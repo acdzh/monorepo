@@ -1,0 +1,65 @@
+.card-container {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 5px rgba(0,0,0,.075), 0 1px 5px rgba(0,0,0,.1);
+}
+
+.card-container-top {
+  position: relative;
+  height: 60px;
+  padding: 18px 30px;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  line-height: 24px;
+  border-radius: 8px 8px 0 0;
+
+  white-space: nowrap;
+  overflow: hidden;
+
+  border-bottom: 1px solid var(--LineSeparatorPrimary);
+}
+
+.folded .card-container-top {
+  border-radius: 8px;
+}
+
+.card-container-top__const li {
+  display: inline-block;
+  margin-right: 14px;
+}
+
+.card-container-top__const li:hover {
+  color: var(--Primary);
+}
+
+.card-container-top__const {
+  color: var(--TextThird);
+}
+
+.card-container-top__primary {
+  background-color: var(--BgHeader);
+  color: var(--TextOnBg);
+}
+
+
+.card-container-top-fold-button {
+  display: inline-flex;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  height: 24px;
+  margin: auto;
+  right: 20px;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.folded .card-content {
+  display: none;
+}
+
+.card-content a:hover {
+  color: var(--Primary);
+}

@@ -1,0 +1,147 @@
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 50px;
+  z-index: 1000;
+
+  border-radius: 0 0 6px 6px;
+  /* box-shadow: 0 2px 3px rgba(26, 26, 26, 0.46); */
+  box-shadow: 0 1px 5px rgba(0,0,0,.075), 0 1px 5px rgba(0,0,0,.1);
+
+  background-color: var(--BgHeader);
+}
+
+.nav-inner {
+  width: 100%;
+  height: 100%;
+  max-width: 1380px;
+  position: relative;
+  margin: 0 auto;
+}
+
+.nav-menu {
+  display: flex;
+  flex-direction: row;
+}
+
+.nav-menu-left {
+  float: left;
+}
+
+.nav-menu-right {
+  float: right;
+}
+
+.nav-menu-item {
+  line-height: 20px;
+  font-weight: 600;
+  border-radius: 6px;
+}
+
+.nav-menu-item-obj {
+  padding: 15px 20px;
+  color: var(--TextOnBg);
+}
+
+.nav-menu-item-button {
+  font-size: 20px;
+  width: 50px;
+  height: 50px;
+  color: var(--TextOnBg);
+}
+
+.nav-menu-item-obj:hover, .nav-menu-item-button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: white;
+}
+
+.nav-menu-item-text {
+  padding: 15px 20px;
+  color: var(--ConstTextSecondary);
+}
+
+.nav-menu-item-bar {
+  display: none;
+}
+
+@media only screen and (max-width: 900px) {
+  .nav-menu-item-bar {
+    display: block;
+  }
+
+  .nav-menu-item-obj, .nav-menu-item-text {
+    display: none;
+  }
+}
+
+.nav-expand-menu {
+  position: fixed;
+  top: 40px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 900;
+
+  padding: 10px 20px;
+
+  border-radius: 6px;
+  box-shadow: 0 2px 3px rgba(26, 26, 26, 0.46);
+
+  background-color: var(--BgHeader);
+}
+
+@media only screen and (min-width: 900px) {
+  .nav-expand-menu {
+    display: none;
+  }
+}
+
+.nav-expand-menu-item {
+  padding: 10px 0;
+}
+
+.nav-expand-menu-item-obj {
+  color: var(--TextOnBg);
+}
+
+.nav-expand-menu-item-text {
+  color: var(--ConstTextSecondary);
+}
+
+/* 
+.header {
+  width: 100%;
+
+  padding-top: 48px;
+  padding-bottom: 60px;
+
+  background-image: url(theswindle-banner-1920.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.header-container {
+  width: 100%;
+  max-width: 1380px;
+  position: relative;
+  margin: 0 auto;
+  padding: 86px 30px 30px 30px;
+}
+
+.header-site-title {
+  font-size: 42px;
+  font-weight: 600;
+  letter-spacing: -.5px;
+  line-height: 60px;
+  padding: 10px 0;
+  color: white;
+} */
+
+*:target {
+  padding-top: 80px;
+  margin-top: -80px;
+}

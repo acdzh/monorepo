@@ -1,0 +1,65 @@
+:root {
+  --Primary: #308080;
+  /* --Primary: #c26d46; */
+  --ConstTextSecondary: rgba(255, 255, 255, .4);
+  --ConstTextThird: #777;
+  --ConstTextTag: #999;
+  --TextTitle: #444;
+  --TextPrimary: #666;
+  --TextThird: #aaa;
+  --TextQuote: #777;
+  --TextCode: var(--Primary);
+  --TextOnBg: rgba(255, 255, 255, .8);
+  --BgHeader: #308080;
+  --BgSelect: #00808060;
+  --BgPrimary: #fff;
+  --BgBody: #eaeaea;
+  --BgSideBar: #f0f0f0;
+  --BgSideBarHover: #ebebeb;
+  --BgFooter: #33363b;
+  --BgTags: #f2f2f2;
+  --BgCode: #f4f4f4;
+  --BgLicense: #fffeee;
+  --LineSeparatorPrimary: #eee;
+  --LineSeparatorSecondary: #ddd;
+  --LineBorder: #d9d9d9;
+  --LineTable: #f1f1f1;
+}
+
+[data-theme=dark]:root {
+  --Primary: #409090;
+  /* --Primary: #c26d46; */
+  --ConstTextSecondary: rgba(255, 255, 255, .4);
+  --ConstTextThird: #777;
+  --ConstTextTag: #999;
+  --TextTitle: #bbb;
+  --TextPrimary: #999;
+  --TextThird: #aaa;
+  --TextQuote: #888;
+  --TextCode: var(--Primary);
+  --TextOnBg: #bbb;
+  --BgHeader: #33363b;
+  --BgSelect: #00808060;
+  --BgPrimary: #33363b;
+  --BgBody: #292929;
+  --BgSideBar:  var(--BgPrimary);
+  --BgSideBarHover: #383838;
+  --BgFooter: #33363b;
+  --BgTags: #2e2e2e;
+  --BgCode: #3a3a3a;
+  --BgLicense: #3e4147;
+  --LineSeparatorPrimary: #555;
+  --LineSeparatorSecondary: #444;
+  --LineBorder: #666;
+  --LineTable: #2d3235;
+}
+
+::selection { background: var(--BgSelect); }
+::-moz-selection { background: var(--BgSelect); }
+::-webkit-selection { background: var(--BgSelect); }
+
+* {
+  transition: background-color, border-color,;
+  transition-duration: .2s;
+  transition-timing-function: ease;
+}

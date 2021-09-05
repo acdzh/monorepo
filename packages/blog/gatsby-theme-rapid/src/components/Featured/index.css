@@ -1,0 +1,116 @@
+.featured {
+  padding-bottom: 16px;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid var(--LineSeparatorPrimary);
+}
+
+.featured-post-meta {
+  text-transform: none;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--TextThird);
+  margin-bottom: .3em;
+}
+
+.featured-post-title {
+  margin-bottom: 10px;
+  color: var(--TextTitle);
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 1.4em;
+  letter-spacing: -.7px;
+}
+
+@media only screen and (max-width: 812px) {
+  .featured-post-title {
+    font-size: 22px;
+  }
+}
+
+.featured-post-body {
+  display: flex;
+}
+
+.featured-post-cover {
+  margin-right: 18px;
+  flex-shrink: 0;
+  border-radius: 6px;
+  transition-duration: .3s;
+  transition-timing-function: ease;
+}
+
+.featured-post-body:hover .featured-post-cover  {
+  transform: scale(1.02);
+  box-shadow: 0 1px 5px rgba(0,0,0,.15);
+}
+
+@media only screen and (max-width: 900px) {
+  .featured-post-body {
+    display: block;
+  }
+  
+  .featured-post-cover {
+    float: left;
+  }
+}
+
+.featured-post-content {
+  font-size: 16px;
+  line-height: 1.8em;
+  word-break: break-all;
+}
+
+.featured-post-content-read-more {
+  color: var(--Primary);
+  font-size: small;
+}
+
+.featured-post-tags {
+  margin-top: 8px;
+}
+
+.featured-post-tags a {
+  background: var(--BgTags);
+  display: inline-block;
+  line-height: 16px;
+  white-space: nowrap;
+  font-size: 12px;
+  color: var(--ConstTextTag);
+  padding: 3px 7px;
+  margin-right: 5px;
+  border-radius: 2px;
+}
+
+.featured-post-tags a:hover {
+  color: var(--Primary);
+  transform: scale(1.02);
+  box-shadow: 0 1px 5px rgba(0,0,0,.075);
+}
+
+
+.simple-featured {
+  border-bottom: 1px solid var(--LineSeparatorPrimary);
+  padding: 10px 0;
+  font-size: 16px;
+  font-weight: 400;
+  display: flex;
+  flex-direction: row;
+}
+
+.simple-featured-date {
+  margin-right: 20px;
+  flex-shrink: 0;
+  color: var(--TextThird);
+}
+
+@media only screen and (max-width: 812px) {
+  .simple-featured {
+    flex-direction: column;
+  }
+  
+  .simple-featured-date {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+}
