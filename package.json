@@ -9,7 +9,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@acdzh/eslint-config": "workspace:*",
     "@types/node": "^16.7.10",
     "@types/react": "^17.0.19",
     "eslint": "^7.32.0",
