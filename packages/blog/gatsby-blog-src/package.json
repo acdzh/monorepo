@@ -1,0 +1,22 @@
+{
+  "name": "example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "gatsby develop",
+    "dev:clean": "rimraf ./.cache && rimraf ./public && gatsby develop",
+    "build": "gatsby build",
+    "build:clean": "rimraf ./.cache && rimraf ./public && gatsby build"
+  },
+  "dependencies": {
+    "gatsby": "^3.13.0",
+    "gatsby-plugin-google-analytics": "^3.13.0",
+    "gatsby-plugin-mdx": "^2.13.0",
+    "gatsby-plugin-pnpm": "^1.2.8",
+    "gatsby-theme-plain": "workspace:*"
+  },
+  "devDependencies": {
+    "rimraf": "^3.0.2"
+  }
+}

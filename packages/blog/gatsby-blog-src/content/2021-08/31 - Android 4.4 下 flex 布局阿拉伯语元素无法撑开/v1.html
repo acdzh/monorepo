@@ -1,0 +1,63 @@
+<html dir="rtl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+    <style>
+      .w-4 { width: 4px; }
+      .w-full { width: 100%; }
+      .h-full { height: 100%; }
+      .margin-0 { margin: 0; }
+      .padding-0 { padding: 0; }
+      .padding-16 { padding: 16px; }
+      .flex { display: flex; }
+      .flex-1 { flex: 1 1 0%; }
+      .flex-shrink-0 { flex-shrink: 0; }
+      .justify-between { justify-content: space-between; }
+
+      li:hover {
+        cursor:pointer;
+        background-color: #eee;
+      }
+    </style>
+    <style>
+      [data-debug="true"] *{-webkit-box-shadow:inset 0px 0px 0px 0.5px #303556; -moz-box-shadow:inset 0px 0px 0px 0.5px #303556; box-shadow:inset 0px 0px 0px 0.5px #303556;}
+      [data-debug="true"] *>*{-webkit-box-shadow:inset 0px 0px 0px 0.5px #507752; -moz-box-shadow:inset 0px 0px 0px 0.5px #507752; box-shadow:inset 0px 0px 0px 0.5px #507752;}
+      [data-debug="true"] *>*>*{-webkit-box-shadow:inset 0px 0px 0px 0.5px #707026; -moz-box-shadow:inset 0px 0px 0px 0.5px #707026; box-shadow:inset 0px 0px 0px 0.5px #707026;}
+      [data-debug="true"] *>*>*>*{-webkit-box-shadow:inset 0px 0px 0px 0.5px #147745; -moz-box-shadow:inset 0px 0px 0px 0.5px #147745; box-shadow:inset 0px 0px 0px 0.5px #147745;}
+      [data-debug="true"] *>*>*>*>*{-webkit-box-shadow:inset 0px 0px 0px 0.5px #721650; -moz-box-shadow:inset 0px 0px 0px 0.5px #721650; box-shadow:inset 0px 0px 0px 0.5px #721650;}
+    </style>
+  </head>
+  <body>
+    <input id="checkbox-border" type="checkbox" />
+    <span>显示边框 Show Border</span>
+
+    <ul class="list margin-0 padding-0">
+      <li class="item flex padding-16 justify-between">
+        <span class="text">this is a test word</span>
+        <div class="icon flex-shrink-0" >&gt;</div>
+      </li>
+      <li class="item flex padding-16 justify-between">
+        <span class="text">صباح الخير</span>
+        <div class="icon flex-shrink-0" >&gt;</div>
+      </li>
+      <li class="item padding-16 flex justify-between">
+        <span class="text">تصبحين على خير</span>
+        <div class="icon flex-shrink-0" >&gt;</div>
+      </li>
+      <li class="item padding-16 flex justify-between">
+        <span class="text">تتحدثين الانجليزية؟</span>
+        <div class="icon flex-shrink-0" >&gt;</div>
+      </li>
+      <li class="item padding-16 flex justify-between">
+        <span class="text">يمكنني التحدث قليلاً باللغة العربية</span>
+        <div class="icon flex-shrink-0" >&gt;</div>
+      </li>
+    </ul>
+  </body>
+  <script>
+    document.getElementById('checkbox-border').addEventListener('change', (event) => {
+      document.body.setAttribute('data-debug', event.target.checked);
+    });
+  </script>
+</html>
