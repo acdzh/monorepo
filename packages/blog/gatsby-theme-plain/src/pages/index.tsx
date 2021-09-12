@@ -9,7 +9,7 @@ import { WidthDebug } from '@components/WidthDebug';
 const IndexPage: React.FC = ({}) => {
   return (
     <Layout>
-      <SEO />
+      <SEO title="首页" />
       <Header />
       <Content>
         <WidthDebug />

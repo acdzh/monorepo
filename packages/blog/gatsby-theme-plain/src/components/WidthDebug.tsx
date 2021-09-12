@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from 'react';
 
+const isSSR = typeof window === 'undefined';
+
 export const WidthDebug: React.FC = () => {
-  const [width, setWidth] = useState(window.innerWidth);
+  const [width, setWidth] = useState(isSSR ? 0 : window.innerWidth);
 
   useEffect(() => {
     const listener = () => {
       requestAnimationFrame(function () {
-        setWidth(window.innerWidth);
+        setWidth(isSSR ? 0 : window.innerWidth);
       });
     };
-    window.addEventListener('resize', listener);
+    !isSSR && window.addEventListener('resize', listener);
     return () => {
-      window.removeEventListener('resize', listener);
+      !isSSR && window.removeEventListener('resize', listener);
     };
   }, []);
 
