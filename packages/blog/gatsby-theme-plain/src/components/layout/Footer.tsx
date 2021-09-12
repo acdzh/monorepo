@@ -35,13 +35,14 @@ const SocialLinks: React.FC<{
   return (
     <>
       <a
-        className="text-lg px-0.4em hover:text-github"
+        className="group text-lg px-0.4em hover:text-github"
         href={socialLinks.github}
         target="_blank"
         rel="noreferrer"
         title="Github"
       >
-        <FaGithub className="inline" />
+        <FaGithub className="inline group-hover:hidden" />
+        <FaGithubAlt className="hidden group-hover:inline" />
       </a>
       <a
         className="text-lg px-0.4em hover:text-twitter"

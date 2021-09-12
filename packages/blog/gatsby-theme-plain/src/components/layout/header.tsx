@@ -28,19 +28,19 @@ export const Header: React.FC = () => {
   return (
     <nav
       className="
-      w-full 
-      fixed top-0
-      shadow dark:shadow-white 
-      backdrop-filter backdrop-blur-xl backdrop-saturate-[1.8]
-      bg-white dark:bg-dark-600 bg-opacity-80 
-    "
+        w-full 
+        fixed top-0
+        shadow dark:shadow-white 
+        backdrop-filter backdrop-blur-xl backdrop-saturate-[1.8]
+        bg-white dark:bg-dark-600 bg-opacity-80 
+      "
     >
       <div
         className="
-        flex justify-between
-        w-full max-w-screen-xl h-54px mx-auto
-        px-8px sm:px-16px md:px-32px lg:px-64px xl:px-0
-      "
+          flex justify-between
+          w-full max-w-screen-xl h-54px mx-auto
+          px-8px sm:px-16px md:px-32px lg:px-64px xl:px-0
+        "
       >
         <div className="flex flex-row justify-center items-center text-theme-800 dark:text-theme-200 text-lg">
           <Link className="mr-12px" to="/">
