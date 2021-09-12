@@ -16,7 +16,7 @@ type SocialType = {
   mail: string;
 };
 
-type StaticQueryType = {
+type FooterStaticQueryType = {
   site: {
     siteMetadata: {
       title: string;
@@ -85,7 +85,7 @@ const SocialLinks: React.FC<{
 };
 
 export const Footer: React.FC = () => {
-  const { site } = useStaticQuery<StaticQueryType>(
+  const { site } = useStaticQuery<FooterStaticQueryType>(
     graphql`
       query {
         site {
