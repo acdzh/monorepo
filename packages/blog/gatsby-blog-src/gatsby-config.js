@@ -1,6 +1,8 @@
 module.exports = {
   siteMetadata: {
     title: '随便写写',
+    description: '随便写写, 全而不精',
+    siteUrl: 'https://blog.acdzh.com',
     author: {
       name: 'acdzh',
     },

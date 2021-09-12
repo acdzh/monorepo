@@ -2,12 +2,14 @@ import { graphql } from 'gatsby';
 import React from 'react';
 
 import { Layout, Header, Content, Footer } from '@components/layout';
+import { SEO } from '@components/SEO';
 import { TestText } from '@components/TestText';
 import { WidthDebug } from '@components/WidthDebug';
 
 const IndexPage: React.FC = ({}) => {
   return (
     <Layout>
+      <SEO />
       <Header />
       <Content>
         <WidthDebug />

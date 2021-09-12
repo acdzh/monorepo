@@ -5,6 +5,8 @@ const createConfig = ({
 }) => ({
   siteMetadata: {
     title: 'gatsby-theme-plain',
+    description: 'gatsby-theme-plain demo',
+    siteUrl: 'https://example.com',
     author: {
       name: 'acdzh',
     },
