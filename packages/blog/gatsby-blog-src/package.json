@@ -1,11 +1,11 @@
 {
-  "name": "example",
+  "name": "gatsby-blog-src",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "gatsby develop",
-    "dev:clean": "rimraf ./.cache && rimraf ./public && gatsby develop",
+    "dev": "gatsby develop -H 0.0.0.0",
+    "dev:clean": "rimraf ./.cache && rimraf ./public && gatsby develop -H 0.0.0.0",
     "build": "gatsby build",
     "build:clean": "rimraf ./.cache && rimraf ./public && gatsby build"
   },

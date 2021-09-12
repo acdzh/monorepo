@@ -8,6 +8,12 @@ const createConfig = ({
     author: {
       name: 'acdzh',
     },
+    socialLinks: {
+      github: 'https://github.com/acdzh',
+      twitter: 'https://twitter.com/acdzh',
+      steam: 'https://steamcommunity.com/id/acdzh',
+      mail: 'mailto:acdzh@outlook.com',
+    },
     postsPerPage,
   },
   plugins: [
@@ -33,6 +39,8 @@ const createConfig = ({
     },
     'gatsby-plugin-postcss',
     'gatsby-plugin-pnpm',
+    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-use-dark-mode',
   ].filter(Boolean),
 });
 

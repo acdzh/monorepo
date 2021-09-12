@@ -1,9 +1,9 @@
-import defaultTheme from 'windicss/defaultTheme';
+import colors from 'windicss/colors';
 import { defineConfig } from 'windicss/helpers';
 
-import packageConfig from './package.json';
+import pkg from './package.json';
 
-const { name: packageName } = packageConfig;
+const { name: packageName } = pkg;
 
 export default defineConfig({
   extract: {
@@ -13,6 +13,27 @@ export default defineConfig({
     ],
     exclude: ['.git', '.next/**/*'],
   },
-  preflight: false,
+  theme: {
+    extend: {
+      screens: {
+        screens: {
+          sm: '640px',
+          md: '768px',
+          lg: '1024px',
+          xl: '1280px',
+          '2xl': '1536px',
+        },
+      },
+      colors: {
+        theme: colors.indigo,
+        github: '#0366d6',
+        twitter: '#1d9bf0',
+        steam: '#a4d007',
+        mail: '#f9c513',
+        rss: '#f26522',
+      },
+    },
+  },
+  preflight: true,
   attributify: true,
 });

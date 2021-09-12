@@ -70,6 +70,7 @@ exports.onCreateWebpackConfig = ({ actions }) => {
     resolve: {
       alias: {
         '@components': path.resolve(__dirname, 'src/components'),
+        '@icons': path.resolve(__dirname, 'src/icons'),
       },
     },
   });

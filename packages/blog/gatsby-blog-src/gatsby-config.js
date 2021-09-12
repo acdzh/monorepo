@@ -4,6 +4,12 @@ module.exports = {
     author: {
       name: 'acdzh',
     },
+    socialLinks: {
+      github: 'https://github.com/acdzh',
+      twitter: 'https://twitter.com/acdzh',
+      steam: 'https://steamcommunity.com/id/acdzh',
+      mail: 'mailto:acdzh@outlook.com',
+    },
   },
   plugins: [
     'gatsby-plugin-pnpm',
