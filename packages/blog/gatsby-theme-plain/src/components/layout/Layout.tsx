@@ -11,7 +11,8 @@ export const Layout: React.FC<LayoutPropsType> = ({ children }) => {
     <div>
       <Helmet>
         <html lang="zh-CN" />
-        <body className="bg-white dark:bg-dark-600 text-gray-800 dark:text-gray-100" />
+        {/* material recommended to ＃121212 */}
+        <body className="bg-white dark:bg-dark-500 text-gray-900 dark:text-gray-200" />
       </Helmet>
       {children}
     </div>

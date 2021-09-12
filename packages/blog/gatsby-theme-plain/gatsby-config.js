@@ -8,11 +8,11 @@ const createConfig = ({
     author: {
       name: 'acdzh',
     },
-    socialLinks: {
-      github: 'https://github.com/acdzh',
-      twitter: 'https://twitter.com/acdzh',
-      steam: 'https://steamcommunity.com/id/acdzh',
-      mail: 'mailto:acdzh@outlook.com',
+    social: {
+      github: 'acdzh',
+      twitter: 'acdzh',
+      steam: 'acdzh',
+      mail: 'acdzh@outlook.com',
     },
     postsPerPage,
   },

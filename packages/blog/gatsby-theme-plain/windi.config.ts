@@ -25,7 +25,7 @@ export default defineConfig({
         },
       },
       colors: {
-        theme: colors.indigo,
+        theme: colors.pink,
         github: '#0366d6',
         twitter: '#1d9bf0',
         steam: '#60b6e7',

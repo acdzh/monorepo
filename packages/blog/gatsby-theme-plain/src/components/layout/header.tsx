@@ -42,7 +42,7 @@ export const Header: React.FC = () => {
           px-8px sm:px-16px md:px-32px lg:px-64px xl:px-0
         "
       >
-        <div className="flex flex-row justify-center items-center text-theme-800 dark:text-theme-200 text-lg">
+        <div className="flex flex-row justify-center items-center text-theme-800 dark:text-theme-300 text-lg">
           <Link className="mr-12px" to="/">
             {siteMetadata.title}
           </Link>
@@ -62,6 +62,7 @@ export const Header: React.FC = () => {
         <div className="flex flex-row justify-center items-center">
           <button
             className="flex text-lg justify-center items-center p-0.4em rounded-lg hover:bg-light-900 dark:hover:bg-dark-900"
+            aria-label="切换主题"
             onClick={toggleTheme}
           >
             {theme === 'dark' ? <FaRegSun /> : <FaRegMoon />}

@@ -9,7 +9,7 @@ import {
   FaRss,
 } from 'react-icons/fa';
 
-type SocialLinksType = {
+type SocialType = {
   github: string;
   twitter: string;
   steam: string;
@@ -24,19 +24,19 @@ type StaticQueryType = {
         name: string;
         github: string;
       };
-      socialLinks: SocialLinksType;
+      social: SocialType;
     };
   };
 };
 
 const SocialLinks: React.FC<{
-  socialLinks: SocialLinksType;
-}> = ({ socialLinks }) => {
+  social: SocialType;
+}> = ({ social }) => {
   return (
     <>
       <a
         className="group text-lg px-0.4em hover:text-github"
-        href={socialLinks.github}
+        href={`https://github.com/${social.github}`}
         target="_blank"
         rel="noreferrer"
         title="Github"
@@ -46,7 +46,7 @@ const SocialLinks: React.FC<{
       </a>
       <a
         className="text-lg px-0.4em hover:text-twitter"
-        href={socialLinks.steam}
+        href={`https://twitter.com/${social.twitter}`}
         target="_blank"
         rel="noreferrer"
         title="Twitter"
@@ -55,7 +55,7 @@ const SocialLinks: React.FC<{
       </a>
       <a
         className="text-lg px-0.4em hover:text-steam"
-        href={socialLinks.steam}
+        href={`https://steamcommunity.com/id/${social.steam}`}
         target="_blank"
         rel="noreferrer"
         title="Steam"
@@ -64,7 +64,7 @@ const SocialLinks: React.FC<{
       </a>
       <a
         className="text-lg px-0.4em hover:text-mail"
-        href={socialLinks.mail}
+        href={`mailto:${social.mail}`}
         target="_blank"
         rel="noreferrer"
         title="Mail"
@@ -94,7 +94,7 @@ export const Footer: React.FC = () => {
             author {
               name
             }
-            socialLinks {
+            social {
               github
               twitter
               steam
@@ -106,7 +106,7 @@ export const Footer: React.FC = () => {
     `
   );
   const { siteMetadata } = site;
-  const { title, author, socialLinks } = siteMetadata;
+  const { title, author, social } = siteMetadata;
   return (
     <footer
       className="
@@ -118,7 +118,7 @@ export const Footer: React.FC = () => {
         "
     >
       <section className="<sm:mb-8px">
-        <SocialLinks socialLinks={socialLinks} />
+        <SocialLinks social={social} />
       </section>
       <section
         className="<sm:text-sm
