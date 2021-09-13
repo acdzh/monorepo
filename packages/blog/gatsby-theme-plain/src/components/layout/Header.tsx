@@ -1,7 +1,9 @@
+import clsx from 'clsx';
 import { graphql, Link, useStaticQuery } from 'gatsby';
 import { useTheme } from 'gatsby-plugin-use-dark-mode';
 import React from 'react';
 import { FaRegSun, FaRegMoon } from 'react-icons/fa';
+import { useWindowScroll } from 'react-use';
 
 import { GraphqlQueryDataType } from '@typings/graphql';
 
@@ -19,15 +21,20 @@ export const Header: React.FC = () => {
   );
   const { siteMetadata } = site;
   const { theme, toggleTheme } = useTheme();
+
+  const { y } = useWindowScroll();
+
   return (
     <nav
-      className="
-        w-full 
+      className={clsx(
+        `w-full 
         fixed top-0
-        shadow dark:shadow-white 
         backdrop-filter backdrop-blur-xl backdrop-saturate-[1.8]
-        bg-white dark:bg-dark-900 bg-opacity-80 
-      "
+        bg-white dark:bg-dark-900 bg-opacity-80`,
+        {
+          'shadow dark:shadow-white': y > 10,
+        }
+      )}
     >
       <div
         className="
