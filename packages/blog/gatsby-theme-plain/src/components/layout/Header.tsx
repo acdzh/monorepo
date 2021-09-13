@@ -32,7 +32,7 @@ export const Header: React.FC = () => {
         fixed top-0
         shadow dark:shadow-white 
         backdrop-filter backdrop-blur-xl backdrop-saturate-[1.8]
-        bg-white dark:bg-dark-600 bg-opacity-80 
+        bg-white dark:bg-dark-900 bg-opacity-80 
       "
     >
       <div
