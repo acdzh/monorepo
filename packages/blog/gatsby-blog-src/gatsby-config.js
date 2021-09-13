@@ -12,6 +12,7 @@ module.exports = {
       steam: 'acdzh',
       mail: 'acdzh@outlook.com',
     },
+    postsPerPage: 8,
   },
   plugins: [
     'gatsby-plugin-pnpm',

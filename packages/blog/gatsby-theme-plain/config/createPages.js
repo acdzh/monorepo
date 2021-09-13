@@ -31,7 +31,7 @@ module.exports = async function ({ graphql, actions }) {
   }
 
   const posts = result.data.allMdx.nodes;
-  const postsPerPage = result.data.site.siteMetadata.postsPerPage;
+  const postsPerPage = result.data.site.siteMetadata.postsPerPage || 8;
 
   if (posts.length <= 0) {
     throw new Error('No posts found');
@@ -39,5 +39,49 @@ module.exports = async function ({ graphql, actions }) {
   }
 
   // create all post page
-  // define a tem
+  // Define a template for blog post
+  const blogPost = `${__dirname}/../src/templates/post.tsx`;
+  // Create blog posts pages
+  // But only if there's at least one markdown file found at "content" (defined in gatsby-config.js)
+  // `context` is available in the template as a prop and as a variable in GraphQL
+  posts.forEach((post, index) => {
+    const previousPostId = index === 0 ? null : posts[index - 1].id;
+    const nextPostId = index === posts.length - 1 ? null : posts[index + 1].id;
+    createPage({
+      path: post.fields.slug,
+      component: blogPost,
+      context: {
+        id: post.id,
+        previousPostId,
+        nextPostId,
+      },
+    });
+  });
+
+  // create index pages
+  // create homepage pagination
+  const numPages = Math.ceil(posts.length / postsPerPage);
+  const homePaginate = `${__dirname}/../src/pages/index.tsx`;
+  Array.from({ length: numPages }).forEach((_, i) => {
+    createPage({
+      path: `/posts/${i + 1}`,
+      component: homePaginate,
+      context: {
+        currentPage: i,
+        totalPage: numPages,
+        limit: postsPerPage,
+        skip: i * postsPerPage,
+      },
+    });
+  });
+  createPage({
+    path: '/',
+    component: homePaginate,
+    context: {
+      currentPage: 0,
+      totalPage: numPages,
+      limit: postsPerPage,
+      skip: 0,
+    },
+  });
 };

@@ -11,13 +11,20 @@ export type IndexPagePropsType = {
 };
 
 const IndexPage: React.FC<IndexPagePropsType> = ({ data }) => {
+  const { nodes } = data.allMdx;
   return (
     <Layout>
       <SEO title="首页" />
       <Header />
       <Content>
         <WidthDebug />
-        <pre>{JSON.stringify(data, null, 2)}</pre>
+        <ul>
+          {nodes.map((node) => (
+            <li className="block" key={node.frontmatter.title}>
+              <a href={node.fields.slug}>{node.frontmatter.title}</a>
+            </li>
+          ))}
+        </ul>
       </Content>
       <Footer />
     </Layout>
@@ -49,6 +56,11 @@ export const pageQuery = graphql`
           slug
           title
         }
+      }
+    }
+    site {
+      siteMetadata {
+        postsPerPage
       }
     }
   }

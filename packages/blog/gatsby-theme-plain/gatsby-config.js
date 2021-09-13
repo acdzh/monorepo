@@ -1,8 +1,4 @@
-const createConfig = ({
-  contentPath = 'content',
-  assetsPath = 'assets',
-  postsPerPage = 8,
-}) => ({
+const createConfig = ({ contentPath = 'content', assetsPath = 'assets' }) => ({
   siteMetadata: {
     title: 'gatsby-theme-plain',
     description: 'gatsby-theme-plain demo',
@@ -16,7 +12,7 @@ const createConfig = ({
       steam: 'acdzh',
       mail: 'acdzh@outlook.com',
     },
-    postsPerPage,
+    postsPerPage: 8,
   },
   plugins: [
     {
