@@ -1,4 +1,4 @@
-import { graphql } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 import React from 'react';
 
 import { Layout, Header, Content, Footer } from '@components/layout';
@@ -18,10 +18,10 @@ const IndexPage: React.FC<IndexPagePropsType> = ({ data }) => {
       <Header />
       <Content>
         <WidthDebug />
-        <ul>
+        <ul className="py-60px px-16px sm:px-32">
           {nodes.map((node) => (
             <li className="block" key={node.frontmatter.title}>
-              <a href={node.fields.slug}>{node.frontmatter.title}</a>
+              <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
             </li>
           ))}
         </ul>

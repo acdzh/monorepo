@@ -1,4 +1,6 @@
-import { graphql } from 'gatsby';
+import { MDXProvider } from '@mdx-js/react';
+import { graphql, Link } from 'gatsby';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
 import React from 'react';
 
 import { Layout, Header, Content, Footer } from '@components/layout';
@@ -17,8 +19,12 @@ const PostTemplate: React.FC<PostTemplatePropsType> = ({ data }) => {
       <Header />
       <Content>
         <WidthDebug />
-        <h1>{data.mdx.frontmatter.title}</h1>
-        <div>{data.mdx.excerpt}</div>
+        <article className="w-full overflow-hidden py-60px px-16px sm:px-32">
+          <h1 className="text-24px">{data.mdx.frontmatter.title}</h1>
+          <MDXProvider>
+            <MDXRenderer>{data.mdx.body}</MDXRenderer>
+          </MDXProvider>
+        </article>
       </Content>
       <Footer />
     </Layout>
