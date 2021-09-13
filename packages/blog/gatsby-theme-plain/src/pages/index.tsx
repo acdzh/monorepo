@@ -4,8 +4,13 @@ import React from 'react';
 import { Layout, Header, Content, Footer } from '@components/layout';
 import { SEO } from '@components/SEO';
 import { WidthDebug } from '@components/WidthDebug';
+import { GraphqlQueryDataType } from '@typings/graphql';
 
-const IndexPage: React.FC<{ data: GraphqlQueryDataType }> = ({ data }) => {
+export type IndexPagePropsType = {
+  data: GraphqlQueryDataType;
+};
+
+const IndexPage: React.FC<IndexPagePropsType> = ({ data }) => {
   return (
     <Layout>
       <SEO title="首页" />

@@ -3,16 +3,10 @@ import { useTheme } from 'gatsby-plugin-use-dark-mode';
 import React from 'react';
 import { FaRegSun, FaRegMoon } from 'react-icons/fa';
 
-type HeaderStaticQueryType = {
-  site: {
-    siteMetadata: {
-      title: string;
-    };
-  };
-};
+import { GraphqlQueryDataType } from '@typings/graphql';
 
 export const Header: React.FC = () => {
-  const { site } = useStaticQuery<HeaderStaticQueryType>(
+  const { site } = useStaticQuery<GraphqlQueryDataType>(
     graphql`
       query {
         site {

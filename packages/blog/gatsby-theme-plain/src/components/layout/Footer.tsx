@@ -1,4 +1,4 @@
-import { graphql, Link, useStaticQuery } from 'gatsby';
+import { graphql, useStaticQuery } from 'gatsby';
 import React from 'react';
 import {
   FaGithub,
@@ -9,28 +9,11 @@ import {
   FaRss,
 } from 'react-icons/fa';
 
-type SocialType = {
-  github: string;
-  twitter: string;
-  steam: string;
-  mail: string;
-};
-
-type FooterStaticQueryType = {
-  site: {
-    siteMetadata: {
-      title: string;
-      author: {
-        name: string;
-        github: string;
-      };
-      social: SocialType;
-    };
-  };
-};
+import { GraphqlQueryDataType } from '@typings/graphql';
+import { SiteMetadata } from '@typings/graphql/site';
 
 const SocialLinks: React.FC<{
-  social: SocialType;
+  social: SiteMetadata['social'];
 }> = ({ social }) => {
   return (
     <>
@@ -85,7 +68,7 @@ const SocialLinks: React.FC<{
 };
 
 export const Footer: React.FC = () => {
-  const { site } = useStaticQuery<FooterStaticQueryType>(
+  const { site } = useStaticQuery<GraphqlQueryDataType>(
     graphql`
       query {
         site {
