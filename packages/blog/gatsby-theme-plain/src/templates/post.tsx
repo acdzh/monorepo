@@ -1,5 +1,5 @@
 import { MDXProvider } from '@mdx-js/react';
-import { graphql, Link } from 'gatsby';
+import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import React from 'react';
 
@@ -19,7 +19,7 @@ const PostTemplate: React.FC<PostTemplatePropsType> = ({ data }) => {
       <Header />
       <Content>
         <WidthDebug />
-        <article className="w-full overflow-hidden py-60px px-16px sm:px-32">
+        <article className="w-full max-w-screen-xl mx-auto py-60px my-auto-px overflow-hidden">
           <h1 className="text-24px">{data.mdx.frontmatter.title}</h1>
           <MDXProvider>
             <MDXRenderer>{data.mdx.body}</MDXRenderer>

@@ -39,8 +39,8 @@ export const Header: React.FC = () => {
       <div
         className="
           flex justify-between
-          w-full max-w-screen-xl h-54px mx-auto
-          px-8px sm:px-16px md:px-32px lg:px-64px xl:px-0
+          h-54px w-full max-w-screen-xl
+          mx-auto my-auto-px
         "
       >
         <div className="flex flex-row justify-center items-center text-theme-800 dark:text-theme-300 text-lg">

@@ -93,11 +93,10 @@ export const Footer: React.FC = () => {
   return (
     <footer
       className="
-          py-24px 
+          w-full max-w-screen-xl
+          mx-auto my-auto-px py-24px 
           <sm:text-center
           sm:flex sm:flex-row-reverse sm:justify-between
-          w-full max-w-screen-xl mx-auto
-          sm:px-16px md:px-32px lg:px-64px xl:px-0
         "
     >
       <section className="<sm:mb-8px">

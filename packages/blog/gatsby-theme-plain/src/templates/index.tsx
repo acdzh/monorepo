@@ -18,7 +18,7 @@ const IndexPage: React.FC<IndexPagePropsType> = ({ data }) => {
       <Header />
       <Content>
         <WidthDebug />
-        <ul className="py-60px px-16px sm:px-32">
+        <ul className="w-full max-w-screen-xl mx-auto my-auto-px py-30px">
           {nodes.map((node) => (
             <li className="block" key={node.frontmatter.title}>
               <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
