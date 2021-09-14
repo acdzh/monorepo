@@ -7,19 +7,30 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@acdzh/hooks": "workspace:*",
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "^1.6.22",
+    "clsx": "^1.1.1",
     "gatsby": "^3.13.0",
     "gatsby-plugin-mdx": "^2.13.0",
-    "gatsby-plugin-postcss": "^4.13.0",
     "gatsby-plugin-pnpm": "^1.2.8",
+    "gatsby-plugin-postcss": "^4.13.0",
+    "gatsby-plugin-react-helmet": "^4.13.0",
     "gatsby-plugin-typescript": "^3.13.0",
+    "gatsby-plugin-use-dark-mode": "workspace:*",
     "gatsby-plugin-windicss": "^0.1.0",
     "gatsby-source-filesystem": "^3.13.0",
     "postcss": "^8.3.6",
     "postcss-windicss": "^1.0.0",
     "react": "^17.0.2",
+    "react-helmet": "^6.1.0",
+    "react-icons": "^4.2.0",
+    "react-use": "^17.3.1",
     "typescript": "^4.4.2",
     "windicss": "^3.1.7"
+  },
+  "devDependencies": {
+    "@types/mdx-js__react": "^1.5.4",
+    "@types/react-helmet": "^6.1.2"
   }
 }

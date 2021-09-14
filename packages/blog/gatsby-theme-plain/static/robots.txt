@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+DisAllow: /video/
+Sitemap: https://blog.acdzh.com/sitemap.xml

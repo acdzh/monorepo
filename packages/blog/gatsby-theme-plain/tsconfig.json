@@ -3,8 +3,12 @@
   "include": ["src/**/*"],
   "compilerOptions": {
     "baseUrl": "./",
+    "typeRoots": ["./node_modules/@types/", "src/typings"],
     "paths": {
       "@components/*": ["./src/components/*"],
+      "@typings/*": ["./src/typings/*"],
+      "@icons": ["./src/icons"],
+      "@icons/*": ["./src/icons/*"],
     }
   }
 }

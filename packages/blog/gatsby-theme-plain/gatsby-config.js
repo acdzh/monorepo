@@ -1,14 +1,18 @@
-const createConfig = ({
-  contentPath = 'content',
-  assetsPath = 'assets',
-  postsPerPage = 8,
-}) => ({
+const createConfig = ({ contentPath = 'content', assetsPath = 'assets' }) => ({
   siteMetadata: {
     title: 'gatsby-theme-plain',
+    description: 'gatsby-theme-plain demo',
+    siteUrl: 'https://example.com',
     author: {
       name: 'acdzh',
     },
-    postsPerPage,
+    social: {
+      github: 'acdzh',
+      twitter: 'acdzh',
+      steam: 'acdzh',
+      mail: 'acdzh@outlook.com',
+    },
+    postsPerPage: 8,
   },
   plugins: [
     {
@@ -33,6 +37,8 @@ const createConfig = ({
     },
     'gatsby-plugin-postcss',
     'gatsby-plugin-pnpm',
+    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-use-dark-mode',
   ].filter(Boolean),
 });
 
