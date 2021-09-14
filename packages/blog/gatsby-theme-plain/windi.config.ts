@@ -34,6 +34,15 @@ export default defineConfig({
       },
     },
   },
+  shortcuts: {
+    'bg-primary': 'bg-white dark:bg-dark-900',
+    'text-primary': 'text-gray-900 dark:text-gray-50',
+    'text-secondary': 'text-gray-700 dark:text-gray-300',
+    'text-theme': 'text-theme-800 dark:text-theme-300',
+    'underline-theme': 'border-b border-theme-800 dark:border-theme-300',
+    'px-loose': 'px-14px md:px-32px lg:px-64px xl:px-32px',
+    'py-loose': 'py-8px sm:py-16px md:py-32px lg:py-48px',
+  },
   preflight: true,
   attributify: true,
 });

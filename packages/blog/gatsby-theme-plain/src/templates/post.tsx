@@ -19,7 +19,7 @@ const PostTemplate: React.FC<PostTemplatePropsType> = ({ data }) => {
       <Header />
       <Content>
         <WidthDebug />
-        <article className="w-full max-w-screen-xl mx-auto py-60px my-auto-px overflow-hidden">
+        <article className="w-full max-w-screen-xl mx-auto px-loose py-loose overflow-hidden">
           <h1 className="text-24px">{data.mdx.frontmatter.title}</h1>
           <MDXProvider>
             <MDXRenderer>{data.mdx.body}</MDXRenderer>

@@ -94,7 +94,7 @@ export const Footer: React.FC = () => {
     <footer
       className="
           w-full max-w-screen-xl
-          mx-auto my-auto-px py-24px 
+          mx-auto px-loose py-24px 
           <sm:text-center
           sm:flex sm:flex-row-reverse sm:justify-between
         "

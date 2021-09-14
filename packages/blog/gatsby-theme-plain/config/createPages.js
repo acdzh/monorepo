@@ -69,7 +69,7 @@ module.exports = async function ({ graphql, actions }) {
       path: `/posts/${i + 1}`,
       component: homePaginate,
       context: {
-        currentPage: i,
+        currentPage: i + 1,
         totalPage: numPages,
         limit: postsPerPage,
         skip: i * postsPerPage,
@@ -80,7 +80,7 @@ module.exports = async function ({ graphql, actions }) {
     path: '/',
     component: homePaginate,
     context: {
-      currentPage: 0,
+      currentPage: 1,
       totalPage: numPages,
       limit: postsPerPage,
       skip: 0,

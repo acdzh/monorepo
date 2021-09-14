@@ -30,7 +30,7 @@ export const Header: React.FC = () => {
         `w-full 
         fixed top-0
         backdrop-filter backdrop-blur-xl backdrop-saturate-[1.8]
-        bg-white dark:bg-dark-900 bg-opacity-80`,
+        bg-primary bg-opacity-80`,
         {
           'shadow dark:shadow-white': y > 10,
         }
@@ -40,10 +40,15 @@ export const Header: React.FC = () => {
         className="
           flex justify-between
           h-54px w-full max-w-screen-xl
-          mx-auto my-auto-px
+          mx-auto px-loose
         "
       >
-        <div className="flex flex-row justify-center items-center text-theme-800 dark:text-theme-300 text-lg">
+        <div
+          className="
+            flex flex-row justify-center items-center
+            text-lg text-theme
+          "
+        >
           <Link className="mr-12px" to="/">
             {siteMetadata.title}
           </Link>
@@ -62,7 +67,11 @@ export const Header: React.FC = () => {
         </div>
         <div className="flex flex-row justify-center items-center">
           <button
-            className="flex text-lg justify-center items-center p-0.4em rounded-lg hover:bg-light-900 dark:hover:bg-dark-900"
+            className="
+              flex text-lg justify-center items-center
+              p-0.4em rounded-lg
+              hover:bg-gray-100 dark:hover:bg-gray-900
+            "
             aria-label="切换主题"
             onClick={toggleTheme}
           >

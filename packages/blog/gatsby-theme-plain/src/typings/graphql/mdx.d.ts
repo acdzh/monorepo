@@ -20,6 +20,7 @@ export type FrontmatterType = {
   draft: boolean;
   description: string;
   date: string;
+  update_date: string;
 };
 
 export type TableOfContentsItemType = {
