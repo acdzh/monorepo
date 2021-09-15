@@ -24,8 +24,9 @@ export type SeoPropsType = {
   children?: React.ReactNode;
 };
 
-const array2String = (n: string | string[]): string =>
-  Array.isArray(n) ? n.join(',') : n;
+function toArray<T>(n: T | T[]): T[] {
+  return Array.isArray(n) ? n : [n];
+}
 
 const ArticleInfoMetas: React.FC<ArticleInfoType> = ({
   publishedTime,
@@ -55,13 +56,18 @@ const ArticleInfoMetas: React.FC<ArticleInfoType> = ({
           content={new Date(expirationTime).toISOString()}
         />
       )}
-      {author && (
-        <meta property="article:author" content={array2String(author)} />
-      )}
-      {section && (
-        <meta property="article:section" content={array2String(section)} />
-      )}
-      {tag && <meta property="article:tag" content={array2String(tag)} />}
+      {author &&
+        toArray(author).map((item) => (
+          <meta key={item} property="article:author" content={item} />
+        ))}
+      {section &&
+        toArray(section).map((item) => (
+          <meta key={item} property="article:section" content={item} />
+        ))}
+      {tag &&
+        toArray(tag).map((item) => (
+          <meta key={item} property="article:tag" content={item} />
+        ))}
     </Helmet>
   );
 };
