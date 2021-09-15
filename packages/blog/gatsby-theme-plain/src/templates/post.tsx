@@ -22,7 +22,7 @@ const PostTemplate: React.FC<PostTemplatePropsType> = ({ data }) => {
         description={frontmatter.description || excerpt}
         title={frontmatter.title}
         // image={frontmatter.cover}
-        pathname={`/${fields.slug}`}
+        pathname={fields.slug}
         type="article"
         articleInfo={{
           publishedTime: frontmatter.date,
