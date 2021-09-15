@@ -28,7 +28,10 @@ const IndexPage: React.FC<IndexPagePropsType> = ({ data, pageContext }) => {
         <WidthDebug />
         <ul>
           {nodes.map((node) => (
-            <li className="block mb-36px" key={node.frontmatter.title}>
+            <li
+              className="block mb-36px sm:mb-48px"
+              key={node.frontmatter.title}
+            >
               <Featured mdx={node} />
             </li>
           ))}
@@ -64,19 +67,13 @@ export const pageQuery = graphql`
       skip: $skip
     ) {
       nodes {
-        excerpt(pruneLength: 160)
+        excerpt(pruneLength: 240)
         fields {
           slug
         }
         frontmatter {
-          tags
-          author
-          categories
           date
           description
-          draft
-          series
-          slug
           title
           update_date
         }

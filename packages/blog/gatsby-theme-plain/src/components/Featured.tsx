@@ -13,39 +13,43 @@ const formatDate = (date: Date) =>
 const formatDateString = (s: string) => formatDate(new Date(s));
 
 export const Featured: React.FC<FeaturedProps> = ({ mdx }) => {
+  const { excerpt } = mdx;
+  const { slug } = mdx.fields;
+  const { title, date, description, update_date } = mdx.frontmatter;
   return (
     <>
       <h1 className="text-2xl">
-        <Link
-          className="hover:text-theme hover:underline-theme"
-          to={mdx.fields.slug}
-        >
-          {mdx.frontmatter.title}
+        <Link className="hover:text-theme hover:underline-theme" to={slug}>
+          {title}
         </Link>
       </h1>
-      {mdx.frontmatter.date && (
+      {date && (
         <span className="mt-2px text-sm text-secondary">
-          <time dateTime={mdx.frontmatter.date} itemProp="datePublished">
-            {formatDateString(mdx.frontmatter.date)}
+          <time dateTime={date} itemProp="datePublished">
+            {formatDateString(date)}
           </time>
-          {mdx.frontmatter.update_date &&
-            mdx.frontmatter.update_date !== mdx.frontmatter.date && (
-              <>
-                {' ('}
-                最近更新:
-                <time
-                  dateTime="2021-05-26T00:00:00+00:00"
-                  itemProp="datePublished"
-                >
-                  {formatDateString(mdx.frontmatter.update_date)}
-                </time>
-                {')'}
-              </>
-            )}
+          {update_date && update_date !== date && (
+            <>
+              {' ('}
+              最近更新:
+              <time
+                dateTime="2021-05-26T00:00:00+00:00"
+                itemProp="datePublished"
+              >
+                {formatDateString(update_date)}
+              </time>
+              {')'}
+            </>
+          )}
         </span>
       )}
       <p className="mt-8px">
-        <Link to={mdx.fields.slug}>{mdx.excerpt}</Link>
+        <span className="<sm:hidden">{description || excerpt}</span>
+        <span className="sm:hidden">
+          {description || excerpt.length > 123
+            ? excerpt.slice(0, 120) + '...'
+            : excerpt}
+        </span>
       </p>
     </>
   );
