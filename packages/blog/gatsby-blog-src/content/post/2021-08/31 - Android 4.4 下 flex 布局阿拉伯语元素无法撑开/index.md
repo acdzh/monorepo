@@ -55,12 +55,10 @@ categories: [技术]
   </li>
 </ul>
 ```
-<p>
-  <div style="width: 100%; text-align: center; display: flex; flex-direction: column; align-items: center;">
-    <iframe src="./v1.html" style="height: 200px; min-width: 300px; width: 375px; max-width: 100%; margin-bottom: 10px;"></iframe>
-    <a href="./v1.html" target="_blank">🔗 点此在新窗口中查看效果</a>
-  </div>
-</p>
+<div style="width: 100%; text-align: center; display: flex; flex-direction: column; align-items: center;">
+  <iframe src="./v1.html" style="height: 200px; min-width: 300px; width: 375px; max-width: 100%; margin-bottom: 10px;"></iframe>
+  <a href="./v1.html" target="_blank">🔗 点此在新窗口中查看效果</a>
+</div>
 
 一切看起来似乎都是那么美好, 但是在 Android 4.4 下预览就有问题了: 
 

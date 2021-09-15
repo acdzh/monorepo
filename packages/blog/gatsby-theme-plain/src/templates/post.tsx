@@ -14,16 +14,31 @@ export type PostTemplatePropsType = {
 };
 
 const PostTemplate: React.FC<PostTemplatePropsType> = ({ data }) => {
+  const { mdx, site } = data;
+  const { body, excerpt, frontmatter, fields } = mdx;
   return (
     <Layout>
-      <SEO title={data.mdx.frontmatter.title} />
+      <SEO
+        description={frontmatter.description || excerpt}
+        title={frontmatter.title}
+        // image={frontmatter.cover}
+        pathname={`/${fields.slug}`}
+        type="article"
+        articleInfo={{
+          publishedTime: frontmatter.date,
+          modifiedTime: frontmatter.update_date,
+          author: frontmatter.author || site.siteMetadata.author.name,
+          section: frontmatter.categories,
+          tag: frontmatter.tags,
+        }}
+      />
       <Header />
       <Content>
         <WidthDebug />
         <article className="w-full max-w-screen-xl mx-auto px-loose py-loose overflow-hidden">
-          <h1 className="text-24px">{data.mdx.frontmatter.title}</h1>
+          <h1 className="text-24px">{frontmatter.title}</h1>
           <MDXProvider components={MDXComponents}>
-            <MDXRenderer>{data.mdx.body}</MDXRenderer>
+            <MDXRenderer>{body}</MDXRenderer>
           </MDXProvider>
         </article>
       </Content>
@@ -52,6 +67,9 @@ export const pageQuery = graphql`
       excerpt(pruneLength: 160)
       body
       tableOfContents(maxDepth: 10)
+      fields {
+        slug
+      }
       fileAbsolutePath
       frontmatter {
         tags
