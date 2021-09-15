@@ -4,6 +4,7 @@ import { MDXRenderer } from 'gatsby-plugin-mdx';
 import React from 'react';
 
 import { Layout, Header, Content, Footer } from '@components/layout';
+import { MDXComponents } from '@components/post/MDXComponents';
 import { SEO } from '@components/SEO';
 import { WidthDebug } from '@components/WidthDebug';
 import { GraphqlQueryDataType } from '@typings/graphql';
@@ -21,7 +22,7 @@ const PostTemplate: React.FC<PostTemplatePropsType> = ({ data }) => {
         <WidthDebug />
         <article className="w-full max-w-screen-xl mx-auto px-loose py-loose overflow-hidden">
           <h1 className="text-24px">{data.mdx.frontmatter.title}</h1>
-          <MDXProvider>
+          <MDXProvider components={MDXComponents}>
             <MDXRenderer>{data.mdx.body}</MDXRenderer>
           </MDXProvider>
         </article>
