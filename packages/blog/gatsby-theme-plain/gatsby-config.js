@@ -22,6 +22,9 @@ const createConfig = ({
 }) => ({
   siteMetadata,
   plugins: [
+    'gatsby-plugin-image',
+    'gatsby-plugin-sharp',
+    'gatsby-transformer-sharp',
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -40,6 +43,7 @@ const createConfig = ({
       resolve: 'gatsby-plugin-mdx',
       options: {
         extensions: ['.mdx', '.md'],
+        gatsbyRemarkPlugins: ['gatsby-remark-images'],
       },
     },
     {
