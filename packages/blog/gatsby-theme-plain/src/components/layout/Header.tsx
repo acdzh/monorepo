@@ -28,7 +28,7 @@ export const Header: React.FC = () => {
     <nav
       className={clsx(
         `w-full 
-        fixed top-0
+        fixed top-0 z-100
         backdrop-filter backdrop-blur-xl backdrop-saturate-[1.8]
         bg-primary bg-opacity-80`,
         {
