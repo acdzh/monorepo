@@ -23,5 +23,11 @@ module.exports = {
         trackingId: 'UA-148601605-2',
       },
     },
+    {
+      resolve: 'gatsby-plugin-slardar',
+      options: {
+        bid: 'blog_vukk',
+      },
+    },
   ],
 };
