@@ -1,35 +1,28 @@
-module.exports = {
-  siteMetadata: {
-    title: '随便写写',
-    description: '随便写写, 全而不精',
-    siteUrl: 'https://blog.acdzh.com',
-    author: {
-      name: 'acdzh',
-    },
-    social: {
-      github: 'acdzh',
-      twitter: 'acdzh',
-      steam: 'acdzh',
-      mail: 'acdzh@outlook.com',
-    },
-    postsPerPage: 8,
+const siteMetadata = {
+  title: '随便写写',
+  description: '随便写写, 全而不精',
+  siteUrl: 'https://blog.acdzh.com',
+  author: {
+    name: 'acdzh',
   },
+  favicon: 'assets/favicon.png',
+  social: {
+    github: 'acdzh',
+    twitter: 'acdzh',
+    steam: 'acdzh',
+    mail: 'acdzh@outlook.com',
+  },
+  postsPerPage: 8,
+};
+
+module.exports = {
+  siteMetadata,
   plugins: [
     'gatsby-plugin-pnpm',
-    'gatsby-theme-plain',
     {
-      resolve: 'gatsby-plugin-manifest',
+      resolve: 'gatsby-theme-plain',
       options: {
-        name: '随便写写',
-        short_name: '随便写写',
-        description: '随便写写, 全而不精',
-        lang: 'zh-CN',
-        start_url: '/',
-        background_color: '#fff',
-        theme_color: ' #fff',
-        display: 'standalone',
-        icon: 'assets/favicon.png',
-        theme_color_in_head: false, // This will avoid adding theme-color meta tag.
+        siteMetadata,
       },
     },
     {

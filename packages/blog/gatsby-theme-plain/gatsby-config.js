@@ -1,19 +1,26 @@
-const createConfig = ({ contentPath = 'content', assetsPath = 'assets' }) => ({
-  siteMetadata: {
-    title: 'gatsby-theme-plain',
-    description: 'gatsby-theme-plain demo',
-    siteUrl: 'https://example.com',
-    author: {
-      name: 'acdzh',
-    },
-    social: {
-      github: 'acdzh',
-      twitter: 'acdzh',
-      steam: 'acdzh',
-      mail: 'acdzh@outlook.com',
-    },
-    postsPerPage: 8,
+const defaultSiteMetadata = {
+  title: 'gatsby-theme-plain',
+  description: 'gatsby-theme-plain demo',
+  siteUrl: 'https://example.com',
+  author: {
+    name: 'acdzh',
   },
+  favicon: `${__dirname}/assets/favicon.png`,
+  social: {
+    github: 'acdzh',
+    twitter: 'acdzh',
+    steam: 'acdzh',
+    mail: 'acdzh@outlook.com',
+  },
+  postsPerPage: 8,
+};
+
+const createConfig = ({
+  contentPath = 'content',
+  assetsPath = 'assets',
+  siteMetadata = defaultSiteMetadata,
+}) => ({
+  siteMetadata,
   plugins: [
     {
       resolve: 'gatsby-source-filesystem',
@@ -35,10 +42,30 @@ const createConfig = ({ contentPath = 'content', assetsPath = 'assets' }) => ({
         extensions: ['.mdx', '.md'],
       },
     },
+    {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        name: siteMetadata.title || '',
+        short_name: siteMetadata.title || '',
+        description: siteMetadata.description || '',
+        lang: siteMetadata.lang || 'zh-CN',
+        start_url: '/',
+        background_color: '#fff',
+        theme_color: ' #fff',
+        display: 'standalone',
+        icon: siteMetadata.favicon || `${__dirname}/assets/favicon.png`,
+        theme_color_in_head: false, // This will avoid adding theme-color meta tag.
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-feed',
+      options: require('./config/gatsby-plugin-feed-options'),
+    },
     'gatsby-plugin-postcss',
     'gatsby-plugin-pnpm',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-use-dark-mode',
+    'gatsby-plugin-sitemap',
   ].filter(Boolean),
 });
 
