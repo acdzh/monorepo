@@ -102,6 +102,9 @@ export const SEO: React.FC<SeoPropsType> = ({
   const metaDescription = description || site.siteMetadata.description || '';
   const defaultTitle = site.siteMetadata.title;
   const url = `${site.siteMetadata.siteUrl}${pathname}`.replace(/\/\/$/, '/');
+  const imageUrl = image
+    ? `${site.siteMetadata.siteUrl}${image}`.replace(/\/\/$/, '/')
+    : '';
 
   return (
     <>
@@ -129,12 +132,8 @@ export const SEO: React.FC<SeoPropsType> = ({
         <meta name="twitter:description" content={metaDescription} />
 
         {/* image */}
-        {image && (
-          <>
-            <meta property="og:image" content={image} />
-            <meta name="twitter:image" content={image} />
-          </>
-        )}
+        {image && <meta property="og:image" content={imageUrl} />}
+        {image && <meta name="twitter:image" content={imageUrl} />}
 
         {/* ua */}
         <meta httpEquiv="X-UA-Compatible" content="IE=edge,chrome=1" />

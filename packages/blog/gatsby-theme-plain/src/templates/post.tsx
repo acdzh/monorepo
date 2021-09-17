@@ -16,12 +16,13 @@ export type PostTemplatePropsType = {
 const PostTemplate: React.FC<PostTemplatePropsType> = ({ data }) => {
   const { mdx, site } = data;
   const { body, excerpt, frontmatter, fields, tableOfContents } = mdx;
+  console.log(typeof frontmatter?.cover?.publicURL);
   return (
     <Layout>
       <SEO
         description={frontmatter.description || excerpt}
         title={frontmatter.title}
-        // image={frontmatter.cover}
+        image={frontmatter?.cover?.publicURL}
         pathname={fields.slug}
         type="article"
         articleInfo={{
@@ -77,6 +78,9 @@ export const pageQuery = graphql`
         author
         categories
         comment
+        cover {
+          publicURL
+        }
         date
         description
         draft
