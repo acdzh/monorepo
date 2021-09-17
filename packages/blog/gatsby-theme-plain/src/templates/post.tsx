@@ -4,7 +4,7 @@ import { MDXRenderer } from 'gatsby-plugin-mdx';
 import React from 'react';
 
 import { Layout, Header, Content, Footer } from '@components/layout';
-import { MDXComponents } from '@components/post/MDXComponents';
+import { MDXComponents, TOC } from '@components/post/';
 import { SEO } from '@components/SEO';
 import { WidthDebug } from '@components/WidthDebug';
 import { GraphqlQueryDataType } from '@typings/graphql';
@@ -15,7 +15,7 @@ export type PostTemplatePropsType = {
 
 const PostTemplate: React.FC<PostTemplatePropsType> = ({ data }) => {
   const { mdx, site } = data;
-  const { body, excerpt, frontmatter, fields } = mdx;
+  const { body, excerpt, frontmatter, fields, tableOfContents } = mdx;
   return (
     <Layout>
       <SEO
@@ -37,6 +37,7 @@ const PostTemplate: React.FC<PostTemplatePropsType> = ({ data }) => {
         <WidthDebug />
         <article className="w-full max-w-screen-xl mx-auto px-loose py-loose overflow-hidden">
           <h1 className="text-24px">{frontmatter.title}</h1>
+          <TOC items={tableOfContents.items} />
           <MDXProvider components={MDXComponents}>
             <MDXRenderer>{body}</MDXRenderer>
           </MDXProvider>
