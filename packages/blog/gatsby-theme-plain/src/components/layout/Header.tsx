@@ -61,9 +61,9 @@ export const Header: React.FC = () => {
           <Link className="mr-12px" to="/about">
             关于
           </Link>
-          <Link className="<sm:hidden mr-12px" to="/rss.xml">
+          <a className="<sm:hidden mr-12px" href="/rss.xml">
             RSS
-          </Link>
+          </a>
         </div>
         <div className="flex flex-row justify-center items-center">
           <button
