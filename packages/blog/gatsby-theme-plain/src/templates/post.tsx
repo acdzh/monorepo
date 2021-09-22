@@ -37,7 +37,8 @@ const PostTemplate: React.FC<PostTemplatePropsType> = ({ data }) => {
         className="
           w-full max-w-screen-xl 
           mx-auto px-loose py-loose 
-          flex flex-row
+          xl:flex xl:flex-row
+          <xl:overflow-hidden
         "
       >
         <WidthDebug />
@@ -47,8 +48,8 @@ const PostTemplate: React.FC<PostTemplatePropsType> = ({ data }) => {
             <MDXRenderer>{body}</MDXRenderer>
           </MDXProvider>
         </article>
-        <aside>
-          <div className="sticky top-74px w-200px">
+        <aside className="<xl:hidden">
+          <div className="sticky top-74px w-200px pl-12px w-240px">
             <TOC items={tableOfContents.items} />
           </div>
         </aside>
