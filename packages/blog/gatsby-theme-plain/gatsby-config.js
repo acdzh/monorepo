@@ -46,7 +46,16 @@ const createConfig = ({
         resolve: 'gatsby-plugin-mdx',
         options: {
           extensions: ['.mdx', '.md'],
-          gatsbyRemarkPlugins: ['gatsby-remark-images'],
+          gatsbyRemarkPlugins: [
+            'gatsby-remark-images',
+            {
+              resolve: 'gatsby-remark-autolink-headers',
+              options: {
+                // icon: false,
+                offsetY: 60,
+              },
+            },
+          ],
         },
       },
       {

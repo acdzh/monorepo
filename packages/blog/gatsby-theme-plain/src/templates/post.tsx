@@ -16,7 +16,6 @@ export type PostTemplatePropsType = {
 const PostTemplate: React.FC<PostTemplatePropsType> = ({ data }) => {
   const { mdx, site } = data;
   const { body, excerpt, frontmatter, fields, tableOfContents } = mdx;
-  console.log(typeof frontmatter?.cover?.publicURL);
   return (
     <Layout>
       <SEO
@@ -34,15 +33,25 @@ const PostTemplate: React.FC<PostTemplatePropsType> = ({ data }) => {
         }}
       />
       <Header />
-      <Content>
+      <Content
+        className="
+          w-full max-w-screen-xl 
+          mx-auto px-loose py-loose 
+          flex flex-row
+        "
+      >
         <WidthDebug />
-        <article className="w-full max-w-screen-xl mx-auto px-loose py-loose overflow-hidden">
+        <article>
           <h1 className="text-24px">{frontmatter.title}</h1>
-          <TOC items={tableOfContents.items} />
           <MDXProvider components={MDXComponents}>
             <MDXRenderer>{body}</MDXRenderer>
           </MDXProvider>
         </article>
+        <aside>
+          <div className="sticky top-74px w-200px">
+            <TOC items={tableOfContents.items} />
+          </div>
+        </aside>
       </Content>
       <Footer />
     </Layout>
