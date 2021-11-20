@@ -28,7 +28,7 @@ export const Header: React.FC = () => {
     <nav
       className={clsx(
         `w-full 
-        fixed top-0
+        fixed top-0 z-100
         backdrop-filter backdrop-blur-xl backdrop-saturate-[1.8]
         bg-primary bg-opacity-80`,
         {
@@ -61,9 +61,9 @@ export const Header: React.FC = () => {
           <Link className="mr-12px" to="/about">
             关于
           </Link>
-          <Link className="<sm:hidden mr-12px" to="/rss.xml">
+          <a className="<sm:hidden mr-12px" href="/rss.xml">
             RSS
-          </Link>
+          </a>
         </div>
         <div className="flex flex-row justify-center items-center">
           <button

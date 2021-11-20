@@ -17,7 +17,7 @@ categories: [技术, 计算机图形学]
 
 ## 折射
 
-### [斯涅尔定律](./https://zh.wikipedia.org/wiki/%E6%96%AF%E6%B6%85%E5%B0%94%E5%AE%9A%E5%BE%8B)
+### [斯涅尔定律](https://zh.wikipedia.org/wiki/%E6%96%AF%E6%B6%85%E5%B0%94%E5%AE%9A%E5%BE%8B)
 
 ![](./210318164154.png)
 

@@ -1,15 +1,15 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { CoreType } from './core';
+import { FileType } from './file';
 
 export type FieldsType = {
   slug: string;
 };
 
-export type FrontmatterType = {
+export type FrontmatterType = Partial<{
   author: string;
   categories: string[];
   comment: boolean;
-  cover: any; // TODO
+  cover: FileType;
   toc: boolean;
   title: string;
   tags: string[];
@@ -21,7 +21,7 @@ export type FrontmatterType = {
   description: string;
   date: string;
   update_date: string;
-};
+}>;
 
 export type TableOfContentsItemType = {
   url: string;

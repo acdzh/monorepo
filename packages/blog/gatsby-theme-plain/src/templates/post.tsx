@@ -4,7 +4,7 @@ import { MDXRenderer } from 'gatsby-plugin-mdx';
 import React from 'react';
 
 import { Layout, Header, Content, Footer } from '@components/layout';
-import { MDXComponents } from '@components/post/MDXComponents';
+import { MDXComponents, TOC } from '@components/post/';
 import { SEO } from '@components/SEO';
 import { WidthDebug } from '@components/WidthDebug';
 import { GraphqlQueryDataType } from '@typings/graphql';
@@ -15,14 +15,14 @@ export type PostTemplatePropsType = {
 
 const PostTemplate: React.FC<PostTemplatePropsType> = ({ data }) => {
   const { mdx, site } = data;
-  const { body, excerpt, frontmatter, fields } = mdx;
+  const { body, excerpt, frontmatter, fields, tableOfContents } = mdx;
   return (
     <Layout>
       <SEO
         description={frontmatter.description || excerpt}
         title={frontmatter.title}
-        // image={frontmatter.cover}
-        pathname={`/${fields.slug}`}
+        image={frontmatter?.cover?.publicURL}
+        pathname={fields.slug}
         type="article"
         articleInfo={{
           publishedTime: frontmatter.date,
@@ -33,14 +33,26 @@ const PostTemplate: React.FC<PostTemplatePropsType> = ({ data }) => {
         }}
       />
       <Header />
-      <Content>
+      <Content
+        className="
+          w-full max-w-screen-xl 
+          mx-auto px-loose py-loose 
+          xl:flex xl:flex-row
+          <xl:overflow-hidden
+        "
+      >
         <WidthDebug />
-        <article className="w-full max-w-screen-xl mx-auto px-loose py-loose overflow-hidden">
+        <article>
           <h1 className="text-24px">{frontmatter.title}</h1>
           <MDXProvider components={MDXComponents}>
             <MDXRenderer>{body}</MDXRenderer>
           </MDXProvider>
         </article>
+        <aside className="<xl:hidden">
+          <div className="sticky top-74px w-200px pl-12px w-240px">
+            <TOC items={tableOfContents.items} />
+          </div>
+        </aside>
       </Content>
       <Footer />
     </Layout>
@@ -76,6 +88,9 @@ export const pageQuery = graphql`
         author
         categories
         comment
+        cover {
+          publicURL
+        }
         date
         description
         draft
