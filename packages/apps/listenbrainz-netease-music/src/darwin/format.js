@@ -1,13 +1,12 @@
 const pkg = require('../../package.json');
 
 function formatToListenBrainzJson(data) {
-  const { track } = data;
   return {
     listened_at: Date.now(),
     track_metadata: {
-      artists_name: track.artists.map(({ name }) => name).join('/'),
-      track_name: track.name,
-      release_name: track.album.name,
+      artists_name: data.artistName,
+      track_name: data.songName,
+      release_name: data.albumName,
       additional_info: {
         // artists_mbids: '',
         // release_group_mbid: '',
@@ -15,7 +14,7 @@ function formatToListenBrainzJson(data) {
         // recording_mbid: '',
         // track_mbid: '',
         // work_mbids: '',
-        tracknumber: track.cd,
+        // tracknumber: '',
         // isrc: '',
         // spotify_id: '',
         // tags: [''],
@@ -25,9 +24,9 @@ function formatToListenBrainzJson(data) {
         submission_client_version: pkg.version,
         music_service: 'music.163.com',
         // music_service_name: '163-music',
-        origin_url: `https://music.163.com/#/song?id=${track.id}`,
+        origin_url: `https://music.163.com/#/song?id=${data.songId}`,
         raw_data: data,
-        raw_data_from: 'win32',
+        raw_data_from: 'darwin',
       },
     },
   };
