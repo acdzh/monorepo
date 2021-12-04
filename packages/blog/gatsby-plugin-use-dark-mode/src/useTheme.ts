@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 export type ThemeType = 'light' | 'dark' | undefined;
 
@@ -24,8 +24,10 @@ function useTheme(): {
 
     if (theme === 'dark') {
       docElement.classList.add('dark');
+      docElement.classList.remove('light');
     } else {
       docElement.classList.remove('dark');
+      docElement.classList.add('light');
     }
     const metaElement = document.querySelector('meta[name="theme-color"]');
     metaElement &&
