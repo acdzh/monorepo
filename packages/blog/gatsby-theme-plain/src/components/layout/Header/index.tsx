@@ -19,8 +19,8 @@ import {
 import { useToggle, useWindowScroll } from 'react-use';
 
 import { ExpandNavItem } from './ExpandNavItem';
-import { HeaderButtonItem } from './HeaderButtonItem';
-import { HeaderLinkItem } from './HeaderLinkItem';
+import { HeaderIconButton } from './HeaderIconButton';
+import { HeaderLinkButton } from './HeaderLinkButton';
 
 import { GraphqlQueryDataType } from '@typings/graphql';
 
@@ -64,22 +64,22 @@ export const Header: React.FC<HeaderPropsType> = ({ title }) => {
       >
         {/* link items */}
         <div className="<sm:hidden flex flex-row justify-center items-center">
-          <HeaderLinkItem icon={FaHome} to="/" text={siteMetadata.title} />
-          <HeaderLinkItem icon={FaBookmark} to="/series" text="系列" />
-          <HeaderLinkItem icon={FaTags} to="/tags" text="标签" />
-          <HeaderLinkItem icon={FaUser} to="/about" text="关于" />
-          <HeaderLinkItem icon={FaRss} to="/rss" text="RSS" />
+          <HeaderLinkButton icon={FaHome} to="/" text={siteMetadata.title} />
+          <HeaderLinkButton icon={FaBookmark} to="/series" text="系列" />
+          <HeaderLinkButton icon={FaTags} to="/tags" text="标签" />
+          <HeaderLinkButton icon={FaUser} to="/about" text="关于" />
+          <HeaderLinkButton icon={FaRss} to="/rss" text="RSS" />
         </div>
 
         {/* left buttons and title */}
         <div className="sm:hidden mr-12px flex flex-row justify-center items-center overflow-hidden">
-          <HeaderButtonItem
+          <HeaderIconButton
             className="mr-12px"
             aria-label="打开关闭菜单"
             onClick={toggleIsExpandNavShow}
           >
             {isExpandNavShow ? <FaTimes /> : <FaBars />}
-          </HeaderButtonItem>
+          </HeaderIconButton>
           <div className="leading-57px text-lg truncate">
             {title || siteMetadata.title}
           </div>
@@ -87,17 +87,17 @@ export const Header: React.FC<HeaderPropsType> = ({ title }) => {
 
         {/* right buttons */}
         <div className="relative flex flex-row justify-center items-center">
-          <HeaderButtonItem className="mr-12px" aria-label="搜索">
+          <HeaderIconButton className="mr-12px" aria-label="搜索">
             <FaSearch />
-          </HeaderButtonItem>
+          </HeaderIconButton>
 
-          <HeaderButtonItem
+          <HeaderIconButton
             className="<sm:hidden mr-12px"
             aria-label="显示二维码"
             onClick={toggleIsQrDialogShow}
           >
             <FaQrcode />
-          </HeaderButtonItem>
+          </HeaderIconButton>
           <div
             className={clsx(
               '<sm:hidden transition origin-top-right absolute top-64px right-36px text-primary bg-primary shadow glass',
@@ -124,9 +124,9 @@ export const Header: React.FC<HeaderPropsType> = ({ title }) => {
             </div>
           </div>
 
-          <HeaderButtonItem aria-label="切换主题" onClick={toggleTheme}>
+          <HeaderIconButton aria-label="切换主题" onClick={toggleTheme}>
             {theme === 'dark' ? <FaSun /> : <FaMoon />}
-          </HeaderButtonItem>
+          </HeaderIconButton>
         </div>
       </div>
 

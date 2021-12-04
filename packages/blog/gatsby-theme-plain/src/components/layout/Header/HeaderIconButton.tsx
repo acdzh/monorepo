@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import React from 'react';
 
-export const HeaderButtonItem: React.FC<
+export const HeaderIconButton: React.FC<
   React.ButtonHTMLAttributes<HTMLButtonElement>
 > = (props) => {
   return (

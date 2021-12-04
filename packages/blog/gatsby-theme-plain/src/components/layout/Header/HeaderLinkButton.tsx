@@ -1,13 +1,13 @@
 import { Link } from 'gatsby';
 import React from 'react';
 
-export type HeaderLinkItemPropsType = {
+export type HeaderLinkButtonPropsType = {
   icon: React.ComponentType;
   to: string;
   text: string;
 };
 
-export const HeaderLinkItem: React.FC<HeaderLinkItemPropsType> = ({
+export const HeaderLinkButton: React.FC<HeaderLinkButtonPropsType> = ({
   icon: Icon,
   to,
   text,
