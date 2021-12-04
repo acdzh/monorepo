@@ -100,9 +100,9 @@ export const Header: React.FC<HeaderPropsType> = ({ title }) => {
           </HeaderButtonItem>
           <div
             className={clsx(
-              '<sm:hidden absolute top-64px right-0 text-primary bg-primary shadow glass',
+              '<sm:hidden transition origin-top-right absolute top-64px right-36px text-primary bg-primary shadow glass',
               {
-                'w-0 h-0 overflow-hidden': !isQrDialogShow,
+                'opacity-0 transform scale-0': !isQrDialogShow,
               }
             )}
           >
