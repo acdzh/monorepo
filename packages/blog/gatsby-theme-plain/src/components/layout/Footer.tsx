@@ -3,10 +3,10 @@ import React from 'react';
 import {
   FaGithub,
   FaGithubAlt,
-  FaSteam,
-  FaTwitter,
   FaRegEnvelope,
   FaRss,
+  FaSteam,
+  FaTwitter,
 } from 'react-icons/fa';
 
 import { GraphqlQueryDataType } from '@typings/graphql';

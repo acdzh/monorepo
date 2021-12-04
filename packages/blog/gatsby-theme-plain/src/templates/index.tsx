@@ -1,8 +1,8 @@
-import { graphql, Link } from 'gatsby';
+import { Link, graphql } from 'gatsby';
 import React from 'react';
 
 import { Featured } from '@components/Featured';
-import { Layout, Header, Content, Footer } from '@components/layout';
+import { Content, Footer, Header, Layout } from '@components/layout';
 import { SEO } from '@components/SEO';
 import { WidthDebug } from '@components/WidthDebug';
 import { GraphqlQueryDataType } from '@typings/graphql';

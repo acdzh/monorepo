@@ -3,7 +3,7 @@ import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import React from 'react';
 
-import { Layout, Header, Content, Footer } from '@components/layout';
+import { Content, Footer, Header, Layout } from '@components/layout';
 import { MDXComponents, TOC } from '@components/post/';
 import { SEO } from '@components/SEO';
 import { WidthDebug } from '@components/WidthDebug';

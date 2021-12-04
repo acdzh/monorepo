@@ -1,31 +1,31 @@
 import clsx from 'clsx';
-import { graphql, Link, useStaticQuery } from 'gatsby';
+import { Link, graphql, useStaticQuery } from 'gatsby';
 import { useTheme } from 'gatsby-plugin-use-dark-mode';
 import React, { useState } from 'react';
 import {
-  FaSun,
-  FaMoon,
-  FaHome,
-  FaBookmark,
   FaBars,
-  FaTimes,
-  FaTags,
+  FaBookmark,
+  FaHome,
+  FaMoon,
   FaQrcode,
-  FaSearch,
   FaRss,
+  FaSearch,
+  FaSun,
+  FaTags,
+  FaTimes,
   FaUser,
 } from 'react-icons/fa';
 import { useWindowScroll } from 'react-use';
 
 import { GraphqlQueryDataType } from '@typings/graphql';
 
-type HeaderLinkItemProps = {
+type HeaderLinkItemPropsType = {
   icon: React.ComponentType;
   to: string;
   text: string;
 };
 
-const HeaderLinkItem: React.FC<HeaderLinkItemProps> = ({
+const HeaderLinkItem: React.FC<HeaderLinkItemPropsType> = ({
   icon: Icon,
   to,
   text,
@@ -56,13 +56,13 @@ const HeaderButtonItem: React.FC<
   );
 };
 
-type ExpandNavItemItemProps = {
+type ExpandNavItemItemPropsType = {
   icon: React.ComponentType;
   to: string;
   text: string;
 };
 
-const ExpandNavItem: React.FC<ExpandNavItemItemProps> = ({
+const ExpandNavItem: React.FC<ExpandNavItemItemPropsType> = ({
   icon: Icon,
   to,
   text,
@@ -77,11 +77,11 @@ const ExpandNavItem: React.FC<ExpandNavItemItemProps> = ({
   );
 };
 
-export type HeaderProps = {
+export type HeaderPropsType = {
   title?: string;
 };
 
-export const Header: React.FC<HeaderProps> = ({ title }) => {
+export const Header: React.FC<HeaderPropsType> = ({ title }) => {
   const { site } = useStaticQuery<GraphqlQueryDataType>(
     graphql`
       query {
