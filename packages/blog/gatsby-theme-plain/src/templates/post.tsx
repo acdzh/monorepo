@@ -42,14 +42,14 @@ const PostTemplate: React.FC<PostTemplatePropsType> = ({ data }) => {
         "
       >
         <WidthDebug />
-        <article>
+        <article className="p-12px sm:p-24px shadow sm:shadow-md md:shadow-lg lg:shadow-xl dark:shadow-white">
           <h1 className="text-24px">{frontmatter.title}</h1>
           <MDXProvider components={MDXComponents}>
             <MDXRenderer>{body}</MDXRenderer>
           </MDXProvider>
         </article>
         <aside className="<xl:hidden">
-          <div className="sticky top-74px w-260px pl-12px w-240px">
+          <div className="sticky top-74px w-280px pl-32px">
             <TOC items={tableOfContents.items} />
           </div>
         </aside>
