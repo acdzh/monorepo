@@ -60,8 +60,11 @@ export default defineConfig({
     'text-primary': 'text-dark-50 dark:(text-white text-opacity-80)',
     'text-secondary':
       'text-dark-50 text-opacity-70 dark:(text-white text-opacity-60)',
-    'text-theme': 'text-theme-800 dark:(filter invert hue-rotate-180)',
-    'underline-theme': 'text-theme border-b border-theme-800',
+    // 'text-theme': 'text-theme-700 dark:(filter invert hue-rotate-180)',
+    'text-theme': 'text-theme-700 dark:text-theme-300',
+    // 'underline-theme': 'text-theme border-b border-theme-700',
+    'underline-theme':
+      'text-theme border-b border-theme-700 dark:border-theme-300',
     'px-loose': 'px-14px md:px-32px lg:px-64px xl:px-32px',
     'py-loose': 'py-8px sm:py-16px md:py-32px lg:py-48px',
   },

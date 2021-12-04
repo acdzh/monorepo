@@ -32,7 +32,7 @@ const PostTemplate: React.FC<PostTemplatePropsType> = ({ data }) => {
           tag: frontmatter.tags,
         }}
       />
-      <Header />
+      <Header title={frontmatter.title} />
       <Content
         className="
           w-full max-w-screen-xl 
