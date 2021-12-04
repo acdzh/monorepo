@@ -32,6 +32,27 @@ export default defineConfig({
         mail: '#f9c513',
         rss: '#f26522',
       },
+      fontFamily: {
+        sans: [
+          'Helvetica Neue',
+          'Helvetica',
+          'Hiragino Sans GB',
+          'Microsoft YaHei',
+          '微软雅黑',
+          'Arial',
+          'sans-serif',
+        ],
+        serif: ['Georgia', 'serif'],
+        mono: [
+          'Fira Code',
+          'Monaco',
+          'Menlo',
+          'Consolas',
+          'Droid Sans Mono',
+          'Courier New',
+          'monospace',
+        ],
+      },
     },
   },
   shortcuts: {
