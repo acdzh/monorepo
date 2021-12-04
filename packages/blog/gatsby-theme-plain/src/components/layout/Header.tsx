@@ -127,19 +127,18 @@ export const Header: React.FC<HeaderProps> = ({ title }) => {
           <HeaderLinkItem icon={FaRss} to="/rss" text="RSS" />
         </div>
 
-        {/* left buttons */}
-        <div className="sm:hidden flex flex-row justify-center items-center">
+        {/* left buttons and title */}
+        <div className="sm:hidden mr-12px flex flex-row justify-center items-center overflow-hidden">
           <HeaderButtonItem
+            className="mr-12px"
             aria-label="打开关闭菜单"
             onClick={() => setShowExpandNav(!showExpandNav)}
           >
             {showExpandNav ? <FaTimes /> : <FaBars />}
           </HeaderButtonItem>
-        </div>
-
-        {/* center title */}
-        <div className="sm:hidden mx-24px leading-57px text-lg truncate">
-          {title || siteMetadata.title}
+          <div className="leading-57px text-lg truncate">
+            {title || siteMetadata.title}
+          </div>
         </div>
 
         {/* right buttons */}
