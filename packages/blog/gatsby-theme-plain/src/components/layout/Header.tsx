@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { Link, graphql, useStaticQuery } from 'gatsby';
 import { useTheme } from 'gatsby-plugin-use-dark-mode';
-import React, { useState } from 'react';
+import React from 'react';
 import {
   FaBars,
   FaBookmark,
@@ -15,7 +15,7 @@ import {
   FaTimes,
   FaUser,
 } from 'react-icons/fa';
-import { useWindowScroll } from 'react-use';
+import { useToggle, useWindowScroll } from 'react-use';
 
 import { GraphqlQueryDataType } from '@typings/graphql';
 
@@ -95,7 +95,7 @@ export const Header: React.FC<HeaderPropsType> = ({ title }) => {
   );
   const { siteMetadata } = site;
   const { theme, toggleTheme } = useTheme();
-  const [showExpandNav, setShowExpandNav] = useState(false);
+  const [showExpandNav, toggleShowExpandNav] = useToggle(false);
 
   const { y } = useWindowScroll();
 
@@ -132,7 +132,7 @@ export const Header: React.FC<HeaderPropsType> = ({ title }) => {
           <HeaderButtonItem
             className="mr-12px"
             aria-label="打开关闭菜单"
-            onClick={() => setShowExpandNav(!showExpandNav)}
+            onClick={toggleShowExpandNav}
           >
             {showExpandNav ? <FaTimes /> : <FaBars />}
           </HeaderButtonItem>
