@@ -80,7 +80,7 @@ export const Header: React.FC<HeaderPropsType> = ({ title }) => {
           >
             {isExpandNavShow ? <FaTimes /> : <FaBars />}
           </HeaderIconButton>
-          <div className="leading-57px text-lg truncate">
+          <div className="leading-54px text-lg truncate">
             {title || siteMetadata.title}
           </div>
         </div>
