@@ -34,16 +34,23 @@ export const TOC: React.FC<TocPropsType> = ({ items }) => {
   const currentId = useCurrentElementById(ids);
   return (
     <ul>
+      <li>
+        <h3 className="font-600 pl-8px mb-8px">目录</h3>
+      </li>
       {flattenItems.map(({ id, url, title, depth }) => (
-        <li key={url} className="truncate">
+        <li key={url}>
           <a
             href={url}
-            className={clsx('transition-colors hover:text-theme', {
-              'text-sm': depth,
-              'text-theme': currentId === id,
-            })}
+            className={clsx(
+              'block px-8px py-4px transition-colors hover:text-theme',
+              'border-theme-700 dark:border-theme-300',
+              {
+                'text-sm': depth,
+                'text-theme border-l-2': currentId === id,
+              }
+            )}
             style={{
-              marginLeft: `${depth * 0.5}rem`,
+              marginLeft: `${depth}rem`,
             }}
           >
             {title}

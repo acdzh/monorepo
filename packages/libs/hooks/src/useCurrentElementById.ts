@@ -1,5 +1,5 @@
 // Thanks for https://nicified.com/post/gatsby-toc
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 function useCurrentElementById(elementIds: string[]): string {
   const [currentElementId, setCurrentElementId] = useState(elementIds[0] || '');

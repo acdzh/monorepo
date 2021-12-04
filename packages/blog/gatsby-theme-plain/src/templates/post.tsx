@@ -49,7 +49,7 @@ const PostTemplate: React.FC<PostTemplatePropsType> = ({ data }) => {
           </MDXProvider>
         </article>
         <aside className="<xl:hidden">
-          <div className="sticky top-74px w-200px pl-12px w-240px">
+          <div className="sticky top-74px w-260px pl-12px w-240px">
             <TOC items={tableOfContents.items} />
           </div>
         </aside>
