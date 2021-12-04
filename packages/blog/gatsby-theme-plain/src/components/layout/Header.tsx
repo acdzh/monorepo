@@ -30,7 +30,7 @@ export const Header: React.FC = () => {
         `w-full 
         fixed top-0 z-100
         backdrop-filter backdrop-blur-xl backdrop-saturate-[1.8]
-        bg-primary bg-opacity-80`,
+        bg-primary`,
         {
           'shadow dark:shadow-white': y > 10,
         }
