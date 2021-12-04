@@ -1,6 +1,12 @@
 module.exports = {
   extends: ['plugin:import/recommended', 'plugin:import/typescript'],
   rules: {
+    'sort-imports': [
+      'error',
+      {
+        ignoreDeclarationSort: true, // use 'import/order' instead
+      },
+    ],
     'import/order': [
       'error',
       {
