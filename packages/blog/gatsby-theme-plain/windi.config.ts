@@ -66,7 +66,7 @@ export default defineConfig({
     'underline-theme':
       'text-theme border-b border-theme-700 dark:border-theme-300',
     'px-loose': 'px-14px md:px-32px lg:px-64px xl:px-32px',
-    'py-loose': 'py-8px sm:py-16px md:py-32px lg:py-48px',
+    'py-loose': 'py-8px sm:py-16px md:py-32px lg:py-32px',
     glass: 'backdrop-filter backdrop-blur-xl backdrop-saturate-[1.8]',
     shadow: 'shadow dark:shadow-white',
   },
