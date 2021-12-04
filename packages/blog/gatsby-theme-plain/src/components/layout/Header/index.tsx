@@ -1,6 +1,7 @@
 import clsx from 'clsx';
-import { Link, graphql, useStaticQuery } from 'gatsby';
+import { graphql, useStaticQuery } from 'gatsby';
 import { useTheme } from 'gatsby-plugin-use-dark-mode';
+import QRCode from 'qrcode.react';
 import React from 'react';
 import {
   FaBars,
@@ -17,65 +18,13 @@ import {
 } from 'react-icons/fa';
 import { useToggle, useWindowScroll } from 'react-use';
 
+import { ExpandNavItem } from './ExpandNavItem';
+import { HeaderButtonItem } from './HeaderButtonItem';
+import { HeaderLinkItem } from './HeaderLinkItem';
+
 import { GraphqlQueryDataType } from '@typings/graphql';
 
-type HeaderLinkItemPropsType = {
-  icon: React.ComponentType;
-  to: string;
-  text: string;
-};
-
-const HeaderLinkItem: React.FC<HeaderLinkItemPropsType> = ({
-  icon: Icon,
-  to,
-  text,
-}) => {
-  return (
-    <Link className="<sm:mr-12px mr-24px" to={to}>
-      <span className="flex items-center justify-center flex-nowrap text-theme">
-        <Icon />
-        <span className="text-primary filter-unset ml-4px">{text}</span>
-      </span>
-    </Link>
-  );
-};
-
-const HeaderButtonItem: React.FC<
-  React.ButtonHTMLAttributes<HTMLButtonElement>
-> = (props) => {
-  return (
-    <button
-      {...props}
-      className={clsx(
-        props.className,
-        'flex text-lg justify-center items-center',
-        'p-0.4em rounded-lg',
-        'hover:bg-gray-100 dark:hover:bg-gray-900'
-      )}
-    />
-  );
-};
-
-type ExpandNavItemItemPropsType = {
-  icon: React.ComponentType;
-  to: string;
-  text: string;
-};
-
-const ExpandNavItem: React.FC<ExpandNavItemItemPropsType> = ({
-  icon: Icon,
-  to,
-  text,
-}) => {
-  return (
-    <Link to={to}>
-      <span className="mb-12px flex items-center justify-center flex-nowrap text-theme">
-        <Icon />
-        <span className="text-primary filter-unset ml-8px">{text}</span>
-      </span>
-    </Link>
-  );
-};
+const isSSR = typeof window === 'undefined';
 
 export type HeaderPropsType = {
   title?: string;
@@ -95,21 +44,16 @@ export const Header: React.FC<HeaderPropsType> = ({ title }) => {
   );
   const { siteMetadata } = site;
   const { theme, toggleTheme } = useTheme();
-  const [showExpandNav, toggleShowExpandNav] = useToggle(false);
+  const [isExpandNavShow, toggleIsExpandNavShow] = useToggle(false);
+  const [isQrDialogShow, toggleIsQrDialogShow] = useToggle(false);
 
   const { y } = useWindowScroll();
 
   return (
     <nav
-      className={clsx(
-        `w-full 
-          fixed top-0 z-100
-          backdrop-filter backdrop-blur-xl backdrop-saturate-[1.8]
-          bg-primary`,
-        {
-          'shadow dark:shadow-white': y > 10 || showExpandNav,
-        }
-      )}
+      className={clsx(`w-full fixed top-0 z-100 glass bg-primary`, {
+        shadow: y > 10 || isExpandNavShow,
+      })}
     >
       <div
         className="
@@ -132,9 +76,9 @@ export const Header: React.FC<HeaderPropsType> = ({ title }) => {
           <HeaderButtonItem
             className="mr-12px"
             aria-label="打开关闭菜单"
-            onClick={toggleShowExpandNav}
+            onClick={toggleIsExpandNavShow}
           >
-            {showExpandNav ? <FaTimes /> : <FaBars />}
+            {isExpandNavShow ? <FaTimes /> : <FaBars />}
           </HeaderButtonItem>
           <div className="leading-57px text-lg truncate">
             {title || siteMetadata.title}
@@ -142,16 +86,43 @@ export const Header: React.FC<HeaderPropsType> = ({ title }) => {
         </div>
 
         {/* right buttons */}
-        <div className="flex flex-row justify-center items-center">
+        <div className="relative flex flex-row justify-center items-center">
           <HeaderButtonItem className="mr-12px" aria-label="搜索">
             <FaSearch />
           </HeaderButtonItem>
+
           <HeaderButtonItem
             className="<sm:hidden mr-12px"
             aria-label="显示二维码"
+            onClick={toggleIsQrDialogShow}
           >
             <FaQrcode />
           </HeaderButtonItem>
+          <div
+            className={clsx(
+              '<sm:hidden absolute top-64px right-0 text-primary bg-primary shadow glass',
+              {
+                'w-0 h-0 overflow-hidden': !isQrDialogShow,
+              }
+            )}
+          >
+            <div className="p-12px">
+              <QRCode
+                renderAs="svg"
+                bgColor="#fff"
+                fgColor="#000"
+                size={160}
+                includeMargin={true}
+                value={isSSR ? '' : location.href}
+                imageSettings={{
+                  src: '/favicon-32x32.png',
+                  height: 32,
+                  width: 32,
+                  excavate: true,
+                }}
+              />
+            </div>
+          </div>
 
           <HeaderButtonItem aria-label="切换主题" onClick={toggleTheme}>
             {theme === 'dark' ? <FaSun /> : <FaMoon />}
@@ -159,7 +130,7 @@ export const Header: React.FC<HeaderPropsType> = ({ title }) => {
         </div>
       </div>
 
-      {showExpandNav && (
+      {isExpandNavShow && (
         <nav className="sm:hidden">
           <div
             className="
