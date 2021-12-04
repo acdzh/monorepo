@@ -26,10 +26,18 @@ const IndexPage: React.FC<IndexPagePropsType> = ({ data, pageContext }) => {
       <Header />
       <Content className="w-full max-w-screen-xl mx-auto px-loose py-loose">
         <WidthDebug />
-        <ul>
+        <ul
+          className="
+            px-12px py-24px sm:p-24px sm:py-48px
+            shadow sm:shadow-md md:shadow-lg lg:shadow-xl dark:shadow-white
+          "
+        >
           {nodes.map((node) => (
             <li
-              className="block mb-36px sm:mb-48px"
+              className="
+                block pb-16px mb-16px sm:pb-28px sm:mb-28px last:pb-0 last:mb-0 
+                border-b dark:border-true-gray-700 last:border-none
+              "
               key={node.frontmatter.title}
             >
               <Featured mdx={node} />
