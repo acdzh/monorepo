@@ -1,8 +1,9 @@
-import { Link, graphql } from 'gatsby';
+import { graphql } from 'gatsby';
 import React from 'react';
 
 import { Featured } from '@components/Featured';
 import { Content, Footer, Header, Layout } from '@components/layout';
+import { Pagination } from '@components/Pagination';
 import { SEO } from '@components/SEO';
 import { WidthDebug } from '@components/WidthDebug';
 import { GraphqlQueryDataType } from '@typings/graphql';
@@ -29,7 +30,7 @@ const IndexPage: React.FC<IndexPagePropsType> = ({ data, pageContext }) => {
         <ul
           className="
             px-12px py-24px sm:p-24px sm:py-48px
-            shadow sm:shadow-md md:shadow-lg lg:shadow-xl dark:shadow-white
+            shadow sm:shadow-md md:shadow-lg dark:shadow-white
           "
         >
           {nodes.map((node) => (
@@ -44,7 +45,7 @@ const IndexPage: React.FC<IndexPagePropsType> = ({ data, pageContext }) => {
             </li>
           ))}
         </ul>
-        <div className="flex flex-row justify-between">
+        {/* <div className="flex flex-row justify-between">
           <span className="hover:text-theme hover:underline-theme">
             {currentPage > 1 && (
               <Link to={currentPage === 2 ? '/' : `/posts/${currentPage - 1}`}>
@@ -57,6 +58,9 @@ const IndexPage: React.FC<IndexPagePropsType> = ({ data, pageContext }) => {
               <Link to={`/posts/${currentPage + 1}`}>下一页 →</Link>
             )}
           </span>
+        </div> */}
+        <div className="mt-36px text-center">
+          <Pagination current={currentPage} total={totalPage} />
         </div>
       </Content>
       <Footer />
