@@ -51,7 +51,8 @@ export const Header: React.FC<HeaderPropsType> = ({ title }) => {
 
   return (
     <nav
-      className={clsx(`w-full fixed top-0 z-100 glass bg-primary`, {
+      className={clsx('w-full fixed top-0 z-100 glass bg-primary', {
+        'border-b dark:border-true-gray-700': y <= 10 && !isExpandNavShow,
         shadow: y > 10 || isExpandNavShow,
       })}
     >

@@ -42,7 +42,7 @@ const PostTemplate: React.FC<PostTemplatePropsType> = ({ data }) => {
         "
       >
         <WidthDebug />
-        <article className="p-12px sm:p-24px shadow sm:shadow-md md:shadow-lg dark:shadow-white">
+        <article className="p-12px sm:p-24px border dark:border-true-gray-700 shadow sm:shadow-md md:shadow-lg dark:shadow-white">
           <h1 className="text-24px">{frontmatter.title}</h1>
           <MDXProvider components={MDXComponents}>
             <MDXRenderer>{body}</MDXRenderer>
