@@ -61,7 +61,7 @@ const SocialLinks: React.FC<{
         href="/rss.xml"
         target="_blank"
         rel="noreferrer"
-        title="Mail"
+        title="RSS"
       >
         <FaRss />
       </FooterIconButton>
