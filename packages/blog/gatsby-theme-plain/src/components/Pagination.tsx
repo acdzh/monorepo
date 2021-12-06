@@ -21,14 +21,15 @@ const PaginationItem: React.FC<PaginationItemPropsType> = ({
   const inner = (
     <button
       className={clsx(
-        `inline-flex text-lg justify-center items-center
-        w-2em h-2em rounded-lg
-        shadow focus:outline-none`,
+        'inline-flex text-lg justify-center items-center',
+        'w-32px h-32px rounded-lg focus:outline-none',
         {
           'hover:bg-gray-100 dark:hover:bg-true-gray-700': !disabled,
           'active:shadow-inner dark:active:shadow-white': !disabled,
-          'opacity-70 cursor-not-allowed': disabled,
-          'border border-theme-700 dark:border-theme-300': isActive,
+          'text-opacity-70 cursor-not-allowed': disabled,
+          // 'border border-theme-700 dark:border-theme-300': isActive,
+          'shadow-inner dark:shadow-white': isActive,
+          'bg-gray-100 dark:bg-true-gray-700': isActive,
         },
         className
       )}
@@ -38,7 +39,11 @@ const PaginationItem: React.FC<PaginationItemPropsType> = ({
     </button>
   );
 
-  return disabled ? inner : <Link to={to}>{inner}</Link>;
+  return (
+    <li className="inline">
+      {disabled ? inner : <Link to={to}>{inner}</Link>}
+    </li>
+  );
 };
 
 const buildHref = (page: number) => (page === 1 ? '/' : `/posts/${page}`);

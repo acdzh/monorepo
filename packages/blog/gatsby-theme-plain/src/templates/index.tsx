@@ -59,7 +59,7 @@ const IndexPage: React.FC<IndexPagePropsType> = ({ data, pageContext }) => {
             )}
           </span>
         </div> */}
-        <div className="mt-36px text-center">
+        <div className="mt-32px text-center">
           <Pagination current={currentPage} total={totalPage} />
         </div>
       </Content>
