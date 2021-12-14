@@ -29,8 +29,8 @@ const IndexPage: React.FC<IndexPagePropsType> = ({ data, pageContext }) => {
         <WidthDebug />
         <ul
           className="
-            px-12px py-24px sm:p-24px sm:py-48px
-            border dark:border-true-gray-700 shadow sm:shadow-md md:shadow-lg dark:shadow-white
+            px-4px py-16px sm:p-24px sm:py-24px
+            sm:border dark:border-true-gray-700 sm:shadow-md md:shadow-lg dark:shadow-white
           "
         >
           {nodes.map((node) => (
