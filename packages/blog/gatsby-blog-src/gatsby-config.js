@@ -2,6 +2,8 @@ const siteMetadata = {
   title: '随便写写',
   description: '随便写写, 全而不精',
   siteUrl: 'https://blog.acdzh.com',
+  githubRawUrl:
+    'https://github.com/acdzh/monorepo/tree/master/packages/blog/gatsby-blog-src/content',
   author: {
     name: 'acdzh',
   },

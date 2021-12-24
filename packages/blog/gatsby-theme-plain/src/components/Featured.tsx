@@ -31,7 +31,7 @@ export const Featured: React.FC<FeaturedProps> = ({ mdx }) => {
           {update_date && update_date !== date && (
             <>
               {' ('}
-              最近更新:
+              最近更新:&nbsp;
               <time
                 dateTime="2021-05-26T00:00:00+00:00"
                 itemProp="datePublished"

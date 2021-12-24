@@ -2,6 +2,7 @@ import { MDXProvider } from '@mdx-js/react';
 import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import React from 'react';
+import { FaGithubAlt } from 'react-icons/fa';
 
 import { Content, Footer, Header, Layout } from '@components/layout';
 import { MDXComponents, TOC } from '@components/post/';
@@ -9,13 +10,27 @@ import { SEO } from '@components/SEO';
 import { WidthDebug } from '@components/WidthDebug';
 import { GraphqlQueryDataType } from '@typings/graphql';
 
+const formatDate = (date: Date) =>
+  `${date.getFullYear()}年${date.getMonth()}月${date.getDay()}日${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+
+const formatDateString = (s: string) => formatDate(new Date(s));
+
 export type PostTemplatePropsType = {
   data: GraphqlQueryDataType;
 };
 
 const PostTemplate: React.FC<PostTemplatePropsType> = ({ data }) => {
   const { mdx, site } = data;
-  const { body, excerpt, frontmatter, fields, tableOfContents } = mdx;
+  const {
+    body,
+    excerpt,
+    frontmatter,
+    fields,
+    tableOfContents,
+    timeToRead,
+    wordCount,
+  } = mdx;
+  const { siteMetadata: meta } = site;
   return (
     <Layout>
       <SEO
@@ -49,7 +64,39 @@ const PostTemplate: React.FC<PostTemplatePropsType> = ({ data }) => {
             sm:shadow-md md:shadow-lg dark:shadow-white
           "
         >
-          <h1 className="text-24px">{frontmatter.title}</h1>
+          <h1
+            className="
+              mb-12px leading-snug tracking-tight
+              text-xl sm:text-2xl md:text-3xl 2xl:text-4xl
+            "
+          >
+            {frontmatter.title}
+          </h1>
+          <p className="text-secondary text-sm uppercase mb-12px">
+            by&nbsp;
+            {frontmatter?.from ? (
+              <a href={frontmatter?.from}>{frontmatter?.author}</a>
+            ) : (
+              frontmatter?.author || meta?.author?.name || 'UNKOWN'
+            )}
+            &nbsp;·&nbsp;
+            {frontmatter.date && (
+              <>
+                {formatDateString(frontmatter.date)}
+                &nbsp;·&nbsp;
+              </>
+            )}
+            {wordCount.words} WORDS &nbsp;·&nbsp; ~ {timeToRead || 0}
+            &nbsp;mins reading time&nbsp;|&nbsp;
+            <a
+              className="text-theme hover:underline-theme cursor-pointer"
+              href={meta.githubRawUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              raw on <FaGithubAlt />
+            </a>
+          </p>
           <MDXProvider components={MDXComponents}>
             <MDXRenderer>{body}</MDXRenderer>
           </MDXProvider>
@@ -75,6 +122,7 @@ export const pageQuery = graphql`
   ) {
     site {
       siteMetadata {
+        githubRawUrl
         author {
           name
         }
