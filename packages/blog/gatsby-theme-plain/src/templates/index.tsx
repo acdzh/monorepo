@@ -30,7 +30,8 @@ const IndexPage: React.FC<IndexPagePropsType> = ({ data, pageContext }) => {
         <ul
           className="
             px-4px py-16px sm:p-24px sm:py-24px
-            sm:border dark:border-true-gray-700 sm:shadow-md md:shadow-lg dark:shadow-white
+            sm:rounded-md sm:border dark:border-true-gray-700 
+            sm:shadow-md md:shadow-lg dark:shadow-white
           "
         >
           {nodes.map((node) => (
