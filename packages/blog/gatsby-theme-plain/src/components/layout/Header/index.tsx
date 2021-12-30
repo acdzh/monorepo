@@ -54,8 +54,8 @@ export const Header: React.FC<HeaderPropsType> = ({ title }) => {
       className={clsx(
         'w-full fixed top-0 z-100 glass bg-primary rounded-b-md',
         {
-          'border-b dark:border-true-gray-700': y <= 10 && !isExpandNavShow,
-          shadow: y > 10 || isExpandNavShow,
+          // 'border-b dark:border-true-gray-700': y <= 10 && !isExpandNavShow,
+          'shadow border-b dark:border-true-gray-700': y > 10 || isExpandNavShow,
         }
       )}
     >
