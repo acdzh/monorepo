@@ -8,7 +8,6 @@ import { useToggle } from 'react-use';
 import { Content, Footer, Header, Layout } from '@components/layout';
 import { MDXComponents, TOC } from '@components/post/';
 import { SEO } from '@components/SEO';
-import { WidthDebug } from '@components/WidthDebug';
 import { GraphqlQueryDataType } from '@typings/graphql';
 
 const formatDate = (date: Date) =>
@@ -65,7 +64,6 @@ const PostTemplate: React.FC<PostTemplatePropsType> = ({ data }) => {
           <xl:overflow-hidden
         "
       >
-        <WidthDebug />
         <article
           className="
             <sm:py-16px <sm:px-4px sm:p-24px sm:rounded-md
@@ -134,7 +132,6 @@ export const pageQuery = graphql`
   ) {
     site {
       siteMetadata {
-        githubRawUrl
         author {
           name
         }
