@@ -57,6 +57,7 @@ const createConfig = ({
                 offsetY: 60,
               },
             },
+            'gatsby-remark-copy-linked-files',
           ],
         },
       },
