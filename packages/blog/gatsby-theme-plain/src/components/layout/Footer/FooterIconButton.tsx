@@ -13,7 +13,7 @@ export const FooterIconButton: React.FC<
         'inline-flex text-lg justify-center items-center',
         'p-0.4em rounded-lg',
         'hover:bg-gray-100 dark:hover:bg-true-gray-700',
-        'active:shadow-inner dark:active:shadow-white',
+        'light:shadow light:active:shadow-inner',
         'focus:outline-none'
       )}
     />

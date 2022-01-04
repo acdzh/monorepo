@@ -123,10 +123,7 @@ const PostTemplate: React.FC<PostTemplatePropsType> = ({ data }) => {
           className={clsx(
             'rounded',
             '<xl:bg-header <xl:glass <xl:light:shadow',
-            '<xl:fixed <xl:top-86px <xl:right-0',
-            '<sm:top-74px <md:top-82px <lg:top-106px <xl:top-106px',
-            '<sm:right-12px <md:right-26px <lg:right-52px <xl:right-84px',
-            '<xl:p-12px',
+            '<xl:p-12px <xl:fixed <xl:top-64px <sm:right-6px <md:right-14px <lg:right-32px <xl:right-64px',
             {
               '<xl:hidden': !isFixedTocShow,
             }
@@ -140,7 +137,7 @@ const PostTemplate: React.FC<PostTemplatePropsType> = ({ data }) => {
             <TOC items={tableOfContents.items} />
           </div>
           <HeaderIconButton
-            className="xl:hidden absolute top-8px right-8px"
+            className="xl:hidden absolute top-4px right-8px"
             aria-label="显示/隐藏目录"
             onClick={toggleIsFixedTocShow}
           >

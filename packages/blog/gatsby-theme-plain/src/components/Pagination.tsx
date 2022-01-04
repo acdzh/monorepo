@@ -26,9 +26,10 @@ const PaginationItem: React.FC<PaginationItemPropsType> = ({
         {
           'hover:bg-gray-100 dark:hover:bg-true-gray-700': !disabled,
           'light:active:shadow-inner': !disabled,
-          'text-opacity-70 cursor-not-allowed': disabled,
+          'opacity-70 cursor-not-allowed': disabled,
           // 'border border-theme-700 dark:border-theme-300': isActive,
           'light:shadow-inner': isActive,
+          'light:shadow': !isActive,
           'bg-gray-100 dark:bg-true-gray-700': isActive,
         },
         className
