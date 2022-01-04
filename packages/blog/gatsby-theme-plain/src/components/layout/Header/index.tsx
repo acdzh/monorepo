@@ -4,6 +4,7 @@ import { useTheme } from 'gatsby-plugin-use-dark-mode';
 import QRCode from 'qrcode.react';
 import React from 'react';
 import {
+  FaArrowUp,
   FaBars,
   FaBookmark,
   FaHome,
@@ -90,10 +91,21 @@ export const Header: React.FC<HeaderPropsType> = ({ title }) => {
 
         {/* right buttons */}
         <div className="relative flex flex-row justify-center items-center">
+          {y > 1000 && (
+            <HeaderIconButton
+              className="mr-12px"
+              aria-label="回到顶部"
+              onClick={() => {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+              }}
+            >
+              <FaArrowUp />
+            </HeaderIconButton>
+          )}
           <HeaderIconButton className="mr-12px" aria-label="搜索">
             <FaSearch />
           </HeaderIconButton>
-
           <HeaderIconButton
             className="<sm:hidden mr-12px"
             aria-label="显示二维码"
