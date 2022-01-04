@@ -19,6 +19,6 @@
   if (undefined != typeof m[0])
     m[0].setAttribute(
       'content',
-      'dark' == window.__currentTheme ? '#1c1c1e' : '#ffffff'
+      'dark' == window.__currentTheme ? '#272727' : '#ffffff'
     );
 })();
