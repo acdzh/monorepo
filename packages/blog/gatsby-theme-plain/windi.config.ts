@@ -56,7 +56,8 @@ export default defineConfig({
     },
   },
   shortcuts: {
-    'bg-primary': 'bg-white bg-opacity-40 dark:(bg-dark-200 bg-opacity-40)',
+    'bg-primary': 'bg-white dark:(bg-dark-500)',
+    'bg-header': 'bg-white bg-opacity-40 dark:(bg-dark-200 bg-opacity-40)',
     'text-primary': 'text-dark-50 dark:(text-white text-opacity-80)',
     'text-secondary':
       'text-dark-50 text-opacity-70 dark:(text-white text-opacity-60)',
