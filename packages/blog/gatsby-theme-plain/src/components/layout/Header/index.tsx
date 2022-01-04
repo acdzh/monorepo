@@ -54,7 +54,7 @@ export const Header: React.FC<HeaderPropsType> = ({ title }) => {
       className={clsx(
         'w-full fixed top-0 z-100 glass bg-header rounded-b-md transition-shadow',
         {
-          shadow: y > 10 || isExpandNavShow,
+          'light:shadow': y > 10 || isExpandNavShow,
         }
       )}
     >

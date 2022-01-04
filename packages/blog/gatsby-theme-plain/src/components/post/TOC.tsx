@@ -42,14 +42,14 @@ export const TOC: React.FC<TocPropsType> = ({ items }) => {
           <a
             href={url}
             className={clsx(
-              'block px-8px py-4px transition-colors hover:text-theme',
+              'block px-8px py-4px transition-colors duration-50 hover:text-theme',
               'border-theme-700 dark:border-theme-300',
               'my-8px p-8px rounded-sm',
-              'hover:bg-gray-100 dark:hover:bg-true-gray-700',
-              'active:shadow-inner dark:active:shadow-white',
+              'light:hover:bg-gray-100 dark:hover:bg-true-gray-700',
+              'light:active:shadow-inner',
               {
                 'text-sm': depth,
-                'text-theme border-l-2 shadow': currentId === id,
+                'text-theme border-l-2 light:shadow': currentId === id,
               }
             )}
             style={{
