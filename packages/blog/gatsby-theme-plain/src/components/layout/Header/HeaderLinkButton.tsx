@@ -19,7 +19,7 @@ export const HeaderLinkButton: React.FC<HeaderLinkButtonPropsType> = ({
           my-8px p-8px rounded-lg text-theme
           flex items-center justify-center flex-nowrap
           hover:bg-gray-100 dark:hover:bg-true-gray-700
-          active:shadow-inner dark:active:shadow-white
+          light:active:shadow-inner
         "
       >
         <Icon />
