@@ -1,12 +1,15 @@
 import { MDXProvider } from '@mdx-js/react';
+import clsx from 'clsx';
 import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import { FaTimes } from 'react-icons/fa';
 import { useToggle } from 'react-use';
 
 import { Content, Footer, Header, Layout } from '@components/layout';
-import { MDXComponents, TOC } from '@components/post/';
+import { HeaderIconButton } from '@components/layout/Header/HeaderIconButton';
+import { MDXComponents, TOC } from '@components/post';
 import { SEO } from '@components/SEO';
 import { GraphqlQueryDataType } from '@typings/graphql';
 
@@ -32,7 +35,8 @@ const PostTemplate: React.FC<PostTemplatePropsType> = ({ data }) => {
     wordCount,
   } = mdx;
   const { siteMetadata: meta } = site;
-  const [showRaw, toggleShowRaw] = useToggle(false);
+  const [isRawShow, toggleIsRawShow] = useToggle(false);
+  const [isFixedTocShow, toggleIsFixedTocShow] = useToggle(false);
   return (
     <Layout>
       <SEO
@@ -55,11 +59,14 @@ const PostTemplate: React.FC<PostTemplatePropsType> = ({ data }) => {
           rel="stylesheet"
         />
       </Helmet>
-      <Header title={frontmatter.title} />
+      <Header
+        title={frontmatter.title}
+        toggleIsFixedTocShow={toggleIsFixedTocShow}
+      />
       <Content
         className="
-          w-full max-w-screen-xl 
-          mx-auto px-loose py-loose 
+          w-full max-w-screen-xl
+          mx-auto px-loose py-loose
           xl:flex xl:flex-row
           <xl:overflow-hidden
         "
@@ -96,12 +103,12 @@ const PostTemplate: React.FC<PostTemplatePropsType> = ({ data }) => {
             &nbsp;mins reading time&nbsp;|&nbsp;
             <button
               className="text-theme focus:outline-none"
-              onClick={toggleShowRaw}
+              onClick={toggleIsRawShow}
             >
-              {showRaw ? 'SRC' : 'RAW'}
+              {isRawShow ? 'SRC' : 'RAW'}
             </button>
           </p>
-          {showRaw ? (
+          {isRawShow ? (
             <pre className="whitespace-pre-wrap">
               <code className="font-mono">{rawBody}</code>
             </pre>
@@ -111,10 +118,34 @@ const PostTemplate: React.FC<PostTemplatePropsType> = ({ data }) => {
             </MDXProvider>
           )}
         </article>
-        <aside className="<xl:hidden">
-          <div className="sticky top-110px w-280px pl-32px">
+        {/* xl: aside and sticky; <xl: fixed */}
+        <aside
+          className={clsx(
+            'rounded',
+            '<xl:bg-header <xl:glass <xl:light:shadow',
+            '<xl:fixed <xl:top-86px <xl:right-0',
+            '<sm:top-74px <md:top-82px <lg:top-106px <xl:top-106px',
+            '<sm:right-12px <md:right-26px <lg:right-52px <xl:right-84px',
+            '<xl:p-12px',
+            {
+              '<xl:hidden': !isFixedTocShow,
+            }
+          )}
+        >
+          <div
+            className="
+              xl:sticky xl:top-86px xl:w-280px <xl:max-w-280px xl:pl-32px
+            "
+          >
             <TOC items={tableOfContents.items} />
           </div>
+          <HeaderIconButton
+            className="xl:hidden absolute top-8px right-8px"
+            aria-label="显示/隐藏目录"
+            onClick={toggleIsFixedTocShow}
+          >
+            <FaTimes />
+          </HeaderIconButton>
         </aside>
       </Content>
       <Footer />

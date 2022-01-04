@@ -8,6 +8,7 @@ import {
   FaBars,
   FaBookmark,
   FaHome,
+  FaListUl,
   FaMoon,
   FaQrcode,
   FaRss,
@@ -29,9 +30,14 @@ const isSSR = typeof window === 'undefined';
 
 export type HeaderPropsType = {
   title?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  toggleIsFixedTocShow?: (nextValue?: any) => void;
 };
 
-export const Header: React.FC<HeaderPropsType> = ({ title }) => {
+export const Header: React.FC<HeaderPropsType> = ({
+  title,
+  toggleIsFixedTocShow,
+}) => {
   const { site } = useStaticQuery<GraphqlQueryDataType>(
     graphql`
       query {
@@ -106,6 +112,15 @@ export const Header: React.FC<HeaderPropsType> = ({ title }) => {
           <HeaderIconButton className="mr-12px" aria-label="搜索">
             <FaSearch />
           </HeaderIconButton>
+          {toggleIsFixedTocShow && (
+            <HeaderIconButton
+              className="xl:hidden mr-12px"
+              aria-label="显示/隐藏目录"
+              onClick={toggleIsFixedTocShow}
+            >
+              <FaListUl />
+            </HeaderIconButton>
+          )}
           <HeaderIconButton
             className="<sm:hidden mr-12px"
             aria-label="显示二维码"
