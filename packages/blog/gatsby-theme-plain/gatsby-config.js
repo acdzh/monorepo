@@ -60,6 +60,7 @@ const createConfig = ({
               },
             },
             'gatsby-remark-copy-linked-files',
+            'gatsby-remark-graphviz',
           ],
         },
       },
