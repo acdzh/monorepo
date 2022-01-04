@@ -2,14 +2,14 @@ import { MDXProvider } from '@mdx-js/react';
 import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import React from 'react';
-import { FaGithubAlt } from 'react-icons/fa';
+import { Helmet } from 'react-helmet';
+import { useToggle } from 'react-use';
 
 import { Content, Footer, Header, Layout } from '@components/layout';
 import { MDXComponents, TOC } from '@components/post/';
 import { SEO } from '@components/SEO';
 import { WidthDebug } from '@components/WidthDebug';
 import { GraphqlQueryDataType } from '@typings/graphql';
-import { Helmet } from 'react-helmet';
 
 const formatDate = (date: Date) =>
   `${date.getFullYear()}年${date.getMonth()}月${date.getDay()}日${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
@@ -27,11 +27,13 @@ const PostTemplate: React.FC<PostTemplatePropsType> = ({ data }) => {
     excerpt,
     frontmatter,
     fields,
+    rawBody,
     tableOfContents,
     timeToRead,
     wordCount,
   } = mdx;
   const { siteMetadata: meta } = site;
+  const [showRaw, toggleShowRaw] = useToggle(false);
   return (
     <Layout>
       <SEO
@@ -49,7 +51,10 @@ const PostTemplate: React.FC<PostTemplatePropsType> = ({ data }) => {
         }}
       />
       <Helmet>
-        <link href="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.15.1/katex.min.css" rel="stylesheet" />
+        <link
+          href="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.15.1/katex.min.css"
+          rel="stylesheet"
+        />
       </Helmet>
       <Header title={frontmatter.title} />
       <Content
@@ -91,18 +96,22 @@ const PostTemplate: React.FC<PostTemplatePropsType> = ({ data }) => {
             )}
             {wordCount.words} WORDS &nbsp;·&nbsp; ~ {timeToRead || 0}
             &nbsp;mins reading time&nbsp;|&nbsp;
-            <a
-              className="text-theme hover:underline-theme cursor-pointer"
-              href={meta.githubRawUrl}
-              target="_blank"
-              rel="noreferrer"
+            <button
+              className="text-theme focus:outline-none"
+              onClick={toggleShowRaw}
             >
-              raw on <FaGithubAlt />
-            </a>
+              {showRaw ? 'SRC' : 'RAW'}
+            </button>
           </p>
-          <MDXProvider components={MDXComponents}>
-            <MDXRenderer>{body}</MDXRenderer>
-          </MDXProvider>
+          {showRaw ? (
+            <pre className="whitespace-pre-wrap">
+              <code className="font-mono">{rawBody}</code>
+            </pre>
+          ) : (
+            <MDXProvider components={MDXComponents}>
+              <MDXRenderer>{body}</MDXRenderer>
+            </MDXProvider>
+          )}
         </article>
         <aside className="<xl:hidden">
           <div className="sticky top-110px w-280px pl-32px">
@@ -161,6 +170,7 @@ export const pageQuery = graphql`
       wordCount {
         words
       }
+      rawBody
       timeToRead
     }
     previous: mdx(id: { eq: $previousPostId }) {
