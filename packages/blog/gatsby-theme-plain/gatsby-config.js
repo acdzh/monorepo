@@ -47,6 +47,8 @@ const createConfig = ({
       {
         resolve: 'gatsby-plugin-mdx',
         options: {
+          remarkPlugins: [require('remark-math')],
+          rehypePlugins: [require('rehype-katex')],
           extensions: ['.mdx', '.md'],
           gatsbyRemarkPlugins: [
             'gatsby-remark-images',

@@ -9,6 +9,7 @@ import { MDXComponents, TOC } from '@components/post/';
 import { SEO } from '@components/SEO';
 import { WidthDebug } from '@components/WidthDebug';
 import { GraphqlQueryDataType } from '@typings/graphql';
+import { Helmet } from 'react-helmet';
 
 const formatDate = (date: Date) =>
   `${date.getFullYear()}年${date.getMonth()}月${date.getDay()}日${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
@@ -47,6 +48,9 @@ const PostTemplate: React.FC<PostTemplatePropsType> = ({ data }) => {
           tag: frontmatter.tags,
         }}
       />
+      <Helmet>
+        <link href="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.15.1/katex.min.css" rel="stylesheet" />
+      </Helmet>
       <Header title={frontmatter.title} />
       <Content
         className="
