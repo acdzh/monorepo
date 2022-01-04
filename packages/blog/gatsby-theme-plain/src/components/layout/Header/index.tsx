@@ -130,7 +130,7 @@ export const Header: React.FC<HeaderPropsType> = ({
           </HeaderIconButton>
           <div
             className={clsx(
-              '<sm:hidden transition origin-top-right absolute top-64px right-36px text-primary bg-primary shadow glass',
+              '<sm:hidden transition origin-top-right absolute top-64px right-36px rounded text-primary bg-primary light:shadow dark:border dark:border-true-gray-700 glass',
               {
                 'opacity-0 transform scale-0': !isQrDialogShow,
               }
