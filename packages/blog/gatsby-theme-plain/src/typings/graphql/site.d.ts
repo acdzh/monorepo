@@ -8,7 +8,6 @@ export type SiteMetadata = {
   description: string;
   postsPerPage: number;
   siteUrl: string;
-  githubRawUrl: string;
   social: {
     github: string;
     mail: string;

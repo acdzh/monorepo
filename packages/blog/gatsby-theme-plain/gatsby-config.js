@@ -4,8 +4,6 @@ const defaultSiteMetadata = {
   title: 'gatsby-theme-plain',
   description: 'gatsby-theme-plain demo',
   siteUrl: 'https://example.com',
-  githubRawUrl:
-    'https://github.com/acdzh/monorepo/tree/master/packages/blog/gatsby-theme-plain',
   author: {
     name: 'acdzh',
   },
