@@ -66,7 +66,7 @@ const PostTemplate: React.FC<PostTemplatePropsType> = ({ data }) => {
           <h1
             className="
               mb-12px leading-snug tracking-tight
-              text-xl sm:text-2xl md:text-3xl 2xl:text-4xl
+              text-2xl md:text-3xl 2xl:text-4xl
             "
           >
             {frontmatter.title}
