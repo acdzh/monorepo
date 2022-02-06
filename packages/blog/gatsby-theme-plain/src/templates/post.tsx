@@ -132,9 +132,8 @@ const PostTemplate: React.FC<PostTemplatePropsType> = ({ data }) => {
           )}
         >
           <div
-            className="
-              xl:sticky xl:top-86px xl:w-280px <xl:max-w-280px xl:pl-32px
-            "
+            className="xl:sticky xl:top-86px xl:w-280px <xl:max-w-280px xl:pl-32px overflow-y-auto overscroll-y-contain"
+            style={{ height: 'calc(100vh - 86px - 32px - 44px)' }}
           >
             <TOC items={tableOfContents.items} />
           </div>
