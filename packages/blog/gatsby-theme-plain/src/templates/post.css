@@ -1,5 +1,5 @@
 article {
-  p, dd, hr {
+  p, dd {
     font-size: 16px;
     line-height: 1.8em;
     margin-bottom: 1em;
@@ -31,6 +31,15 @@ article {
     h4 { font-size: 22px; letter-spacing: -0.3px; }
     h5 { font-size: 18px; font-weight: 600; }
     h6 { font-size: 16px; font-weight: 600; text-transform: uppercase; }
+  }
+
+  hr {
+    height: 0;
+    width: 100%;
+    border: 2px dashed;
+    overflow: visible;
+    position: relative;
+    @apply border-theme-300 dark:border-theme-900 light:shadow;
   }
 
   sup {
