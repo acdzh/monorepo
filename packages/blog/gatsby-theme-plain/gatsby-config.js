@@ -49,7 +49,14 @@ const createConfig = ({
           rehypePlugins: [require('rehype-katex')],
           extensions: ['.mdx', '.md'],
           gatsbyRemarkPlugins: [
-            'gatsby-remark-images',
+            {
+              resolve: 'gatsby-remark-images',
+              options: {
+                showCaptions: true,
+                backgroundColor: 'transparent',
+                disableBgImageOnAlpha: true,
+              },
+            },
             {
               resolve: 'gatsby-remark-autolink-headers',
               options: {
