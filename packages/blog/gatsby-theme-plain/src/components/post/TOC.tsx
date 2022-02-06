@@ -39,25 +39,36 @@ export const TOC: React.FC<TocPropsType> = ({ items }) => {
       </li>
       {flattenItems.map(({ id, url, title, depth }) => (
         <li key={url}>
-          <a
-            href={url}
+          <button
             className={clsx(
               'block px-8px py-5px transition-colors duration-50 hover:text-theme',
-              'border-theme-700 dark:border-theme-300',
-              'rounded-sm',
+              'border-l-2 rounded-sm focus:outline-none',
               'light:hover:bg-gray-100 dark:hover:bg-true-gray-700',
               'light:active:shadow-inner',
               {
                 'text-sm': depth,
-                'text-theme border-l-2 light:shadow': currentId === id,
+                'border-transparent': currentId !== id,
+                'text-theme light:shadow border-theme-700 dark:border-theme-300':
+                  currentId === id,
               }
             )}
             style={{
               marginLeft: `${depth}rem`,
             }}
+            aria-label={title}
+            tab-index="0"
+            onClick={() => {
+              const element = document.getElementById(id);
+              if (element) {
+                window.scroll({
+                  top: element?.offsetTop - 60,
+                  behavior: 'smooth',
+                });
+              }
+            }}
           >
             {title}
-          </a>
+          </button>
         </li>
       ))}
     </ul>
