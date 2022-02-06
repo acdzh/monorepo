@@ -48,9 +48,10 @@ article {
   hr {
     height: 0;
     width: 100%;
-    border: 2px dashed;
+    border: 1px dashed;
     overflow: visible;
     position: relative;
+    margin-bottom: 1em;
     @apply border-theme-300 dark:border-theme-900 light:shadow;
   }
 
