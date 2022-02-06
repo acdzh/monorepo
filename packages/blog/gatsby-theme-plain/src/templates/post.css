@@ -1,7 +1,14 @@
 article {
+  p, dd, hr {
+    font-size: 16px;
+    line-height: 1.8em;
+    margin-bottom: 1em;
+  }
+
   h1, h2, h3, h4, h5, h6 {
     word-wrap: break-word; 
-    margin-bottom: 14px;
+    margin-top: 0;
+    margin-bottom: 16px;
     font-weight: 400;
 
     a.anchor {
@@ -16,4 +23,44 @@ article {
   h4 { font-size: 24px; letter-spacing: -0.3px; }
   h5 { font-size: 20px; font-weight: 600; }
   h6 { font-size: 18px; font-weight: 600; text-transform: uppercase; }
+
+  @media only screen and (max-width: 1536px) {
+    h1 { font-size: 30px; letter-spacing: -0.7px; }
+    h2 { font-size: 26px; letter-spacing: -0.5px; }
+    h3 { font-size: 24px; letter-spacing: -0.3px; }
+    h4 { font-size: 22px; letter-spacing: -0.3px; }
+    h5 { font-size: 18px; font-weight: 600; }
+    h6 { font-size: 16px; font-weight: 600; text-transform: uppercase; }
+  }
+
+
+  table {
+    font-size: 16px;
+    margin-bottom: 1em;
+    text-align: center;
+    border-collapse: collapse;
+    @apply w-full rounded-sm border light:shadow;
+
+    &>tr:nth-child(odd), thead>tr, tbody>tr:nth-child(even) {
+      @apply bg-true-gray-100 dark:bg-true-gray-800;
+    }
+
+    th {
+      font-weight: 600;
+      padding: 12px 6px;
+      @apply border dark:border-true-gray-700;
+    }
+
+    td {
+      padding: 6px;
+      vertical-align: middle;
+      @apply border dark:border-true-gray-700;
+    }
+  }
+
+  pre {
+    margin-bottom: 1em;
+    @apply w-full rounded-sm light:border light:shadow bg-true-gray-100 dark:bg-true-gray-800;
+  }
 }
+
