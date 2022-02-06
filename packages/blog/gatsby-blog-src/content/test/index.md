@@ -444,21 +444,15 @@ type propsType = {
 
 ## 哔哩哔哩
 
-```tsx
-type propsType = {
-  aid?: string;
-  bid?: string;
-  page?: number; // default: 1
-  width?: number; // default: 16
-  height?: number; // default: 9
-};
+|参数|类型|默认值|说明|
+|:-----:|:----:|:----:|:----:|
+|`aid?`|`string`| ||
+|`bid?`|`string`| |`aid` 与 `bid` 必须传其中一个|
+|`page?`|`number`|1|视频分P|
+|`width?`|`number`|16|视频宽度(比例)|
+|`height?`|`number`|9|视频高度(比例)|
 
 <bilibili aid="47480567" />
-<bilibili bid="BV19b411s7dY" page={2} />
-```
-
-<bilibili aid="47480567" />
-<bilibili bid="BV19b411s7dY" page={2} />
 
 ## CodePen
 
