@@ -37,9 +37,8 @@ article {
   table {
     font-size: 16px;
     margin-bottom: 1em;
-    text-align: center;
     border-collapse: collapse;
-    @apply w-full rounded-sm border light:shadow;
+    @apply w-full rounded-md light:shadow;
 
     &>tr:nth-child(odd), thead>tr, tbody>tr:nth-child(even) {
       @apply bg-true-gray-100 dark:bg-true-gray-800;
@@ -60,7 +59,7 @@ article {
 
   pre {
     margin-bottom: 1em;
-    @apply w-full rounded-sm light:border light:shadow bg-true-gray-100 dark:bg-true-gray-800;
+    @apply w-full rounded-md light:border light:shadow bg-true-gray-100 dark:bg-true-gray-800;
   }
 }
 
