@@ -13,6 +13,8 @@ import { MDXComponents, TOC } from '@components/post';
 import { SEO } from '@components/SEO';
 import { GraphqlQueryDataType } from '@typings/graphql';
 
+import './post.css';
+
 const formatDate = (date: Date) =>
   `${date.getFullYear()}年${date.getMonth()}月${date.getDay()}日${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
 

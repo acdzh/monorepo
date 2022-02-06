@@ -57,13 +57,7 @@ const createConfig = ({
                 disableBgImageOnAlpha: true,
               },
             },
-            {
-              resolve: 'gatsby-remark-autolink-headers',
-              options: {
-                // icon: false,
-                offsetY: 60,
-              },
-            },
+            'gatsby-remark-autolink-headers',
             'gatsby-remark-copy-linked-files',
             'gatsby-remark-graphviz',
           ],

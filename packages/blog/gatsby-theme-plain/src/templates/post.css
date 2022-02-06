@@ -1,0 +1,19 @@
+article {
+  h1, h2, h3, h4, h5, h6 {
+    word-wrap: break-word; 
+    margin-bottom: 14px;
+    font-weight: 400;
+
+    a.anchor {
+      margin-right: 4px;
+      @apply text-primary fill-current hover:text-theme;
+    }
+  }
+
+  h1 { font-size: 38px; letter-spacing: -1px; }
+  h2 { font-size: 34px; letter-spacing: -0.7px; }
+  h3 { font-size: 28px; letter-spacing: -0.5px; }
+  h4 { font-size: 24px; letter-spacing: -0.3px; }
+  h5 { font-size: 20px; font-weight: 600; }
+  h6 { font-size: 18px; font-weight: 600; text-transform: uppercase; }
+}

@@ -6,3 +6,8 @@ html.dark {
 }
 
 ::selection { @apply bg-theme-200 dark:bg-theme-600 dark:bg-opacity-40  }
+
+*:target {
+  padding-top: 60px;
+  margin-top: -60px;
+}
