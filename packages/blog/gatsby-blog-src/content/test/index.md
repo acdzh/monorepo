@@ -407,14 +407,14 @@ $$
 
 使用 <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Del</kbd> 重启电脑
 
-# Short Code
+# Short Codes
 
 ## 网易云音乐
 
 |参数|类型|默认值|说明|
 |:-----:|:----:|:----:|:----:|
 |`id`|`string`|||
-|`type?`|`1 | 2 | 3`|2|普通歌曲为 2, 电台节目为 3|
+|`type?`|`1 | 2 | 3`|`2`|普通歌曲为 `2`, 电台节目为 `3`|
 |`autoPlay?`|`boolean`|false|自动播放|
 |`showInfo?`|`boolean`|true|显示版权信息|
 
@@ -430,15 +430,15 @@ $$
 
 ## YouTube
 
-```tsx
-type propsType = {
-  id: string;
-  width?: number;  // default: 16
-  height?: number; // default: 9
-  start?: number; // default: 0
-  showControls?: boolean; // default: true
-};
+|参数|类型|默认值|说明|
+|:-----:|:----:|:----:|:----:|
+|`id`|`string`||eg. `"Ap0huJwyT7g"`|
+|`width?`|`number`|`16`|视频宽度(比例)|
+|`height?`|`number`|`9`|视频高度(比例)|
+|`start?`|`number`|`0`|开始秒数|
+|`showControls?`|`boolean`|`true`|显示控件|
 
+```tsx
 <youtube id="Ap0huJwyT7g" width={560} height={315} start={64} />
 ```
 
@@ -450,9 +450,9 @@ type propsType = {
 |:-----:|:----:|:----:|:----:|
 |`aid?`|`string`||eg. `"av205014682"`|
 |`bid?`|`string`||`aid` 与 `bid` 必须传其中一个|
-|`page?`|`number`|1|视频分P|
-|`width?`|`number`|16|视频宽度(比例)|
-|`height?`|`number`|9|视频高度(比例)|
+|`page?`|`number`|`1`|视频分P|
+|`width?`|`number`|`16`|视频宽度(比例)|
+|`height?`|`number`|`9`|视频高度(比例)|
 
 ```tsx
 <bilibili aid="205014682" />

@@ -2,7 +2,7 @@ import { MDXProviderComponentsProp } from '@mdx-js/react';
 import clsx from 'clsx';
 import React from 'react';
 
-import { bilibili, netease } from './shortcodes';
+import { bilibili, netease, youtube } from './shortcodes';
 
 export const MDXComponents: MDXProviderComponentsProp = {
   code: (props: React.HTMLAttributes<HTMLElement>) => (
@@ -20,4 +20,5 @@ export const MDXComponents: MDXProviderComponentsProp = {
   ),
   bilibili,
   netease,
+  youtube,
 };
