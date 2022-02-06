@@ -87,6 +87,7 @@ article {
 
   pre {
     margin-bottom: 1em;
+    padding: 16px;
     @apply w-full rounded-md light:border light:shadow bg-true-gray-100 dark:bg-true-gray-800;
   }
 }
