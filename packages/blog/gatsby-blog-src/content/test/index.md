@@ -414,7 +414,7 @@ $$
 |参数|类型|默认值|说明|
 |:-----:|:----:|:----:|:----:|
 |`id`|`string`|||
-|`type?`|`1 | 2 | 3`|`2`|普通歌曲为 `2`, 电台节目为 `3`|
+|`type?`|`1 \| 2 \| 3`|`2`|普通歌曲为 `2`, 电台节目为 `3`|
 |`autoPlay?`|`boolean`|false|自动播放|
 |`showInfo?`|`boolean`|true|显示版权信息|
 
@@ -462,14 +462,13 @@ $$
 
 ## CodePen
 
-```tsx
-type propsType = {
-  id: string;
-  height?: number;
-  theme: 'light' | 'dark';
-  defaultTab?: string;
-};
+|参数|类型|默认值|
+|:-----:|:----:|:----:|
+|`id?`|`string`||
+|`height`|`number`|`600`|
+|`defaultTab?`|`string`|`"html,result"`|
 
+```tsx
 <codepen id="OJRvrzO" theme="dark" />
 ```
 
