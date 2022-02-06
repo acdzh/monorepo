@@ -411,20 +411,22 @@ $$
 
 ## 网易云音乐
 
-```tsx
-type propsType = {
-  id: string;
-  type?: 1 | 2 | 3; // default: 2
-  autoPlay?: boolean; // default: false
-  showInfo?: boolean; // default: true
-};
+|参数|类型|默认值|说明|
+|:-----:|:----:|:----:|:----:|
+|`id`|`string`|||
+|`type?`|`1 | 2 | 3`|2|普通歌曲为 2, 电台节目为 3|
+|`autoPlay?`|`boolean`|false|自动播放|
+|`showInfo?`|`boolean`|true|显示版权信息|
 
-<netease-music id="5264842" autoPlay={false} showInfo={false} />
-<netease-music id="2064167949" type={3} />
+```tsx
+<netease id="5264842" showInfo={false} />
+<netease id="1914914650"/>
+<netease id="2495029972" autoPlay={true} type={3} />
 ```
 
-<netease-music id="5264842" autoPlay={false} showInfo={false} />
-<netease-music id="2064167949" type={3} />
+<netease id="5264842" showInfo={false} />
+<netease id="1914914650" />
+<netease id="2495029972" autoPlay={true} type={3} />
 
 ## YouTube
 
@@ -446,13 +448,17 @@ type propsType = {
 
 |参数|类型|默认值|说明|
 |:-----:|:----:|:----:|:----:|
-|`aid?`|`string`| ||
-|`bid?`|`string`| |`aid` 与 `bid` 必须传其中一个|
+|`aid?`|`string`||eg. `"av205014682"`|
+|`bid?`|`string`||`aid` 与 `bid` 必须传其中一个|
 |`page?`|`number`|1|视频分P|
 |`width?`|`number`|16|视频宽度(比例)|
 |`height?`|`number`|9|视频高度(比例)|
 
-<bilibili aid="47480567" />
+```tsx
+<bilibili aid="205014682" />
+```
+
+<bilibili aid="205014682" />
 
 ## CodePen
 

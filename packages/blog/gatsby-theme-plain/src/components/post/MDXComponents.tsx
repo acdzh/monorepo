@@ -2,7 +2,7 @@ import { MDXProviderComponentsProp } from '@mdx-js/react';
 import clsx from 'clsx';
 import React from 'react';
 
-import { bilibili } from './shortcodes';
+import { bilibili, netease } from './shortcodes';
 
 export const MDXComponents: MDXProviderComponentsProp = {
   code: (props: React.HTMLAttributes<HTMLElement>) => (
@@ -19,4 +19,5 @@ export const MDXComponents: MDXProviderComponentsProp = {
     <figcaption {...props} className={clsx(props.className, 'text-center')} />
   ),
   bilibili,
+  netease,
 };
