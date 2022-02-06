@@ -73,4 +73,5 @@ export default defineConfig({
   },
   preflight: true,
   attributify: true,
+  plugins: [require('@windicss/plugin-scrollbar')],
 });
