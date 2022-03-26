@@ -78,7 +78,7 @@ module.exports = (env, options) => {
       new HtmlWebpackPlugin({
         title: `确诊及无症状地点 - 上海 (更新于 ${moment()
           .utcOffset(8)
-          .format('YYYY年MM月DD日 HH:mm:ss')}})`,
+          .format('MM-DD HH:mm')})`,
         template: path.join(PUBLIC_PATH, 'index.html'),
         favicon: path.join(PUBLIC_PATH, 'favicon_32x32.ico'),
       }),
