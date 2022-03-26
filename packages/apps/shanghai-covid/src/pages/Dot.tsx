@@ -63,7 +63,17 @@ const config: Partial<DotMapConfig> = {
   },
   tooltip: {
     customTitle: ({ SH_ID }: Partial<PatientType>) => SH_ID!,
-    items: ['地址', '年龄', '性别', '方法', '确诊日期', '编号', 'lng', 'lat'],
+    items: [
+      '地址',
+      '年龄',
+      '性别',
+      '方法',
+      '确诊日期',
+      '编号',
+      '累计确诊',
+      'lng',
+      'lat',
+    ],
   },
   scale: {
     position: 'bottomleft',
@@ -87,18 +97,35 @@ const ranges = {
   本月: [moment().startOf('month'), moment()],
 };
 
+const 统计数量并添加扰动 = (patients: PatientType[]): PatientType[] => {
+  const 地址Counter = new Map<string, number>();
+  patients.forEach((patient) => {
+    地址Counter.set(patient.地址, (地址Counter.get(patient.地址) || 0) + 1);
+  });
+  return patients.map((patient) => ({
+    ...patient,
+    扰动: Math.random() * 0.1,
+    lng: patient.lng + (Math.random() * 2 - 1) * 0.0002,
+    lat: patient.lat + (Math.random() * 2 - 1) * 0.0002,
+    累计确诊: 地址Counter.get(patient.地址) || 1,
+  }));
+};
+
 const Dot: React.FC = () => {
-  const [currentPatients, setCurrentPatients] =
-    useState<PatientType[]>(patients);
+  const [currentPatients, setCurrentPatients] = useState<PatientType[]>(
+    统计数量并添加扰动(patients)
+  );
 
   const onRangeChange = (dates: [Moment | null, Moment | null] | null) => {
     if (!dates) return;
 
     const [start, end] = dates;
     if (!start || !end) return;
-    const newPatients = patients.filter(
-      ({ 确诊日期 }) =>
-        确诊日期 && moment(确诊日期).isBetween(start, end, 'days', '[]')
+    const newPatients = 统计数量并添加扰动(
+      patients.filter(
+        ({ 确诊日期 }) =>
+          确诊日期 && moment(确诊日期).isBetween(start, end, 'days', '[]')
+      )
     );
     setCurrentPatients(newPatients);
   };
@@ -119,6 +146,7 @@ const Dot: React.FC = () => {
       <div
         style={{
           position: 'fixed',
+          zIndex: 1000,
           top: '10px',
           left: '10px',
           display: 'flex',

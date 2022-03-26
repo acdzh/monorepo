@@ -40,6 +40,7 @@ axios
         lat: lat,
         created_at: marker.created_at,
         区: attrs.地址.split('区')[0] + '区',
+        累计确诊: 1,
       };
     });
     fs.writeFileSync(
