@@ -27,7 +27,7 @@ module.exports = (env, options) => {
       'react-dom': 'ReactDOM',
       '@antv/l7': 'L7',
       '@ant-design/maps': 'Maps',
-      'moment': 'moment',
+      moment: 'moment',
     },
     devtool: isDevMode ? 'source-map' : false,
     resolve: {
@@ -76,9 +76,9 @@ module.exports = (env, options) => {
     },
     plugins: [
       new HtmlWebpackPlugin({
-        title: `确诊及无症状地点 - 上海 (更新于 ${moment().format(
-          'YYYY-MM-DD HH:mm:ss'
-        )}})`,
+        title: `确诊及无症状地点 - 上海 (更新于 ${moment()
+          .utcOffset(8)
+          .format('lll')})`,
         template: path.join(PUBLIC_PATH, 'index.html'),
         favicon: path.join(PUBLIC_PATH, 'favicon_32x32.ico'),
       }),
