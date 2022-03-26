@@ -16,5 +16,3 @@ export type PatientType = {
 };
 
 export const patients: PatientType[] = data;
-
-console.log(patients);
