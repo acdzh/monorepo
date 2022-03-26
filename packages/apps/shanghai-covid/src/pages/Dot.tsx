@@ -99,16 +99,24 @@ const ranges = {
 
 const 统计数量并添加扰动 = (patients: PatientType[]): PatientType[] => {
   const 地址Counter = new Map<string, number>();
-  patients.forEach((patient) => {
-    地址Counter.set(patient.地址, (地址Counter.get(patient.地址) || 0) + 1);
+  const _patients = patients.map((patient) => {
+    const count = 地址Counter.get(patient.地址) || 0;
+    地址Counter.set(patient.地址, count + 1);
+    return {
+      ...patient,
+      ...(count === 0
+        ? {}
+        : {
+            lng: patient.lng + (Math.random() * 2 - 1) * 0.0004,
+            lat: patient.lat + (Math.random() * 2 - 1) * 0.0004,
+          }),
+    };
   });
-  return patients.map((patient) => ({
-    ...patient,
-    扰动: Math.random() * 0.1,
-    lng: patient.lng + (Math.random() * 2 - 1) * 0.0002,
-    lat: patient.lat + (Math.random() * 2 - 1) * 0.0002,
-    累计确诊: 地址Counter.get(patient.地址) || 1,
-  }));
+  _patients.forEach((patient) => {
+    patient.累计确诊 = 地址Counter.get(patient.地址) || 1;
+  });
+
+  return _patients;
 };
 
 const Dot: React.FC = () => {
