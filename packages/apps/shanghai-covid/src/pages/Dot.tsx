@@ -161,6 +161,7 @@ const Dot: React.FC = () => {
           left: '10px',
           display: 'flex',
           alignItems: 'center',
+          marginRight: '40px',
         }}
       >
         <RangePicker
@@ -171,7 +172,7 @@ const Dot: React.FC = () => {
           }}
         />
         <div style={{ flexShrink: 0 }}>
-          <a href="/data.json" style={{ padding: '10px', marginRight: '40px' }}>
+          <a href="/data.json" style={{ padding: '10px' }}>
             原始数据
           </a>
         </div>
