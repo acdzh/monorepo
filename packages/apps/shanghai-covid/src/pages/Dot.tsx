@@ -99,7 +99,7 @@ const ranges = {
 
 const 统计数量并添加扰动 = (patients: PatientType[]): PatientType[] => {
   const 地址Counter = new Map<string, number>();
-  const _patients = patients.map((patient) => {
+  const newPatients = patients.map((patient) => {
     const count = 地址Counter.get(patient.地址) || 0;
     地址Counter.set(patient.地址, count + 1);
     return {
@@ -112,11 +112,11 @@ const 统计数量并添加扰动 = (patients: PatientType[]): PatientType[] => 
           }),
     };
   });
-  _patients.forEach((patient) => {
+  newPatients.forEach((patient) => {
     patient.累计确诊 = 地址Counter.get(patient.地址) || 1;
   });
 
-  return _patients;
+  return newPatients;
 };
 
 const Dot: React.FC = () => {
@@ -125,17 +125,19 @@ const Dot: React.FC = () => {
   );
 
   const onRangeChange = (dates: [Moment | null, Moment | null] | null) => {
-    if (!dates) return;
+    console.log(dates);
+    if (!dates) {
+      setCurrentPatients(统计数量并添加扰动(patients));
+      return;
+    }
 
     const [start, end] = dates;
     if (!start || !end) return;
-    const newPatients = 统计数量并添加扰动(
-      patients.filter(
-        ({ 确诊日期 }) =>
-          确诊日期 && moment(确诊日期).isBetween(start, end, 'days', '[]')
-      )
+    const newPatients = patients.filter(
+      ({ 确诊日期 }) =>
+        确诊日期 && moment(确诊日期).isBetween(start, end, 'days', '[]')
     );
-    setCurrentPatients(newPatients);
+    setCurrentPatients(统计数量并添加扰动(newPatients));
   };
 
   return (
