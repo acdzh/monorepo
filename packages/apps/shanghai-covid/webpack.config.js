@@ -2,14 +2,14 @@ const path = require('path');
 
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const moment = require('moment');
 const BundleAnalyzerPlugin =
   require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const moment = require('moment');
 
 const BASE_PATH = __dirname;
-const DIST_PATH = path.join(__dirname, 'dist');
-const SRC_PATH = path.join(__dirname, 'src');
-const PUBLIC_PATH = path.join(__dirname, 'public');
+const DIST_PATH = path.join(BASE_PATH, 'dist');
+const SRC_PATH = path.join(BASE_PATH, 'src');
+const PUBLIC_PATH = path.join(BASE_PATH, 'public');
 
 module.exports = (env, options) => {
   const isDevMode = options.mode === 'development';
@@ -20,7 +20,22 @@ module.exports = (env, options) => {
     },
     output: {
       path: DIST_PATH,
-      filename: '[name].[fullhash].js',
+      filename: '[name].[chunkhash].js',
+    },
+    optimization: {
+      splitChunks: {
+        chunks: 'all',
+        cacheGroups: {
+          vendors: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors',
+          },
+          data: {
+            test: /data\.json/,
+            name: 'data',
+          },
+        },
+      },
     },
     externals: {
       react: 'React',
