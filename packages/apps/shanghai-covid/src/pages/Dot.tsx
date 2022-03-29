@@ -31,7 +31,7 @@ const COLOR_MAP = {
 const config: Partial<DotMapConfig> = {
   map: {
     type: 'amap',
-    center: [121.5, 31.15],
+    center: [121.526, 31.2349],
     pitch: 15,
     style: 'dark',
     zoom: 10,
