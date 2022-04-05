@@ -15,4 +15,4 @@ export type PatientType = {
   created_at: string;
 };
 
-export const patients: PatientType[] = data;
+export const patients: PatientType[] = data as any;

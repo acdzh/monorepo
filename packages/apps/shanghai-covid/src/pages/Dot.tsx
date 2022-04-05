@@ -3,7 +3,8 @@ import { DatePicker } from 'antd';
 import moment, { Moment } from 'moment';
 import React, { useState } from 'react';
 
-import { PatientType, patients } from '../libs/patients';
+import { useLocation } from '../hooks';
+import { PatientType, patients } from '../libs';
 
 const { RangePicker } = DatePicker;
 
@@ -29,13 +30,6 @@ const COLOR_MAP = {
 };
 
 const config: Partial<DotMapConfig> = {
-  map: {
-    type: 'amap',
-    center: [121.526, 31.2349],
-    pitch: 15,
-    style: 'dark',
-    zoom: 10,
-  },
   size: 5,
   color: {
     field: '区',
@@ -120,6 +114,7 @@ const 统计数量并添加扰动 = (patients: PatientType[]): PatientType[] => 
 };
 
 const Dot: React.FC = () => {
+  const [location] = useLocation();
   const [currentPatients, setCurrentPatients] = useState<PatientType[]>(
     统计数量并添加扰动(patients)
   );
@@ -144,6 +139,13 @@ const Dot: React.FC = () => {
     <>
       <DotMap
         {...config}
+        map={{
+          type: 'amap',
+          center: location,
+          pitch: 15,
+          style: 'dark',
+          zoom: 10,
+        }}
         source={{
           data: currentPatients,
           parser: {
