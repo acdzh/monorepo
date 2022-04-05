@@ -1,8 +1,8 @@
-const { Console } = require('console');
 const fs = require('fs');
 const path = require('path');
 
 const axios = require('axios');
+const coordtransform = require('coordtransform');
 
 const MID = 'd3vYDHfujJIkll_WdQ9Hcw';
 const DETAIL_API = `https://zt.changjing.com.cn/map/details2?mid=${MID}&_=${new Date().getTime()}`;
@@ -14,17 +14,7 @@ const headers = {
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36',
 };
 
-function bd09_to_gc102(lng, lat) {
-  const x_pi = (3.14159265358979324 * 3000.0) / 180.0;
-  const x = lng - 0.0065;
-  const y = lat - 0.006;
-  const z = Math.sqrt(x * x + y * y) - 0.00002 * Math.sin(y * x_pi);
-  const theta = Math.atan2(y, x) - 0.000003 * Math.cos(x * x_pi);
-
-  const _lng = z * Math.cos(theta);
-  const _lat = z * Math.sin(theta);
-  return [_lng, _lat];
-}
+const bd09_to_gcj102 = (lng, lat) => coordtransform.bd09togcj02(lng, lat);
 
 function 读取旧数据() {
   console.log('读取旧数据...');
@@ -64,7 +54,7 @@ async function getDataFrom累计病例分布Layer(layer) {
   });
   console.log(`获取 [${layer.title}] 完成, 解析数据.`);
   const data = res.data.layer.markers.map((marker) => {
-    const [lng, lat] = bd09_to_gc102(marker.lng, marker.lat);
+    const [lng, lat] = bd09_to_gcj102(marker.lng, marker.lat);
     const attrs = Object.fromEntries(
       marker.marker_attrs.map((attr) => [attr.key, attr.value])
     );
