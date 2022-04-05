@@ -17,6 +17,7 @@
     "@antv/l7": "^2.8.12",
     "antd": "^4.19.3",
     "coordtransform": "^2.1.2",
+    "lodash-es": "^4.17.21",
     "moment": "^2.29.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
@@ -27,6 +28,7 @@
     "@babel/preset-react": "^7.16.7",
     "@babel/preset-typescript": "^7.16.7",
     "@cloudflare/workers-types": "^3.4.0",
+    "@types/lodash-es": "^4.17.6",
     "@types/react": "^17.0.19",
     "@types/react-dom": "^17.0.14",
     "@types/react-router-dom": "^5.3.3",
