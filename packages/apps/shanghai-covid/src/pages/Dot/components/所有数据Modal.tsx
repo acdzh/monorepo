@@ -47,7 +47,7 @@ export const 所有数据Modal: React.FC<{
           title="ID"
           dataIndex="SH_ID"
           align="center"
-          width="96px"
+          width="120px"
           defaultSortOrder="descend"
           sorter={(a: PatientType, b: PatientType) =>
             parseInt(a.SH_ID || '') - parseInt(b.SH_ID || '')
@@ -110,7 +110,7 @@ export const 所有数据Modal: React.FC<{
           key="确诊日期"
           dataIndex="确诊日期"
           align="center"
-          width="96px"
+          width="120px"
           sorter={(a: PatientType, b: PatientType) =>
             new Date(a.确诊日期).getTime() - new Date(b.确诊日期).getTime()
           }
