@@ -54,6 +54,28 @@ export const 所有数据Modal: React.FC<{
           }
         />
         <Column
+          title="确诊日期"
+          key="确诊日期"
+          dataIndex="确诊日期"
+          align="center"
+          width="120px"
+          sorter={(a: PatientType, b: PatientType) =>
+            new Date(a.确诊日期).getTime() - new Date(b.确诊日期).getTime()
+          }
+        />
+        <Column
+          title="地区"
+          key="地区"
+          dataIndex="区"
+          align="center"
+          width="96px"
+          filters={上海各区.map((v) => ({
+            text: v,
+            value: v,
+          }))}
+          onFilter={(value, record: PatientType) => record.区 === value}
+        />
+        <Column
           title="地址"
           key="地址"
           dataIndex="地址"
@@ -91,28 +113,6 @@ export const 所有数据Modal: React.FC<{
           )}
           onFilter={(value, record: PatientType) =>
             record.地址.includes(value as string)
-          }
-        />
-        <Column
-          title="地区"
-          key="地区"
-          dataIndex="区"
-          align="center"
-          width="96px"
-          filters={上海各区.map((v) => ({
-            text: v,
-            value: v,
-          }))}
-          onFilter={(value, record: PatientType) => record.区 === value}
-        />{' '}
-        <Column
-          title="确诊日期"
-          key="确诊日期"
-          dataIndex="确诊日期"
-          align="center"
-          width="120px"
-          sorter={(a: PatientType, b: PatientType) =>
-            new Date(a.确诊日期).getTime() - new Date(b.确诊日期).getTime()
           }
         />
         <Column

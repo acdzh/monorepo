@@ -1,6 +1,7 @@
 import { Button, Input, Modal, Space, Table } from 'antd';
 import React, { useMemo } from 'react';
 
+import { 上海各区 } from '../../../constants';
 import type { PatientType } from '../../../libs';
 import { 各个地址统计数据类型, 获取各个地址统计数据 } from '../utils';
 
@@ -33,6 +34,18 @@ export const 按地址统计Modal: React.FC<{
           y: '40vh',
         }}
       >
+        <Column
+          title="地区"
+          key="地区"
+          dataIndex="区"
+          align="center"
+          width="96px"
+          filters={上海各区.map((v) => ({
+            text: v,
+            value: v,
+          }))}
+          onFilter={(value, record: 各个地址统计数据类型) => record.区 === value}
+        />
         <Column
           title="地址"
           key="地址"
