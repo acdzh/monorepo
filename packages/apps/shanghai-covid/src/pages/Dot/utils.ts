@@ -72,6 +72,7 @@ export type 各个地址统计数据类型 = {
   key: string;
   地址: string;
   数量: number;
+  区: string;
 };
 export const 获取各个地址统计数据 = (
   patients: PatientType[]
@@ -80,6 +81,7 @@ export const 获取各个地址统计数据 = (
     ([key, value]) => ({
       key,
       地址: key,
+      区: value[0].区 || '',
       数量: value.length,
     })
   );

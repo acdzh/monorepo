@@ -58,12 +58,14 @@ async function getDataFrom累计病例分布Layer(layer) {
     const attrs = Object.fromEntries(
       marker.marker_attrs.map((attr) => [attr.key, attr.value])
     );
+    const [区, 地址] = attrs.地址.split('区');
     return {
       ...attrs,
       lng: lng,
       lat: lat,
       created_at: marker.created_at,
-      区: attrs.地址.split('区')[0] + '区',
+      区: 区 + '区',
+      地址,
       累计确诊: 1,
     };
   });
