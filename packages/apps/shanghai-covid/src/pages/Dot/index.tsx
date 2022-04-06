@@ -7,6 +7,7 @@ import { useLocation } from '../../hooks';
 import { PatientType, patients } from '../../libs';
 
 import {
+  关于Modal,
   分地区统计Modal,
   所有数据Modal,
   按地址统计Modal,
@@ -28,6 +29,7 @@ const Dot: React.FC = () => {
   const [is按地址统计ModalVisible, setIs按地址统计ModalVisible] =
     useState(false);
   const [is所有数据ModalVisible, setIs所有数据ModalVisible] = useState(false);
+  const [is关于ModalVisible, setIs关于ModalVisible] = useState(true);
 
   const [location] = useLocation();
   const [currentPatients, setCurrentPatients] =
@@ -80,40 +82,57 @@ const Dot: React.FC = () => {
             }}
           />
         </div>
-        <Space style={{ marginTop: '8px' }}>
-          <Button
-            type="primary"
-            size="small"
-            ghost
-            onClick={() => setIs分地区统计ModalVisible(true)}
-          >
-            分地区统计
-          </Button>
-          <Button
-            type="primary"
-            size="small"
-            ghost
-            onClick={() => setIs按日期统计ModalVisible(true)}
-          >
-            按日期统计
-          </Button>
-          <Button
-            type="primary"
-            size="small"
-            ghost
-            onClick={() => setIs按地址统计ModalVisible(true)}
-          >
-            按地址统计
-          </Button>
-          <Button
-            type="primary"
-            size="small"
-            ghost
-            onClick={() => setIs所有数据ModalVisible(true)}
-          >
-            所有数据
-          </Button>
-        </Space>
+        <div style={{ marginTop: '8px' }}>
+          <Space>
+            <Button type="primary" size="small" ghost>
+              分类统计
+            </Button>
+            <Button
+              type="primary"
+              size="small"
+              ghost
+              onClick={() => setIs分地区统计ModalVisible(true)}
+            >
+              地区
+            </Button>
+            <Button
+              type="primary"
+              size="small"
+              ghost
+              onClick={() => setIs按日期统计ModalVisible(true)}
+            >
+              日期
+            </Button>
+            <Button
+              type="primary"
+              size="small"
+              ghost
+              onClick={() => setIs按地址统计ModalVisible(true)}
+            >
+              地址
+            </Button>
+          </Space>
+        </div>
+        <div style={{ marginTop: '8px' }}>
+          <Space>
+            <Button
+              type="primary"
+              size="small"
+              ghost
+              onClick={() => setIs所有数据ModalVisible(true)}
+            >
+              所有数据
+            </Button>
+            <Button
+              type="primary"
+              size="small"
+              ghost
+              onClick={() => setIs关于ModalVisible(true)}
+            >
+              关于
+            </Button>
+          </Space>
+        </div>
       </div>
       <分地区统计Modal
         patients={currentPatients}
@@ -134,6 +153,10 @@ const Dot: React.FC = () => {
         patients={currentPatients}
         visible={is所有数据ModalVisible}
         onClose={() => setIs所有数据ModalVisible(false)}
+      />
+      <关于Modal
+        visible={is关于ModalVisible}
+        onClose={() => setIs关于ModalVisible(false)}
       />
     </>
   );
