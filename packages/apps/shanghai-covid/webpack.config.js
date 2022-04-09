@@ -91,7 +91,7 @@ module.exports = (env, options) => {
     },
     plugins: [
       new HtmlWebpackPlugin({
-        title: `确诊及无症状地点 - 上海 (更新于 ${moment()
+        title: `上海涉疫地点 (更新于 ${moment()
           .utcOffset(8)
           .format('MM-DD HH:mm')})`,
         template: path.join(PUBLIC_PATH, 'index.html'),
