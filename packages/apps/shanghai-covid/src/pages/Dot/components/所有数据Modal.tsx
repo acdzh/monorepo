@@ -2,7 +2,7 @@ import { Button, Input, Modal, Space, Table } from 'antd';
 import React from 'react';
 
 import { 上海各区 } from '../../../constants';
-import type { PatientType } from '../../../libs';
+import type { PatientType } from '../../../type';
 
 const { Column } = Table;
 
@@ -20,7 +20,7 @@ export const 所有数据Modal: React.FC<{
             type="primary"
             size="small"
             ghost
-            href="/data.json"
+            href="/download.html"
             target="_blank"
           >
             原始数据
@@ -115,7 +115,7 @@ export const 所有数据Modal: React.FC<{
             record.地址.includes(value as string)
           }
         />
-        <Column
+        {/* <Column
           key="年龄"
           title="年龄"
           dataIndex="年龄"
@@ -156,7 +156,7 @@ export const 所有数据Modal: React.FC<{
           onFilter={(value, record: PatientType) =>
             record.方法 === value || (value === '无数据' && !record.方法)
           }
-        />
+        /> */}
         <Column
           title="lng"
           key="lng"

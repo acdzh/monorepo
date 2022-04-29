@@ -1,7 +1,7 @@
 import type { DotMapConfig } from '@ant-design/maps';
 import moment from 'moment';
 
-import type { PatientType } from '../../libs';
+import type { PatientType } from '../../type';
 
 const COLOR_MAP = {
   浦东新区: '#fa2807',
@@ -54,17 +54,7 @@ export const mapConfig: Partial<DotMapConfig> = {
   tooltip: {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     customTitle: ({ SH_ID }: Partial<PatientType>) => SH_ID!,
-    items: [
-      '地址',
-      '年龄',
-      '性别',
-      '方法',
-      '确诊日期',
-      '编号',
-      '累计确诊',
-      'lng',
-      'lat',
-    ],
+    items: ['区', '地址', '确诊日期', '累计确诊', 'lng', 'lat'],
   },
   scale: {
     position: 'bottomleft',

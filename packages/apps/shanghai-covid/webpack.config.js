@@ -30,10 +30,6 @@ module.exports = (env, options) => {
             test: /[\\/]node_modules[\\/]/,
             name: 'vendors',
           },
-          data: {
-            test: /data\.json/,
-            name: 'data',
-          },
         },
       },
     },
@@ -97,8 +93,13 @@ module.exports = (env, options) => {
         template: path.join(PUBLIC_PATH, 'index.html'),
         favicon: path.join(PUBLIC_PATH, 'favicon_32x32.ico'),
       }),
+      new HtmlWebpackPlugin({
+        template: path.join(PUBLIC_PATH, 'download.html'),
+        filename: 'download.html',
+        favicon: path.join(PUBLIC_PATH, 'favicon_32x32.ico'),
+      }),
       new CopyWebpackPlugin({
-        patterns: [{ from: 'data.json' }],
+        patterns: [{ from: 'data', to: 'data' }],
       }),
       isDevMode && new BundleAnalyzerPlugin(),
     ].filter(Boolean),

@@ -14,5 +14,5 @@ export const getLocation = (): Promise<LocationType> =>
     fetch('/api/location')
       .then((data) => data.json())
       .then((data) => resolve(data as LocationType))
-      .catch((err) => reject(err));
+      .catch((err) => console.error(err));
   });

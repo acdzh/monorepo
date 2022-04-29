@@ -1,7 +1,7 @@
 import { groupBy } from 'lodash-es';
 import moment, { Moment } from 'moment';
 
-import { PatientType } from '../../libs';
+import type { PatientType } from '../../type';
 
 export const 统计数量并添加扰动 = (patients: PatientType[]): PatientType[] => {
   const 地址Counter = new Map<string, number>();

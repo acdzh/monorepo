@@ -3,6 +3,11 @@ const path = require('path');
 
 const axios = require('axios');
 const coordtransform = require('coordtransform');
+const { groupBy } = require('lodash');
+
+const CSV = require('../libs/CSV');
+const DayCode36 = require('../libs/DayCode36');
+const 区Code36 = require('../libs/区Code36');
 
 const MID = 'd3vYDHfujJIkll_WdQ9Hcw';
 const DETAIL_API = `https://zt.changjing.com.cn/map/details2?mid=${MID}&_=${new Date().getTime()}`;
@@ -15,18 +20,6 @@ const headers = {
 };
 
 const bd09_to_gcj102 = (lng, lat) => coordtransform.bd09togcj02(lng, lat);
-
-function 读取旧数据() {
-  console.log('读取旧数据...');
-  try {
-    const data = JSON.parse(
-      fs.readFileSync(path.resolve(__dirname, '../data.json'))
-    );
-    console.log(`旧数据累计确诊病例共 [${data.length}] 条.`);
-  } catch {
-    console.log('无旧数据.');
-  }
-}
 
 // 获取所有图层
 async function getLayers() {
@@ -60,13 +53,13 @@ async function getDataFrom累计病例分布Layer(layer) {
     );
     const [区, 地址] = attrs.地址.replace('区', '区|').split('|');
     return {
-      ...attrs,
+      // ...attrs,
+      SH_ID_36: parseInt(attrs.SH_ID).toString(36),
+      区36: 区Code36.codify(区),
+      地址,
       lng: lng,
       lat: lat,
-      created_at: marker.created_at,
-      区,
-      地址,
-      累计确诊: 1,
+      确诊日期36: DayCode36.codify(attrs.确诊日期),
     };
   });
   console.log(`解析 [${layer.title}] 完成, 共有数据 [${data.length}] 条.`);
@@ -75,7 +68,6 @@ async function getDataFrom累计病例分布Layer(layer) {
 
 (async () => {
   console.log('开始.');
-  读取旧数据();
   const layers = await getLayers();
   const 累计病例分布Layers = layers.filter(
     (layer) => layer.title.indexOf('累计病例分布') !== -1
@@ -84,10 +76,22 @@ async function getDataFrom累计病例分布Layer(layer) {
     getDataFrom累计病例分布Layer
   );
   const 累计病例分布Data = (await Promise.all(累计病例分布DataPromises)).flat();
-  console.log(`获取到累计病例分布: [${累计病例分布Data.length}] 条, 写入数据.`);
-  fs.writeFileSync(
-    path.resolve(__dirname, '../data.json'),
-    JSON.stringify(累计病例分布Data)
+  console.log(
+    `获取到累计病例分布: [${累计病例分布Data.length}] 条, 拆分各区写入数据.`
   );
+  const 按日期分组的累计病例分布 = groupBy(累计病例分布Data, '区36');
+  Object.entries(按日期分组的累计病例分布).forEach(([区36, patients]) => {
+    const 区 = 区Code36.parse(区36);
+    fs.writeFileSync(
+      path.resolve(__dirname, `../data/${区36}.json`),
+      JSON.stringify(patients)
+    );
+    const fields = Object.keys(patients[0]).filter((key) => key !== '区36');
+    fs.writeFileSync(
+      path.resolve(__dirname, `../data/${区36}.csv`),
+      CSV.stringify(patients, fields)
+    );
+    console.log(`[${区}] 写入完成, 共 [${patients.length}]条.`);
+  });
   console.log('写入数据完成');
 })();
