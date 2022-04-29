@@ -2,7 +2,7 @@ import { Button, Input, Modal, Space, Table } from 'antd';
 import React, { useMemo } from 'react';
 
 import { 上海各区 } from '../../../constants';
-import type { PatientType } from '../../../libs';
+import type { PatientType } from '../../../type';
 import { 各个地址统计数据类型, 获取各个地址统计数据 } from '../utils';
 
 const { Column } = Table;
@@ -44,7 +44,9 @@ export const 按地址统计Modal: React.FC<{
             text: v,
             value: v,
           }))}
-          onFilter={(value, record: 各个地址统计数据类型) => record.区 === value}
+          onFilter={(value, record: 各个地址统计数据类型) =>
+            record.区 === value
+          }
         />
         <Column
           title="地址"
@@ -67,7 +69,6 @@ export const 按地址统计Modal: React.FC<{
                 style={{ marginBottom: 8, display: 'block' }}
               />
               <Space style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                {' '}
                 <Button
                   onClick={() => {
                     clearFilters && clearFilters();

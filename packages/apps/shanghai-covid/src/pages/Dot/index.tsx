@@ -1,10 +1,11 @@
 import { DotMap } from '@ant-design/maps';
 import { Button, DatePicker, Space } from 'antd';
 import type { Moment } from 'moment';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useLocation } from '../../hooks';
-import { PatientType, patients } from '../../libs';
+import { usePatients } from '../../hooks/usePatients';
+import type { PatientType } from '../../type';
 
 import {
   关于Modal,
@@ -18,9 +19,6 @@ import { 根据日期筛选数据, 统计数量并添加扰动 } from './utils';
 
 const { RangePicker } = DatePicker;
 
-const 初始数据 = patients;
-const 扰动后的初始数据 = 统计数量并添加扰动(初始数据);
-
 const Dot: React.FC = () => {
   const [is分地区统计ModalVisible, setIs分地区统计ModalVisible] =
     useState(false);
@@ -31,17 +29,25 @@ const Dot: React.FC = () => {
   const [is所有数据ModalVisible, setIs所有数据ModalVisible] = useState(false);
   const [is关于ModalVisible, setIs关于ModalVisible] = useState(true);
 
+  const [isMapReady, setIsMapReady] = useState(false);
+
   const [location] = useLocation();
-  const [currentPatients, setCurrentPatients] =
-    useState<PatientType[]>(扰动后的初始数据);
 
-  const onRangeChange = (dates: [Moment | null, Moment | null] | null) => {
-    const 根据日期筛选后的数据 = 根据日期筛选数据(patients, dates);
-    console.log(根据日期筛选后的数据);
+  const [patients] = usePatients(isMapReady);
+  const [currentPatients, setCurrentPatients] = useState<PatientType[]>([]);
 
+  const [dateRange, setDateRange] = useState<
+    [Moment | null, Moment | null] | null
+  >(datePickerRanges['最近 3 天']);
+
+  useEffect(() => {
+    const 根据日期筛选后的数据 = 根据日期筛选数据(patients, dateRange);
     const 扰动后的数据 = 统计数量并添加扰动(根据日期筛选后的数据);
+    console.log(
+      `更新数据: 共 ${patients.length} 条, 展示其中 ${扰动后的数据.length} 条.`
+    );
     setCurrentPatients(扰动后的数据);
-  };
+  }, [patients, dateRange]);
 
   return (
     <>
@@ -62,6 +68,7 @@ const Dot: React.FC = () => {
             y: 'lat',
           },
         }}
+        onReady={() => setIsMapReady(true)}
       />
       <div
         style={{
@@ -74,7 +81,8 @@ const Dot: React.FC = () => {
       >
         <div>
           <RangePicker
-            onChange={onRangeChange}
+            onChange={(dates) => setDateRange(dates)}
+            value={dateRange}
             ranges={datePickerRanges}
             style={{
               height: '30px',

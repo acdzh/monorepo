@@ -32,8 +32,9 @@ export const 关于Modal: React.FC<{
       <code>地址</code>一栏的筛选按钮进行搜索.
     </Paragraph>
     <Paragraph>
-      本站不保证数据的及时, 正确性与完整性. 因四月份数据量激增, 页面会有卡顿,
-      请耐心等待. 如有问题, 请联系开发者:{' '}
+      本站不保证数据的及时性, 正确性与完整性. 因数据量激增, 页面<b>很卡</b>(
+      <del>又不是不能用.jpg</del>), 请耐心等待加载, 数据量较大, 所以默认只展示
+      <b>前三天</b>, 可以自行选择时间范围. 如有问题, <b>请联系开发者</b>:{' '}
       <Link
         href="https://www.github.com/acdzh"
         target="_blank"
@@ -49,7 +50,7 @@ export const 关于Modal: React.FC<{
       >
         email
       </Link>
-      .
+      . 工作繁忙, 非 Bug 类型反馈更新不会及时.
     </Paragraph>
     <Paragraph>
       <Link
@@ -58,8 +59,8 @@ export const 关于Modal: React.FC<{
       >
         疫情会放大焦虑等负面情绪
       </Link>
-      , 希望各位能够调整好心态, 共克时艰. 这个世界虽然不完美,
-      但我们仍可以治愈自己. 一切总会过去的, 谢谢大家.
+      , 希望各位能够调整好心态, 共克时艰, 谢谢.
     </Paragraph>
+    <Paragraph>上一次功能更新于: 2022 年 4 月 29 日.</Paragraph>
   </Modal>
 );

@@ -2,7 +2,7 @@ import { Modal, Table } from 'antd';
 import React, { useMemo } from 'react';
 
 import { 上海各区 } from '../../../constants';
-import type { PatientType } from '../../../libs';
+import type { PatientType } from '../../../type';
 import { 各区统计数据类型, 获取各区统计数据 } from '../utils';
 
 const { Column } = Table;
