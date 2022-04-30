@@ -1,3 +1,5 @@
+import type { Moment } from 'moment';
+
 export type PatientType = {
   SH_ID: string | null;
   地址: string;
@@ -12,3 +14,5 @@ export type PatientType = {
   lat: number;
   // created_at: string;
 };
+
+export type DateRangeType = [Moment | null, Moment | null] | null;
