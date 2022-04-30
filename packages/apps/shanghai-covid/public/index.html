@@ -2,23 +2,117 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><%= htmlWebpackPlugin.options.title %></title>
-    <script>
-        ;(function installSlardar(w, d, u, b, n, pc, ga, ae, po, s, p, e, t, pp) {pc = 'precollect';ga = 'getAttribute';ae = 'addEventListener';po = 'PerformanceObserver';s = function (m) {p = [].slice.call(arguments);p.push(Date.now(), location.href);(m == pc ? s.p.a : s.q).push(p)};s.q = [];s.p = { a: [] };w[n] = s;e = document.createElement('script');e.src = u + '?bid=' + b + '&globalName=' + n;e.crossorigin = u.indexOf('cdn') > 0 ? 'anonymous' : 'use-credentials';d.getElementsByTagName('head')[0].appendChild(e);if (ae in w) {s.pcErr = function (e) {e = e || w.event;t = e.target || e.srcElement;if (t instanceof Element || t instanceof HTMLElement) {if (t[ga]('integrity')) {w[n](pc, 'sri', t[ga]('href') || t[ga]('src'))} else {w[n](pc, 'st', { tagName: t.tagName, url: t[ga]('href') || t[ga]('src') })}} else {w[n](pc, 'err', e.error)}};s.pcRej = function (e) {e = e || w.event;w[n](pc, 'err', String(e.reason || (e.detail && e.detail.reason)))};w[ae]('error', s.pcErr, true);w[ae]('unhandledrejection', s.pcRej, true);};if('PerformanceLongTaskTiming' in w) {pp = s.pp = { entries: [] };pp.observer = new PerformanceObserver(function (l) {pp.entries = pp.entries.concat(l.getEntries)});pp.observer.observe({ entryTypes: ['longtask', 'largest-contentful-paint','layout-shift'] })}})(window,document,'https://lf3-short.bytegoofy.com/slardar/fe/sdk-web/browser.cn.js','covid_vukk','Slardar');
-        window.Slardar('init',{bid:'covid_vukk'});
-        window.Slardar('start');
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>
+    <%= htmlWebpackPlugin.options.title %>
+  </title>
+  <script>
+    ; (function installSlardar(w, d, u, b, n, pc, ga, ae, po, s, p, e, t, pp) { pc = 'precollect'; ga = 'getAttribute'; ae = 'addEventListener'; po = 'PerformanceObserver'; s = function (m) { p = [].slice.call(arguments); p.push(Date.now(), location.href); (m == pc ? s.p.a : s.q).push(p) }; s.q = []; s.p = { a: [] }; w[n] = s; e = document.createElement('script'); e.src = u + '?bid=' + b + '&globalName=' + n; e.crossorigin = u.indexOf('cdn') > 0 ? 'anonymous' : 'use-credentials'; d.getElementsByTagName('head')[0].appendChild(e); if (ae in w) { s.pcErr = function (e) { e = e || w.event; t = e.target || e.srcElement; if (t instanceof Element || t instanceof HTMLElement) { if (t[ga]('integrity')) { w[n](pc, 'sri', t[ga]('href') || t[ga]('src')) } else { w[n](pc, 'st', { tagName: t.tagName, url: t[ga]('href') || t[ga]('src') }) } } else { w[n](pc, 'err', e.error) } }; s.pcRej = function (e) { e = e || w.event; w[n](pc, 'err', String(e.reason || (e.detail && e.detail.reason))) }; w[ae]('error', s.pcErr, true); w[ae]('unhandledrejection', s.pcRej, true); }; if ('PerformanceLongTaskTiming' in w) { pp = s.pp = { entries: [] }; pp.observer = new PerformanceObserver(function (l) { pp.entries = pp.entries.concat(l.getEntries) }); pp.observer.observe({ entryTypes: ['longtask', 'largest-contentful-paint', 'layout-shift'] }) } })(window, document, 'https://lf3-short.bytegoofy.com/slardar/fe/sdk-web/browser.cn.js', 'covid_vukk', 'Slardar');
+    window.Slardar('init', { bid: 'covid_vukk' });
+    window.Slardar('start');
+  </script>
 </head>
 
 <body style="background: rgb(28, 31, 39);">
-    <div id="root"><span style="color: white;">Loading...</span></div>
-    <script src="https://cdn.jsdelivr.net/npm/react@17.0.2/umd/react.production.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/min/moment.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@antv/l7@2.8.12/dist/l7.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@ant-design/maps@0.0.7/dist/maps.min.js"></script>
+  <div id="root">
+    <div class="wrapper">
+      <div class="container">
+        <div class="line line-1 bg-red"></div>
+        <div class="line line-2 bg-blue"></div>
+        <div class="line line-3 bg-red"></div>
+        <div class="line line-4 bg-blue"></div>
+        <div class="line line-5 bg-red"></div>
+      </div>
+      <div class="text">
+        Loading...
+      </div>
+    </div>
+    <style>
+      .bg-blue {
+        background: #00a0e9;
+      }
+
+      .bg-red {
+        background: #ff4d4f;
+      }
+
+      .wrapper {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+      }
+
+      .text {
+        margin-top: 20px;
+        font-size: 20px;
+        color: #00a0e9;
+        font-family: monospace;
+        animation: 2s text cubic-bezier(0.86, 0, 0.14, 1) infinite;
+      }
+
+      @keyframes text {
+        50% {
+          color: #ff4d4f;
+        }
+      }
+
+      .line {
+        width: 12px;
+        height: 22px;
+        border-radius: 5px;
+        margin: 0 8px;
+        animation: 1s bounce cubic-bezier(0.86, 0, 0.14, 1) infinite;
+        box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+      }
+
+      @keyframes bounce {
+        50% {
+          transform: translateY(-22px);
+        }
+      }
+
+      .line-1 {
+        height: 90px;
+      }
+
+      .line-2 {
+        height: 75px;
+        animation-delay: -.5s;
+      }
+
+      .line-3 {
+        height: 60px;
+        animation-delay: -.375s;
+      }
+
+      .line-4 {
+        height: 105px;
+        animation-delay: -.25s;
+      }
+
+      .line-5 {
+        height: 30px;
+        animation-delay: -.125s;
+      }
+    </style>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/min/moment.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@antv/l7@2.8.12/dist/l7.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@ant-design/maps@0.0.7/dist/maps.min.js"></script>
 </body>
+
 </html>
