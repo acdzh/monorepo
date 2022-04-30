@@ -1,54 +1,55 @@
-import { shuffle } from 'lodash-es';
+import { message } from 'antd';
+import moment, { Moment } from 'moment';
 import { useEffect, useState } from 'react';
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import CSV from '../../libs/CSV';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import DayCode36 from '../../libs/DayCode36';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import 区Code36 from '../../libs/区Code36';
-import type { PatientType } from '../type';
+import { getPatientsByDateRange } from '../services';
+import type { DateRangeType, PatientType } from '../type';
+
+const formatDateRange = (dateRange: DateRangeType): string => {
+  const range =
+    !dateRange || !dateRange[0] || !dateRange[1]
+      ? [moment('2022-03-06'), moment()]
+      : (dateRange as [Moment, Moment]);
+  return `${range[0].format('YYYY-MM-DD')} 至 ${range[1].format('YYYY-MM-DD')}`;
+};
 
 export const usePatients = (
-  isMapReady: boolean
+  isMapReady: boolean,
+  dateRange: DateRangeType
 ): [PatientType[], React.Dispatch<React.SetStateAction<PatientType[]>>] => {
+  const [innerPatients, setInnerPatients] = useState<PatientType[]>([]);
+
   const [patients, setPatients] = useState<PatientType[]>([]);
-  const [isHasStart, setHasStart] = useState(false);
+  useEffect(() => {
+    const dateRangeStr = formatDateRange(dateRange);
+    console.log(dateRange);
+    message.loading({
+      content: `开始获取 ${dateRangeStr} 的数据...`,
+      key: 'usePatients-get-data',
+    });
+    getPatientsByDateRange(dateRange)
+      .then((_patients) => {
+        setInnerPatients(_patients);
+        message.success({
+          content: `获取到 ${dateRangeStr} 的数据共 ${_patients.length} 条.`,
+          key: 'usePatients-get-data',
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        message.error({
+          content: `获取 ${dateRangeStr} 的数据失败.`,
+          key: 'usePatients-get-data',
+        });
+      });
+  }, [dateRange]);
 
   useEffect(() => {
-    if (!isMapReady || isHasStart) return;
-    setHasStart(true);
-    shuffle(区Code36.codeList).forEach((code: string) => {
-      const 区 = 区Code36.parse(code);
-      fetch(`/data/${code}.csv`)
-        .then((res) => res.text())
-        .then((csv) => {
-          const _patients: PatientType[] = CSV.parse(csv).map(
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            (patient: any) => {
-              return {
-                SH_ID: parseInt(patient.SH_ID_36, 36),
-                地址: patient.地址,
-                lng: parseFloat(patient.lng),
-                lat: parseFloat(patient.lat),
-                确诊日期: DayCode36.parse(patient.确诊日期36),
-                区,
-              };
-            }
-          );
-          console.log(`获取 [${code}: ${区}] 数据 ${_patients.length} 条.`);
-          setPatients((patients) => [...patients, ..._patients]);
-        })
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        .catch((err: any) => {
-          console.error(err);
-          console.error(`获取 [${code}: ${区}] 数据失败!`);
-        });
-    });
-  }, [isHasStart, isMapReady]);
+    if (!isMapReady) return;
+    setPatients(innerPatients);
+    message.info(`地图数据更新: ${innerPatients.length} 条.`);
+    console.log(`更新数据: ${innerPatients.length} 条.`);
+  }, [isMapReady, innerPatients]);
 
   return [patients, setPatients];
 };

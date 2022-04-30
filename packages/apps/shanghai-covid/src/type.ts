@@ -1,3 +1,5 @@
+import type { Moment } from 'moment';
+
 export type PatientType = {
   SH_ID: string | null;
   地址: string;
@@ -7,8 +9,9 @@ export type PatientType = {
   // 方法: string | null;
   // 编号: string | null;
   确诊日期: string;
-  累计确诊: number;
   lng: number;
   lat: number;
   // created_at: string;
 };
+
+export type DateRangeType = [Moment | null, Moment | null] | null;

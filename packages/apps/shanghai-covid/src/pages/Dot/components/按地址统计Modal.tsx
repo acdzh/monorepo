@@ -1,7 +1,7 @@
 import { Button, Input, Modal, Space, Table } from 'antd';
 import React, { useMemo } from 'react';
 
-import { 上海各区 } from '../../../constants';
+import 区Code36 from '../../../../libs/区Code36';
 import type { PatientType } from '../../../type';
 import { 各个地址统计数据类型, 获取各个地址统计数据 } from '../utils';
 
@@ -30,7 +30,6 @@ export const 按地址统计Modal: React.FC<{
         size="small"
         scroll={{
           scrollToFirstRowOnChange: true,
-
           y: '40vh',
         }}
       >
@@ -40,7 +39,7 @@ export const 按地址统计Modal: React.FC<{
           dataIndex="区"
           align="center"
           width="96px"
-          filters={上海各区.map((v) => ({
+          filters={区Code36.list.map((v) => ({
             text: v,
             value: v,
           }))}

@@ -1,5 +1,6 @@
 const CSV = {
   parse: (csv) => {
+    if (!csv || csv === '' || csv === '\n') return [];
     const lines = csv.split('\n');
     const headers = lines[0].split(',');
     const data = lines

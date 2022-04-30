@@ -1,7 +1,7 @@
 import { Button, Input, Modal, Space, Table } from 'antd';
 import React from 'react';
 
-import { 上海各区 } from '../../../constants';
+import 区Code36 from '../../../../libs/区Code36';
 import type { PatientType } from '../../../type';
 
 const { Column } = Table;
@@ -69,7 +69,7 @@ export const 所有数据Modal: React.FC<{
           dataIndex="区"
           align="center"
           width="96px"
-          filters={上海各区.map((v) => ({
+          filters={区Code36.list.map((v) => ({
             text: v,
             value: v,
           }))}

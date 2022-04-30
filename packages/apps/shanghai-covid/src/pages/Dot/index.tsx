@@ -1,11 +1,10 @@
 import { DotMap } from '@ant-design/maps';
 import { Button, DatePicker, Space } from 'antd';
-import type { Moment } from 'moment';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
-import { useLocation } from '../../hooks';
-import { usePatients } from '../../hooks/usePatients';
-import type { PatientType } from '../../type';
+import { defaultDateRanges } from '../../constants';
+import { useLocation, usePatients } from '../../hooks';
+import type { DateRangeType } from '../../type';
 
 import {
   关于Modal,
@@ -14,8 +13,7 @@ import {
   按地址统计Modal,
   按日期统计Modal,
 } from './components';
-import { datePickerRanges, mapConfig } from './constants';
-import { 根据日期筛选数据, 统计数量并添加扰动 } from './utils';
+import { mapConfig } from './constants';
 
 const { RangePicker } = DatePicker;
 
@@ -33,21 +31,11 @@ const Dot: React.FC = () => {
 
   const [location] = useLocation();
 
-  const [patients] = usePatients(isMapReady);
-  const [currentPatients, setCurrentPatients] = useState<PatientType[]>([]);
+  const [dateRange, setDateRange] = useState<DateRangeType>(
+    defaultDateRanges['最近 7 天']
+  );
 
-  const [dateRange, setDateRange] = useState<
-    [Moment | null, Moment | null] | null
-  >(datePickerRanges['最近 3 天']);
-
-  useEffect(() => {
-    const 根据日期筛选后的数据 = 根据日期筛选数据(patients, dateRange);
-    const 扰动后的数据 = 统计数量并添加扰动(根据日期筛选后的数据);
-    console.log(
-      `更新数据: 共 ${patients.length} 条, 展示其中 ${扰动后的数据.length} 条.`
-    );
-    setCurrentPatients(扰动后的数据);
-  }, [patients, dateRange]);
+  const [patients] = usePatients(isMapReady, dateRange);
 
   return (
     <>
@@ -56,12 +44,11 @@ const Dot: React.FC = () => {
         map={{
           type: 'amap',
           center: location,
-          pitch: 15,
           style: 'dark',
           zoom: 10,
         }}
         source={{
-          data: currentPatients,
+          data: patients,
           parser: {
             type: 'json',
             x: 'lng',
@@ -83,7 +70,8 @@ const Dot: React.FC = () => {
           <RangePicker
             onChange={(dates) => setDateRange(dates)}
             value={dateRange}
-            ranges={datePickerRanges}
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            ranges={defaultDateRanges as any}
             style={{
               height: '30px',
               marginRight: '48px',
@@ -143,22 +131,22 @@ const Dot: React.FC = () => {
         </div>
       </div>
       <分地区统计Modal
-        patients={currentPatients}
+        patients={patients}
         visible={is分地区统计ModalVisible}
         onClose={() => setIs分地区统计ModalVisible(false)}
       />
       <按日期统计Modal
-        patients={currentPatients}
+        patients={patients}
         visible={is按日期统计ModalVisible}
         onClose={() => setIs按日期统计ModalVisible(false)}
       />
       <按地址统计Modal
-        patients={currentPatients}
+        patients={patients}
         visible={is按地址统计ModalVisible}
         onClose={() => setIs按地址统计ModalVisible(false)}
       />
       <所有数据Modal
-        patients={currentPatients}
+        patients={patients}
         visible={is所有数据ModalVisible}
         onClose={() => setIs所有数据ModalVisible(false)}
       />

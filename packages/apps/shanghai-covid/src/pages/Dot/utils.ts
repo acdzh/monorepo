@@ -3,28 +3,6 @@ import moment, { Moment } from 'moment';
 
 import type { PatientType } from '../../type';
 
-export const 统计数量并添加扰动 = (patients: PatientType[]): PatientType[] => {
-  const 地址Counter = new Map<string, number>();
-  const newPatients = patients.map((patient) => {
-    const count = 地址Counter.get(patient.地址) || 0;
-    地址Counter.set(patient.地址, count + 1);
-    return {
-      ...patient,
-      ...(count === 0
-        ? {}
-        : {
-            lng: patient.lng + (Math.random() * 2 - 1) * 0.0004,
-            lat: patient.lat + (Math.random() * 2 - 1) * 0.0004,
-          }),
-    };
-  });
-  newPatients.forEach((patient) => {
-    patient.累计确诊 = 地址Counter.get(patient.地址) || 1;
-  });
-
-  return newPatients;
-};
-
 export const 根据日期筛选数据 = (
   patients: PatientType[],
   dates: [Moment | null, Moment | null] | null

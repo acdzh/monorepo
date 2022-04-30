@@ -1,22 +1,14 @@
-export const 上海各区 = [
-  // '市辖区', // 0
-  '黄浦区', // 1
-  // '卢湾区', // 3
-  '徐汇区', // 4
-  '长宁区', // 5
-  '静安区', // 6
-  '普陀区', // 7
-  '闸北区', // 8
-  '虹口区', // 9
-  '杨浦区', // 10
-  '闵行区', // 12
-  '宝山区', // 13
-  '嘉定区', // 14
-  '浦东新区', // 15
-  '金山区', // 16
-  '松江区', // 17
-  '青浦区', // 18
-  '南汇区', // 19
-  '奉贤区', // 20
-  '崇明区', // 30
-];
+import moment from 'moment';
+
+import type { DateRangeType } from '../type';
+
+export const defaultDateRanges: Record<string, DateRangeType> = {
+  今天: [moment(), moment()],
+  昨天: [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+  前天: [moment().subtract(2, 'days'), moment().subtract(2, 'days')],
+  '最近 3 天': [moment().subtract(2, 'days'), moment()],
+  '最近 7 天': [moment().subtract(6, 'days'), moment()],
+  '最近 14 天': [moment().subtract(13, 'days'), moment()],
+  本周: [moment().startOf('weeks'), moment()],
+  本月: [moment().startOf('month'), moment()],
+};

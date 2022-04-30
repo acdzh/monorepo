@@ -10,7 +10,7 @@ type LocationType = {
 };
 
 export const getLocation = (): Promise<LocationType> =>
-  new Promise((resolve, reject) => {
+  new Promise((resolve) => {
     fetch('/api/location')
       .then((data) => data.json())
       .then((data) => resolve(data as LocationType))

@@ -1,7 +1,7 @@
 import { Modal, Table } from 'antd';
 import React, { useMemo } from 'react';
 
-import { 上海各区 } from '../../../constants';
+import 区Code36 from '../../../../libs/区Code36';
 import type { PatientType } from '../../../type';
 import { 各区统计数据类型, 获取各区统计数据 } from '../utils';
 
@@ -35,7 +35,7 @@ export const 分地区统计Modal: React.FC<{
           key="地区"
           dataIndex="地区"
           align="center"
-          filters={上海各区.map((v) => ({
+          filters={区Code36.list.map((v) => ({
             text: v,
             value: v,
           }))}
