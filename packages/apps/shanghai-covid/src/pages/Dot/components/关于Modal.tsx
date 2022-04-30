@@ -32,9 +32,9 @@ export const 关于Modal: React.FC<{
       <code>地址</code>一栏的筛选按钮进行搜索.
     </Paragraph>
     <Paragraph>
-      本站不保证数据的及时性, 正确性与完整性. 因数据量激增, 页面<b>很卡</b>(
+      本站不保证数据的及时性, 正确性与完整性. 因数据量激增, 页面<b>有点卡</b>(
       <del>又不是不能用.jpg</del>), 请耐心等待加载, 数据量较大, 所以默认只展示
-      <b>前三天</b>, 可以自行选择时间范围. 如有问题, <b>请联系开发者</b>:{' '}
+      <b>前七天数据</b>, 可以自行选择时间范围. 如有问题, <b>请联系开发者</b>:{' '}
       <Link
         href="https://www.github.com/acdzh"
         target="_blank"
@@ -61,6 +61,6 @@ export const 关于Modal: React.FC<{
       </Link>
       , 希望各位能够调整好心态, 共克时艰, 谢谢.
     </Paragraph>
-    <Paragraph>上一次功能更新于: 2022 年 4 月 29 日.</Paragraph>
+    <Paragraph>上一次功能更新于: 2022 年 4 月 30 日.</Paragraph>
   </Modal>
 );

@@ -57,8 +57,8 @@ async function getDataFrom累计病例分布Layer(layer) {
       SH_ID_36: parseInt(attrs.SH_ID).toString(36),
       区36: 区Code36.codify(区),
       地址,
-      lng: lng,
-      lat: lat,
+      lng: lng + (Math.random() * 2 - 1) * 0.0002,
+      lat: lat + (Math.random() * 2 - 1) * 0.0002,
       确诊日期36: DayCode36.codify(attrs.确诊日期),
     };
   });
@@ -66,8 +66,17 @@ async function getDataFrom累计病例分布Layer(layer) {
   return data;
 }
 
+function initDataDir() {
+  const dataDir = path.join(__dirname, '../data');
+  if (!fs.existsSync(dataDir)) {
+    fs.mkdirSync(dataDir, { recursive: true });
+  }
+  console.log(`初始化数据目录 [${dataDir}] 完成.`);
+}
+
 (async () => {
   console.log('开始.');
+  initDataDir();
   const layers = await getLayers();
   const 累计病例分布Layers = layers.filter(
     (layer) => layer.title.indexOf('累计病例分布') !== -1
@@ -77,21 +86,23 @@ async function getDataFrom累计病例分布Layer(layer) {
   );
   const 累计病例分布Data = (await Promise.all(累计病例分布DataPromises)).flat();
   console.log(
-    `获取到累计病例分布: [${累计病例分布Data.length}] 条, 拆分各区写入数据.`
+    `获取到累计病例分布: [${累计病例分布Data.length}] 条, 拆分日期写入数据.`
   );
-  const 按日期分组的累计病例分布 = groupBy(累计病例分布Data, '区36');
-  Object.entries(按日期分组的累计病例分布).forEach(([区36, patients]) => {
-    const 区 = 区Code36.parse(区36);
+  const 按日期分组的累计病例分布 = groupBy(累计病例分布Data, '确诊日期36');
+  Object.entries(按日期分组的累计病例分布).forEach(([确诊日期36, patients]) => {
+    const 确诊日期 = DayCode36.parse(确诊日期36);
     fs.writeFileSync(
-      path.resolve(__dirname, `../data/${区36}.json`),
+      path.resolve(__dirname, `../data/${确诊日期}.json`),
       JSON.stringify(patients)
     );
-    const fields = Object.keys(patients[0]).filter((key) => key !== '区36');
+    const fields = Object.keys(patients[0]).filter(
+      (key) => key !== '确诊日期36'
+    );
     fs.writeFileSync(
-      path.resolve(__dirname, `../data/${区36}.csv`),
+      path.resolve(__dirname, `../data/${确诊日期}.csv`),
       CSV.stringify(patients, fields)
     );
-    console.log(`[${区}] 写入完成, 共 [${patients.length}]条.`);
+    console.log(`[${确诊日期}] 写入完成, 共 [${patients.length}]条.`);
   });
   console.log('写入数据完成');
 })();
