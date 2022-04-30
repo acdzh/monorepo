@@ -1,11 +1,10 @@
 import { DotMap } from '@ant-design/maps';
 import { Button, DatePicker, Space } from 'antd';
-import type { Moment } from 'moment';
 import React, { useEffect, useState } from 'react';
 
-import { useLocation } from '../../hooks';
-import { usePatients } from '../../hooks/usePatients';
-import type { PatientType } from '../../type';
+import { defaultDateRanges } from '../../constants';
+import { useLocation, usePatients } from '../../hooks';
+import type { DateRangeType, PatientType } from '../../type';
 
 import {
   关于Modal,
@@ -14,7 +13,7 @@ import {
   按地址统计Modal,
   按日期统计Modal,
 } from './components';
-import { datePickerRanges, mapConfig } from './constants';
+import { mapConfig } from './constants';
 import { 根据日期筛选数据, 统计数量并添加扰动 } from './utils';
 
 const { RangePicker } = DatePicker;
@@ -33,12 +32,12 @@ const Dot: React.FC = () => {
 
   const [location] = useLocation();
 
+  const [dateRange, setDateRange] = useState<DateRangeType>(
+    defaultDateRanges['最近 3 天']
+  );
+
   const [patients] = usePatients(isMapReady);
   const [currentPatients, setCurrentPatients] = useState<PatientType[]>([]);
-
-  const [dateRange, setDateRange] = useState<
-    [Moment | null, Moment | null] | null
-  >(datePickerRanges['最近 3 天']);
 
   useEffect(() => {
     const 根据日期筛选后的数据 = 根据日期筛选数据(patients, dateRange);
@@ -83,7 +82,8 @@ const Dot: React.FC = () => {
           <RangePicker
             onChange={(dates) => setDateRange(dates)}
             value={dateRange}
-            ranges={datePickerRanges}
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            ranges={defaultDateRanges as any}
             style={{
               height: '30px',
               marginRight: '48px',

@@ -13,8 +13,8 @@ export const 统计数量并添加扰动 = (patients: PatientType[]): PatientTyp
       ...(count === 0
         ? {}
         : {
-            lng: patient.lng + (Math.random() * 2 - 1) * 0.0004,
-            lat: patient.lat + (Math.random() * 2 - 1) * 0.0004,
+            lng: patient.lng + (Math.random() * 2 - 1) * 0.0002,
+            lat: patient.lat + (Math.random() * 2 - 1) * 0.0002,
           }),
     };
   });
