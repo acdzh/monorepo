@@ -46,13 +46,13 @@ export const getPatientsByDate = async (
 };
 
 export const getPatientsByDateRange = async (
-  dateRanges: DateRangeType
+  dateRange: DateRangeType
 ): Promise<PatientType[]> => {
   const today = moment();
   const range =
-    !dateRanges || !dateRanges[0] || !dateRanges[1]
+    !dateRange || !dateRange[0] || !dateRange[1]
       ? [moment('2022-03-06'), today]
-      : (dateRanges as [Moment, Moment]);
+      : (dateRange as [Moment, Moment]);
   console.log(
     `开始获取 ${range[0].format('YYYY-MM-DD')} 至 ${range[1].format(
       'YYYY-MM-DD'
