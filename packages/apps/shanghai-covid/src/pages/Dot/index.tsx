@@ -44,7 +44,6 @@ const Dot: React.FC = () => {
         map={{
           type: 'amap',
           center: location,
-          pitch: 15,
           style: 'dark',
           zoom: 10,
         }}
