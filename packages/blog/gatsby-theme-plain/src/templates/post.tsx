@@ -75,6 +75,7 @@ const PostTemplate: React.FC<PostTemplatePropsType> = ({ data }) => {
       >
         <article
           className="
+            flex-1
             <sm:py-16px <sm:px-4px sm:p-24px sm:rounded-md
             light:sm:border light:sm:shadow-md light:md:shadow-lg
           "
