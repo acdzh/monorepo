@@ -10,7 +10,7 @@ export type ModalPropsType = {
   isOpen: boolean;
   center?: boolean;
   isTransparent?: boolean;
-  onDimiss?: (event: React.MouseEvent) => void;
+  onDismiss?: (event: React.MouseEvent) => void;
   getContainer?: PortalPropsType['getContainer'];
 };
 
@@ -20,7 +20,7 @@ export const Modal: React.FC<ModalPropsType> = ({
   className = '',
   isOpen,
   isTransparent = true,
-  onDimiss,
+  onDismiss,
   getContainer,
 }) => {
   useLockBodyScroll(isOpen);
@@ -35,7 +35,7 @@ export const Modal: React.FC<ModalPropsType> = ({
       >
         <div
           className="fixed -z-1 inset-0 bg-black bg-opacity-20"
-          onClick={onDimiss}
+          onClick={onDismiss}
           aria-hidden={true}
         ></div>
         <div
