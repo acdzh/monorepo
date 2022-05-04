@@ -1,7 +1,6 @@
 import clsx from 'clsx';
 import { graphql, useStaticQuery } from 'gatsby';
 import { useTheme } from 'gatsby-plugin-use-dark-mode';
-import QRCode from 'qrcode.react';
 import React from 'react';
 import {
   FaArrowUp,
@@ -137,20 +136,17 @@ export const Header: React.FC<HeaderPropsType> = ({
             )}
           >
             <div className="p-12px">
-              <QRCode
-                renderAs="svg"
-                bgColor="#fff"
-                fgColor="#000"
-                size={160}
-                includeMargin={true}
-                value={isSSR ? '' : location.href}
-                imageSettings={{
-                  src: '/favicon-32x32.png',
-                  height: 32,
-                  width: 32,
-                  excavate: true,
+              <img
+                src={`https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${
+                  isSSR ? '' : location.href
+                }`}
+                style={{
+                  width: 160,
+                  height: 160,
+                  maxWidth: 160,
                 }}
-              />
+                alt="qr code of this page"
+              ></img>
             </div>
           </div>
 
