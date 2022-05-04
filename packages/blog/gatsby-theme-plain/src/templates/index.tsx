@@ -5,7 +5,6 @@ import { Featured } from '@components/Featured';
 import { Content, Footer, Header, Layout } from '@components/layout';
 import { Pagination } from '@components/Pagination';
 import { SEO } from '@components/SEO';
-import { WidthDebug } from '@components/WidthDebug';
 import { GraphqlQueryDataType } from '@typings/graphql';
 
 export type IndexPagePropsType = {
@@ -26,7 +25,6 @@ const IndexPage: React.FC<IndexPagePropsType> = ({ data, pageContext }) => {
       <SEO title="首页" />
       <Header />
       <Content className="w-full max-w-screen-xl mx-auto px-loose py-loose">
-        <WidthDebug />
         <ul
           className="
             px-4px py-16px sm:p-24px sm:py-24px sm:rounded-md
