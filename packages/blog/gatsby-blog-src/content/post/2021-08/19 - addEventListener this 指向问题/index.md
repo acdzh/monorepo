@@ -16,7 +16,7 @@ categories: [技术]
 
 先看一段代码:
 
-```Javascript
+```javascript
 class A {
   constructor() {
     this.msg = "I am class A";
@@ -33,9 +33,9 @@ const a = new A();
 window.postMessage('test');
 ```
 
-输出的结果是 `This is window`. 这是因为这里 `addEventListener` 中的事件函数 `onmsg` 的 `this` 实际上 `window `而不是 `a`. 如果想明确 `this` 的话, 需要指定 `this` 的指向.
+输出的结果是 `This is window`. 这是因为这里 `addEventListener` 中的事件函数 `onmsg` 的 `this` 实际上 `window` 而不是 `a`. 如果想明确 `this` 的话, 需要指定 `this` 的指向.
 
-```Javascript
+```javascript
 class A {
   constructor() {
     this.msg = "I am class A";

@@ -14,6 +14,8 @@ import { SEO } from '@components/SEO';
 import { GraphqlQueryDataType } from '@typings/graphql';
 
 import './post.css';
+import './codeblock-one-dark.css';
+import './codeblock-one-light.css';
 
 const formatDate = (date: Date) =>
   `${date.getFullYear()}年${date.getMonth()}月${date.getDay()}日${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
@@ -75,7 +77,7 @@ const PostTemplate: React.FC<PostTemplatePropsType> = ({ data }) => {
       >
         <article
           className="
-            flex-1
+            flex-1 min-w-0
             <sm:py-16px <sm:px-4px sm:p-24px sm:rounded-md
             light:sm:border light:sm:shadow-md light:md:shadow-lg
           "

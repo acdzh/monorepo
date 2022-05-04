@@ -1,5 +1,6 @@
 article {
-  p, dd {
+  p,
+  dd {
     font-size: 16px;
     line-height: 1.8em;
     margin-bottom: 1em;
@@ -17,8 +18,13 @@ article {
     }
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    word-wrap: break-word; 
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    word-wrap: break-word;
     margin-top: 0;
     margin-bottom: 16px;
     font-weight: 400;
@@ -29,20 +35,58 @@ article {
     }
   }
 
-  h1 { font-size: 38px; letter-spacing: -1px; }
-  h2 { font-size: 34px; letter-spacing: -0.7px; }
-  h3 { font-size: 28px; letter-spacing: -0.5px; }
-  h4 { font-size: 24px; letter-spacing: -0.3px; }
-  h5 { font-size: 20px; font-weight: 600; }
-  h6 { font-size: 18px; font-weight: 600; text-transform: uppercase; }
+  h1 {
+    font-size: 38px;
+    letter-spacing: -1px;
+  }
+  h2 {
+    font-size: 34px;
+    letter-spacing: -0.7px;
+  }
+  h3 {
+    font-size: 28px;
+    letter-spacing: -0.5px;
+  }
+  h4 {
+    font-size: 24px;
+    letter-spacing: -0.3px;
+  }
+  h5 {
+    font-size: 20px;
+    font-weight: 600;
+  }
+  h6 {
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
 
   @media only screen and (max-width: 1536px) {
-    h1 { font-size: 30px; letter-spacing: -0.7px; }
-    h2 { font-size: 26px; letter-spacing: -0.5px; }
-    h3 { font-size: 24px; letter-spacing: -0.3px; }
-    h4 { font-size: 22px; letter-spacing: -0.3px; }
-    h5 { font-size: 18px; font-weight: 600; }
-    h6 { font-size: 16px; font-weight: 600; text-transform: uppercase; }
+    h1 {
+      font-size: 30px;
+      letter-spacing: -0.7px;
+    }
+    h2 {
+      font-size: 26px;
+      letter-spacing: -0.5px;
+    }
+    h3 {
+      font-size: 24px;
+      letter-spacing: -0.3px;
+    }
+    h4 {
+      font-size: 22px;
+      letter-spacing: -0.3px;
+    }
+    h5 {
+      font-size: 18px;
+      font-weight: 600;
+    }
+    h6 {
+      font-size: 16px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
   }
 
   hr {
@@ -61,14 +105,15 @@ article {
     }
   }
 
-
   table {
     font-size: 16px;
     margin-bottom: 1em;
     border-collapse: collapse;
     @apply w-full rounded-md light:shadow;
 
-    &>tr:nth-child(odd), thead>tr, tbody>tr:nth-child(even) {
+    & > tr:nth-child(odd),
+    thead > tr,
+    tbody > tr:nth-child(even) {
       @apply bg-true-gray-100 dark:bg-true-gray-800;
     }
 
@@ -86,9 +131,52 @@ article {
   }
 
   pre {
+    tab-size: 2;
+    padding: 16px 16px 16px 48px;
+    font-size: 14px;
+    overflow-x: auto;
     margin-bottom: 1em;
-    padding: 16px;
-    @apply w-full rounded-md light:border light:shadow bg-true-gray-100 dark:bg-true-gray-800;
+    @apply w-full rounded-md light:shadow;
+    @apply border dark:border-true-gray-700;
+    @apply bg-true-gray-100 dark:bg-true-gray-800;
+
+    .line-numbers {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 16px 0 16px 16px;
+      letter-spacing: -1px;
+      white-space: normal;
+      pointer-events: none;
+      user-select: none;
+
+      @apply border-r dark:border-true-gray-700;
+
+      .line-numbers-rows {
+        counter-increment: linenumber;
+        pointer-events: none;
+
+        span:before {
+          content: counter(linenumber);
+          display: block;
+          padding-right: 0.8em;
+          text-align: right;
+        }
+      }
+    }
+  }
+
+  :not(pre) > code,
+  kbd {
+    padding: 0.1em;
+    border-radius: 0.3em;
+    white-space: normal;
+    @apply text-theme;
+    @apply rounded border dark:border-true-gray-700;
+    @apply bg-true-gray-100 dark:bg-true-gray-800;
+  }
+
+  kbd {
+    @apply light:shadow;
   }
 }
-

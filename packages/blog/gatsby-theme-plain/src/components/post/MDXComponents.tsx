@@ -2,15 +2,12 @@ import { MDXProviderComponentsProp } from '@mdx-js/react';
 import clsx from 'clsx';
 import React from 'react';
 
+import { Codeblock } from './mdx-components';
 import { bilibili, codepen, netease, youtube } from './shortcodes';
 
 export const MDXComponents: MDXProviderComponentsProp = {
-  code: (props: React.HTMLAttributes<HTMLElement>) => (
-    <code {...props} className={clsx(props.className, 'font-mono')} />
-  ),
-  pre: (props: React.HTMLAttributes<HTMLPreElement>) => (
-    <pre {...props} className={clsx(props.className, 'whitespace-pre-wrap')} />
-  ),
+  code: Codeblock,
+  pre: (props) => <>{props.children}</>,
   img: (props: React.HTMLAttributes<HTMLImageElement>) => (
     // eslint-disable-next-line jsx-a11y/alt-text
     <img {...props} className={clsx(props.className, 'max-w-650px m-auto')} />
