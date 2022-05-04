@@ -11,25 +11,23 @@ const NotFoundPage: React.FC = () => {
       <Content>
         <div className="pt-60px px-40px pb-0 text-center font-mono">
           <h1 className="mb-8px text-4xl text-shadow-md">404 Page Not Found</h1>
-          <p className="mb-24px text-shadow-sm">
-            Sorry, nothing could be found...
-          </p>
+          <p className="mb-24px text-shadow-sm">页面找不到了啊啊啊</p>
           <img
             src="/404.jpg"
             alt="404"
             className=" mb-24px mx-auto rounded-md light:shadow-md border dark:border-true-gray-700"
           ></img>
           <p className="mb-24px  text-shadow-sm">
-            Maybe you&#39;d like to see{' '}
+            来看看{' '}
             <a
               target="_blank"
               className="text-xl underline text-theme"
               href="https://bit.ly/go-and-subscribe"
               rel="noreferrer"
             >
-              this
-            </a>
-            .
+              这个
+            </a>{' '}
+            吧.
           </p>
         </div>
       </Content>
