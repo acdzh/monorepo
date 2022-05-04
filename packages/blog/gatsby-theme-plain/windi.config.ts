@@ -44,6 +44,7 @@ export default defineConfig({
         ],
         serif: ['Georgia', 'serif'],
         mono: [
+          'Fira Code VF',
           'Fira Code',
           'Monaco',
           'Menlo',
