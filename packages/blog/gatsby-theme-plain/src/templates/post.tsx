@@ -93,7 +93,7 @@ const PostTemplate: React.FC<PostTemplatePropsType> = ({ data }) => {
             {frontmatter?.from ? (
               <a href={frontmatter?.from}>{frontmatter?.author}</a>
             ) : (
-              frontmatter?.author || meta?.author?.name || 'UNKOWN'
+              frontmatter?.author || meta?.author?.name || 'UNKNOWN'
             )}
             &nbsp;·&nbsp;
             {frontmatter.date && (
