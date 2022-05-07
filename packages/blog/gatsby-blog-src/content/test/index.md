@@ -518,7 +518,7 @@ html 包裹用元素.
 
 |参数|类型|默认值|
 |:-----:|:----:|:----:|
-|`id?`|`string`||
+|`id`|`string`||
 |`height`|`number`|`600`|
 |`editable`|`boolean`|`false`|
 |`defaultTab?`|`string`|`"html,result"`|

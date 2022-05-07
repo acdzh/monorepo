@@ -142,7 +142,7 @@ article {
     margin: 0 0 1em 0;
     padding: 16px;
     border-left: 4px solid;
-    @apply bg-theme-50 border-l-theme-700 dark:(bg-theme-900 bg-opacity-40 border-l-theme-300);
+    @apply bg-theme-50 border-l-theme-300 dark:(bg-theme-900 bg-opacity-40 border-l-theme-700);
     @apply rounded-md light:(border-t border-r border-b shadow);
 
     p {

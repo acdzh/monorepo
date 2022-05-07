@@ -8,6 +8,7 @@ export const HeaderIconButton: React.FC<
     <button
       {...props}
       className={clsx(
+        // eslint-disable-next-line react/prop-types
         props.className,
         'flex text-lg justify-center items-center',
         'p-0.4em rounded-lg',

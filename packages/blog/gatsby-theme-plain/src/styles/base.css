@@ -5,6 +5,27 @@ html.dark {
   color-scheme: dark;
 }
 
+/* 滚动条 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background-color: rgba(238, 238, 238, 0.2);
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 6px;
+  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
+  @apply bg-theme-300;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background-image: -webkit-linear-gradient(45deg, rgba(0, 0, 0, 0.2) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.2) 50%, rgba(0, 0, 0, 0.2) 75%, transparent 75%, transparent);
+  @apply bg-theme-700 bg-opacity-40;
+}
+
 ::selection { @apply text-shadow-none bg-theme-100 dark:bg-gray-700  }
 
 *:target {
