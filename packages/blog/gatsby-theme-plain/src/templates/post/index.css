@@ -1,55 +1,5 @@
 article {
-  /* #region 正文 */
-  p,
-  dd {
-    font-size: 16px;
-    line-height: 1.8em;
-    margin-bottom: 1em;
-  }
-
-  del {
-    transition: color .13s linear;
-    @apply rounded text-true-gray-700 bg-true-gray-700
-  }
-
-  del:hover, del:active {
-    color: unset;
-    background: unset;
-  }
-
-  u {
-    text-decoration: none;
-    border-color: currentColor;
-    @apply border-b;
-  }
-  /* #endregion */
-
-  /* #region img */
-  img {
-    @apply w-full max-w-650px m-auto;
-  }
-
-  figcaption {
-    @apply text-center;
-  }
-
-  /* #endregion */
-
-  /* #region blockquote */
-  blockquote {
-    margin: 0 0 1em 0;
-    padding: 16px;
-    border-left: 4px solid;
-    @apply bg-theme-50 border-l-theme-700 dark:(bg-theme-900 bg-opacity-40 border-l-theme-300);
-    @apply rounded-md light:(border-t border-r border-b shadow);
-
-    p {
-      margin: 0;
-    }
-  }
-  /* #endregion */
-
-  /* #region title */
+  /* #region 标题 */
   h1, h2, h3, h4, h5, h6 {
     word-wrap: break-word;
     margin-top: 0;
@@ -117,7 +67,32 @@ article {
   }
   /* #endregion */
 
-  /* #region hr (分隔线) */
+  /* #region 正文 */
+  p,
+  dd {
+    font-size: 16px;
+    line-height: 1.8em;
+    margin-bottom: 1em;
+  }
+
+  del {
+    transition: color .13s linear;
+    @apply rounded text-true-gray-700 bg-true-gray-700
+  }
+
+  del:hover, del:active {
+    color: unset;
+    background: unset;
+  }
+
+  u {
+    text-decoration: none;
+    border-color: currentColor;
+    @apply border-b;
+  }
+  /* #endregion */
+
+  /* #region 分隔 */
   hr {
     height: 0;
     width: 100%;
@@ -130,7 +105,7 @@ article {
   }
   /* #endregion */
 
-  /* #region sup (脚注上标) */
+  /* #region 脚注 */
   sup {
     a {
       @apply hover:(text-theme underline);
@@ -138,34 +113,42 @@ article {
   }
   /* #endregion */
 
-  /* #region table */
-  table {
+  /* #region 列表 */
+  ol, ul {
     font-size: 16px;
+    line-height: 1.8em;
+    padding: 0;
+    margin-left: 2em;
+  }
+
+  & > ol, & > ul {
     margin-bottom: 1em;
-    border-collapse: collapse;
-    @apply w-full rounded-md light:shadow;
+  }
 
-    & > tr:nth-child(odd),
-    thead > tr,
-    tbody > tr:nth-child(even) {
-      @apply bg-true-gray-100 dark:bg-true-gray-800;
-    }
+  ol {
+    list-style: decimal;
+  }
 
-    th {
-      font-weight: 600;
-      padding: 12px 6px;
-      @apply border dark:border-true-gray-700;
-    }
+  ul {
+    list-style: disc;
+  }
+ /* #endregion */
 
-    td {
-      padding: 6px;
-      vertical-align: middle;
-      @apply border dark:border-true-gray-700;
+  /* #region 区块引用 */
+  blockquote {
+    margin: 0 0 1em 0;
+    padding: 16px;
+    border-left: 4px solid;
+    @apply bg-theme-50 border-l-theme-700 dark:(bg-theme-900 bg-opacity-40 border-l-theme-300);
+    @apply rounded-md light:(border-t border-r border-b shadow);
+
+    p {
+      margin: 0;
     }
   }
   /* #endregion */
 
-  /* #region pre, code and kbd */
+  /* #region 代码, 按钮 */
   pre {
     tab-size: 2;
     padding: 16px 16px 16px 48px;
@@ -216,4 +199,54 @@ article {
     @apply light:shadow;
   }
   /* #endregion */
+
+  /* #region 链接 */
+  a {
+    @apply text-theme;
+  }
+  a:hover {
+    @apply underline-theme;
+  }
+  /* #endregion */
+
+  /* #region 图片 */
+  img {
+    @apply w-full max-w-650px m-auto;
+  }
+
+  figcaption {
+    @apply text-center;
+  }
+
+  /* #endregion */
+
+  /* #region 表格 */
+  table {
+    font-size: 16px;
+    margin-bottom: 1em;
+    border-collapse: collapse;
+    @apply w-full rounded-md light:shadow;
+
+    & > tr:nth-child(odd),
+    thead > tr,
+    tbody > tr:nth-child(even) {
+      @apply bg-true-gray-100 dark:bg-true-gray-800;
+    }
+
+    th {
+      font-weight: 600;
+      padding: 12px 6px;
+      @apply border dark:border-true-gray-700;
+    }
+
+    td {
+      padding: 6px;
+      vertical-align: middle;
+      @apply border dark:border-true-gray-700;
+    }
+  }
+  /* #endregion */
+
+
+
 }

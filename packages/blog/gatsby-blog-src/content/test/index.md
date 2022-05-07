@@ -128,32 +128,37 @@ nolicense: true
 
 ## 无序列表
 
+无序列表标记可以使用 `-`, `*` 或 `+`, 但同一个列表中必须使用一致的标记.
+
 ```md
 - 第一项
-* 第二项
-+ 第三项
+- 第二项
+- 第三项
+
 ```
 
 - 第一项
-* 第二项
-+ 第三项
+- 第二项
+- 第三项
 
 ```md
-- 第2篇
-	* 第2.1章
-		+ 第2.1.1节
+* 第 2 部分
+  * 第 2.1 章
+    * 第 2.1.1 节
+  * 第 2.2 章
 ```
 
-- 第2篇
-	* 第2.1章
-		+ 第2.1.1节
+* 第 2 部分
+  * 第 2.1 章
+    * 第 2.1.1 节
+  * 第 2.2 章
 
 ## 有序列表
 
 ```md
 1. 第一项
-2. 第二项
-3. 第三项
+1. 第二项
+1. 第三项
 ```
 
 1. 第一项
@@ -162,17 +167,17 @@ nolicense: true
 
 ```md
 1. 第一项：
-    - 第一项嵌套的第一个元素
-    - 第一项嵌套的第二个元素
-2. 第二项：
+    1. 第一项嵌套的第一个元素
+    1. 第一项嵌套的第二个元素
+1. 第二项：
     - 第二项嵌套的第一个元素
     - 第二项嵌套的第二个元素
 ```
 
 1. 第一项：
-    - 第一项嵌套的第一个元素
-    - 第一项嵌套的第二个元素
-2. 第二项：
+    1. 第一项嵌套的第一个元素
+    1. 第一项嵌套的第二个元素
+1. 第二项：
     - 第二项嵌套的第一个元素
     - 第二项嵌套的第二个元素
 
@@ -220,19 +225,19 @@ nolicense: true
 ```c
 float Q_rsqrt( float number )
 {
-	long i;
-	float x2, y;
-	const float threehalfs = 1.5F;
+  long i;
+  float x2, y;
+  const float threehalfs = 1.5F;
 
-	x2 = number * 0.5F;
-	y  = number;
-	i  = * ( long * ) &y;                       // evil floating point bit level hacking
-	i  = 0x5f3759df - ( i >> 1 );               // what the fuck?
-	y  = * ( float * ) &i;
-	y  = y * ( threehalfs - ( x2 * y * y ) );   // 1st iteration
+  x2 = number * 0.5F;
+  y  = number;
+  i  = * ( long * ) &y;                       // evil floating point bit level hacking
+  i  = 0x5f3759df - ( i >> 1 );               // what the fuck?
+  y  = * ( float * ) &i;
+  y  = y * ( threehalfs - ( x2 * y * y ) );   // 1st iteration
 //      y  = y * ( threehalfs - ( x2 * y * y ) );   // 2nd iteration, this can be removed
 
-	return y;
+  return y;
 }
 ```
 
@@ -254,13 +259,13 @@ float Q_rsqrt( float number )
 [tiktok]: http://www.runoob.com/
 ```
 
-这是一个链接 [Google](https://www.google.com)
+这是一个链接 [Google](https://www.google.com), 也可以省略描述简写为 <https://www.google.com>.
 
-<https://www.google.com>
+链接也可以用变量来代替, 文档末尾附带变量地址:
 
-链接也可以用变量来代替, 文档末尾附带变量地址:  
-这个链接用 google 作为网址变量 [Google][google]  
-这个链接用 tiktok 作为网址变量 [Tiktok][tiktok]  
+  - 这个链接用 google 作为网址变量 [Google][google]
+  - 这个链接用 tiktok 作为网址变量 [Tiktok][tiktok]
+
 然后在文档的结尾为变量赋值 (网址)
 
 [google]: http://www.google.com/
