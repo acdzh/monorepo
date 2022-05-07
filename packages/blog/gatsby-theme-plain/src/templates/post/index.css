@@ -100,7 +100,7 @@ article {
     position: relative;
     margin-bottom: 1em;
     /* text-theme */
-    @apply border-theme-700 dark:border-theme-300 light:shadow;
+    @apply border-theme-300 dark:border-theme-700 light:shadow;
   }
   /* #endregion */
 

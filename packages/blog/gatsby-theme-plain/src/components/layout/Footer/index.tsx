@@ -101,13 +101,10 @@ export const Footer: React.FC = () => {
           sm:flex sm:flex-row-reverse sm:justify-between
         "
     >
-      <section className="<sm:mb-8px">
+      <section className="<sm:mb-12px">
         <SocialLinks social={social} />
       </section>
-      <section
-        className="<sm:text-sm
-        "
-      >
+      <section className="<sm:text-sm">
         {title} © {new Date().getFullYear()} {author.name}
       </section>
     </footer>

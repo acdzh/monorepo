@@ -48,7 +48,7 @@ export const TOC: React.FC<TocPropsType> = ({ items }) => {
               {
                 'text-sm': depth,
                 'border-transparent': currentId !== id,
-                'text-theme light:shadow border-theme-700 dark:border-theme-300':
+                'text-theme light:shadow border-theme-300 dark:border-theme-700':
                   currentId === id,
               }
             )}
