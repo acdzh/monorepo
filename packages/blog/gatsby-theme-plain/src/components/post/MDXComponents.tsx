@@ -2,7 +2,14 @@ import type { MDXProviderComponentsProp } from '@mdx-js/react';
 import React from 'react';
 
 import { Codeblock } from './mdx-components';
-import { bilibili, codepen, iframe, netease, youtube } from './shortcodes';
+import {
+  bilibili,
+  codepen,
+  iframe,
+  netease,
+  section,
+  youtube,
+} from './shortcodes';
 
 export const MDXComponents: MDXProviderComponentsProp = {
   code: Codeblock,
@@ -13,4 +20,5 @@ export const MDXComponents: MDXProviderComponentsProp = {
   iframe,
   netease,
   youtube,
+  section,
 };

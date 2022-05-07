@@ -434,6 +434,35 @@ $$
 
 <iframe src="/about"></iframe>
 
+## Section
+
+html 包裹用元素.
+
+|参数|类型|默认值|说明|
+|:-----:|:----:|:----:|:----:|
+|`onLoad`|`() => void`|() => {}|`默认执行函数, 不推荐使用`|
+
+```md
+<section
+  onLoad={() => {
+    const span = document.getElementById('section_debug_span');
+    span.innerText = new Date().toString();
+  }}
+>
+  This is a <b>section</b>. Now time: <span id="section_debug_span"></span>.
+</section>
+```
+
+<section
+  onLoad={() => {
+    const span = document.getElementById('section_debug_span');
+    span.innerText = new Date().toString();
+  }}
+>
+  This is a <b>section</b>. Now time: <span id="section_debug_span"></span>.
+</section>
+
+
 ## 网易云音乐
 
 |参数|类型|默认值|说明|

@@ -1,9 +1,7 @@
 import React from 'react';
 
-export const iframe: React.FC<React.HTMLAttributes<HTMLIFrameElement>> = (
-  props
-) => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+const IFrame: React.FC<React.HTMLAttributes<HTMLIFrameElement>> = (props) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any, react/prop-types
   const { width = 16, height = 9 } = props as any;
   return (
     <p
@@ -16,3 +14,5 @@ export const iframe: React.FC<React.HTMLAttributes<HTMLIFrameElement>> = (
     </p>
   );
 };
+
+export const iframe = IFrame;
