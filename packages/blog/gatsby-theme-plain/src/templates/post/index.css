@@ -200,7 +200,7 @@ article {
   /* #endregion */
 
   /* #region 链接 */
-  a {
+  a:not(.gatsby-resp-image-link) {
     @apply text-theme;
     &:hover {
       @apply underline-theme;
@@ -209,14 +209,22 @@ article {
   /* #endregion */
 
   /* #region 图片 */
-  img {
-    @apply w-full max-w-650px m-auto;
+  .gatsby-resp-image-wrapper, p> img {
+    @apply rounded-md light:shadow;
+    @apply border dark:border-true-gray-700;
+    * {
+      @apply rounded-md;
+    }
+  }
+
+  p> img, p > figure {
+    max-width: min(100%, 650px);
+    @apply m-auto;
   }
 
   figcaption {
     @apply text-center;
   }
-
   /* #endregion */
 
   /* #region 表格 */
