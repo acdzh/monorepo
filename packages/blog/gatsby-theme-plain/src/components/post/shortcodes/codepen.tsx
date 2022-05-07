@@ -5,18 +5,20 @@ const Codepen: React.FC<{
   id: string;
   height?: number;
   defaultTab?: string;
-}> = ({ id, height = 600, defaultTab = 'html,result' }) => {
+  editable?: boolean;
+}> = ({ id, height = 600, defaultTab = 'html,result', editable = false }) => {
   const { theme } = useTheme();
   return (
     <p className="rounded-md border dark:border-true-gray-700 light:shadow">
       <iframe
+        className="rounded-md"
         height={height}
         scrolling="no"
         style={{
           width: '100%',
         }}
         title="CodePen"
-        src={`https://codepen.io/acdzh/embed/${id}?height=${height}&theme-id=${theme}&default-tab=${defaultTab}`}
+        src={`https://codepen.io/acdzh/embed/${id}?height=${height}&theme-id=${theme}&default-tab=${defaultTab}&editable=${editable}`}
         frameBorder="no"
         loading="lazy"
         allowTransparency

@@ -9,7 +9,7 @@ export const bilibili: React.FC<{
   height?: number;
 }> = ({ aid, bid, page = 1, width = 16, height = 9 }) => (
   <p
-    className="responsive-iframe-container rounded-md border dark:border-true-gray-700 light:shadow"
+    className="responsive-iframe-container"
     style={{
       paddingTop: `${(100 * height) / width + 7.69}%`,
     }}

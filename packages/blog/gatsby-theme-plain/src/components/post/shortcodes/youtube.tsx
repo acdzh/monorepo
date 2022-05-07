@@ -9,7 +9,7 @@ export const youtube: React.FC<{
   showControls?: boolean;
 }> = ({ id, width = 16, height = 9, start = 0, showControls = true }) => (
   <p
-    className="responsive-iframe-container  rounded-md border dark:border-true-gray-700 light:shadow"
+    className="responsive-iframe-container"
     style={{
       paddingTop: `${(100 * height) / width}%`,
     }}

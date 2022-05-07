@@ -424,6 +424,16 @@ $$
 
 # Short Codes
 
+## Responsive iframe
+
+指定宽高比的 iframe.
+
+```md
+<iframe src="/about"></iframe>
+```
+
+<iframe src="/about"></iframe>
+
 ## 网易云音乐
 
 |参数|类型|默认值|说明|
@@ -481,13 +491,14 @@ $$
 |:-----:|:----:|:----:|
 |`id?`|`string`||
 |`height`|`number`|`600`|
+|`editable`|`boolean`|`false`|
 |`defaultTab?`|`string`|`"html,result"`|
 
 ```tsx
-<codepen id="OJRvrzO" theme="dark" />
+<codepen id="jOZWLdE" />
 ```
 
-<codepen id="OJRvrzO" theme="dark" />
+<codepen id="jOZWLdE" />
 
 ## PDF
 
