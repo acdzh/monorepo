@@ -8,12 +8,12 @@ import prismCsharp from './prism-components/csharp';
 
 prismCsharp(Prism);
 
-type CodeblockProps = {
+type CodeblockPropsType = {
   children: string;
   className: string;
 };
 
-export const Codeblock: React.FC<CodeblockProps> = ({
+export const Codeblock: React.FC<CodeblockPropsType> = ({
   children,
   className,
 }) => {
