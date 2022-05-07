@@ -1,11 +1,14 @@
 article {
+  /* #region p, dd */
   p,
   dd {
     font-size: 16px;
     line-height: 1.8em;
     margin-bottom: 1em;
   }
+  /* #endregion */
 
+  /* #region blockquote */
   blockquote {
     margin: 0 0 1em 0;
     padding: 16px;
@@ -17,13 +20,10 @@ article {
       margin: 0;
     }
   }
+  /* #endregion */
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+  /* #region title */
+  h1, h2, h3, h4, h5, h6 {
     word-wrap: break-word;
     margin-top: 0;
     margin-bottom: 16px;
@@ -88,23 +88,30 @@ article {
       text-transform: uppercase;
     }
   }
+  /* #endregion */
 
+  /* #region hr (分隔线) */
   hr {
     height: 0;
     width: 100%;
-    border: 1px dashed;
+    border-bottom: 0.2em dashed;
     overflow: visible;
     position: relative;
     margin-bottom: 1em;
-    @apply border-theme-300 dark:border-theme-900 light:shadow;
+    /* text-theme */
+    @apply border-theme-700 dark:border-theme-300 light:shadow;
   }
+  /* #endregion */
 
+  /* #region sup (脚注上标) */
   sup {
     a {
       @apply hover:(text-theme underline);
     }
   }
+  /* #endregion */
 
+  /* #region table */
   table {
     font-size: 16px;
     margin-bottom: 1em;
@@ -129,7 +136,9 @@ article {
       @apply border dark:border-true-gray-700;
     }
   }
+  /* #endregion */
 
+  /* #region pre, code and kbd */
   pre {
     tab-size: 2;
     padding: 16px 16px 16px 48px;
@@ -179,4 +188,5 @@ article {
   kbd {
     @apply light:shadow;
   }
+  /* #endregion */
 }
