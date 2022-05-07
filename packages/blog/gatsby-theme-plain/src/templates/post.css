@@ -119,12 +119,12 @@ article {
 
     th {
       font-weight: 600;
-      padding: 12px 0;
+      padding: 12px 6px;
       @apply border dark:border-true-gray-700;
     }
 
     td {
-      padding: 6px 0;
+      padding: 6px;
       vertical-align: middle;
       @apply border dark:border-true-gray-700;
     }

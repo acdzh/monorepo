@@ -20,6 +20,10 @@ nolicense: true
 
 还有一些其他的链接, 有兴趣的话也可以关注一下 (x
 
+----
+
+[测试页面](/md_test)
+
 ## 历史记录
 
 | Version | Action   | Time        |
