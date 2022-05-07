@@ -559,7 +559,7 @@ pdf 组件的使用比较复杂, 下面是一些注意事项:
 
   4. 组件支持相对位置调用(如上面的 `../assest/3.pdf`), 但是**相对位置来源的 pdf 必须写在 `children` 的 `a` 标签中**, 否则无法转换为正确的地址.
 
-  5. **重要**: 对于部分来源的 pdf, response header 的参数 `content-disposition` 可能为 `attachment` 而不是 `inline`(例如 onedrive 的分享链接), 此时大部分浏览器的行为为直接下载而不是进行预览, 因此如果想让此类来源正常预览的话, 需要每个来源带上 `needDownload={true}` 参数(正确预览需要保证 CORS 没有问题), 例如:
+  5. **重要**: 对于部分来源的 pdf, response header 的参数 `content-disposition` 可能为 `attachment` 而不是 `inline`(例如 onedrive 的分享链接, Github 的下载链接), 此时大部分浏览器的行为为直接下载而不是进行预览, 因此如果想让此类来源正常预览的话, 需要每个来源带上 `needDownload={true}` 参数(正确预览需要保证 CORS 没有问题), 例如:
 
 ```tsx
 <pdf href="https://example.com/1.pdf" needDownload={true}>
@@ -570,11 +570,11 @@ pdf 组件的使用比较复杂, 下面是一些注意事项:
 
 下面是两个具体渲染的例子:
 ```tsx
-<pdf src="https://od.acdzh.com/Test/Ray%20Tracing%20in%20a%20Weekend.pdf?raw" needDownload={true} />
+<pdf src="https://raw.githubusercontent.com/NVIDIA/DLSS/main/doc/DLSS_Programming_Guide_Release.pdf" needDownload={true} />
 
 <pdf src="https://on-demand.gputechconf.com/gtc-cn/2018/pdf/CH8804.pdf" />
 ```
 
-<pdf src="https://od.acdzh.com/Test/Ray%20Tracing%20in%20a%20Weekend.pdf?raw" needDownload={true} />
+<pdf src="https://raw.githubusercontent.com/NVIDIA/DLSS/main/doc/DLSS_Programming_Guide_Release.pdf" needDownload={true} />
 
 <pdf src="https://on-demand.gputechconf.com/gtc-cn/2018/pdf/CH8804.pdf" />

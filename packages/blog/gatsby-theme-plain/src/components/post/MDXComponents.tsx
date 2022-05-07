@@ -7,6 +7,7 @@ import {
   codepen,
   iframe,
   netease,
+  pdf,
   section,
   youtube,
 } from './shortcodes';
@@ -21,4 +22,5 @@ export const MDXComponents: MDXProviderComponentsProp = {
   netease,
   youtube,
   section,
+  pdf,
 };
