@@ -24,6 +24,17 @@ article {
   }
   /* #endregion */
 
+  /* #region img */
+  img {
+    @apply w-full max-w-650px m-auto;
+  }
+
+  figcaption {
+    @apply text-center;
+  }
+
+  /* #endregion */
+
   /* #region blockquote */
   blockquote {
     margin: 0 0 1em 0;
