@@ -77,12 +77,11 @@ article {
 
   del {
     transition: color .13s linear;
-    @apply rounded text-true-gray-700 bg-true-gray-700
-  }
-
-  del:hover, del:active {
-    color: unset;
-    background: unset;
+    @apply rounded text-true-gray-700 bg-true-gray-700;
+    &:hover {
+      color: unset;
+      background: unset;
+    }
   }
 
   u {
@@ -203,9 +202,9 @@ article {
   /* #region 链接 */
   a {
     @apply text-theme;
-  }
-  a:hover {
-    @apply underline-theme;
+    &:hover {
+      @apply underline-theme;
+    }
   }
   /* #endregion */
 
