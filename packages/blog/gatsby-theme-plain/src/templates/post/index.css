@@ -112,7 +112,7 @@ article {
   }
   /* #endregion */
 
-  /* #region 列表 */
+  /* #region 列表, Task List */
   ol, ul {
     font-size: 16px;
     line-height: 1.8em;
@@ -130,6 +130,10 @@ article {
 
   ul {
     list-style: disc;
+  }
+
+  ul.contains-task-list {
+    list-style: none;
   }
  /* #endregion */
 
@@ -253,7 +257,5 @@ article {
     }
   }
   /* #endregion */
-
-
 
 }

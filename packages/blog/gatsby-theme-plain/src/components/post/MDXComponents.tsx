@@ -1,5 +1,4 @@
-import { MDXProviderComponentsProp } from '@mdx-js/react';
-import clsx from 'clsx';
+import type { MDXProviderComponentsProp } from '@mdx-js/react';
 import React from 'react';
 
 import { Codeblock } from './mdx-components';
