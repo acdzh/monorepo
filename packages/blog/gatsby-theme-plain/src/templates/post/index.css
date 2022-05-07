@@ -1,10 +1,26 @@
 article {
-  /* #region p, dd */
+  /* #region 正文 */
   p,
   dd {
     font-size: 16px;
     line-height: 1.8em;
     margin-bottom: 1em;
+  }
+
+  del {
+    transition: color .13s linear;
+    @apply rounded text-true-gray-700 bg-true-gray-700
+  }
+
+  del:hover, del:active {
+    color: unset;
+    background: unset;
+  }
+
+  u {
+    text-decoration: none;
+    border-color: currentColor;
+    @apply border-b;
   }
   /* #endregion */
 
