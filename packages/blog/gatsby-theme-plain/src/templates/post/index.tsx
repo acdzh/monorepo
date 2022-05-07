@@ -13,7 +13,7 @@ import { MDXComponents, TOC } from '@components/post';
 import { SEO } from '@components/SEO';
 import { GraphqlQueryDataType } from '@typings/graphql';
 
-import './post.css';
+import './index.css';
 import './codeblock-one-dark.css';
 import './codeblock-one-light.css';
 
