@@ -23,6 +23,7 @@
     "gatsby-plugin-sharp": "^3.13.0",
     "gatsby-plugin-sitemap": "^4.9.0",
     "gatsby-plugin-use-dark-mode": "workspace:*",
+    "gatsby-plugin-valine": "^1.0.2",
     "gatsby-remark-autolink-headers": "^4.11.0",
     "gatsby-remark-copy-linked-files": "^5.4.0",
     "gatsby-remark-graphviz": "^4.4.0",

@@ -15,6 +15,7 @@
     "gatsby-plugin-mdx": "^2.13.0",
     "gatsby-plugin-pnpm": "^1.2.8",
     "gatsby-plugin-slardar": "workspace:*",
+    "gatsby-plugin-valine": "^1.0.2",
     "gatsby-theme-plain": "workspace:*"
   },
   "devDependencies": {

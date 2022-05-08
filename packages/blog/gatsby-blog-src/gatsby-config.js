@@ -37,5 +37,16 @@ module.exports = {
         bid: 'blog_vukk',
       },
     },
+    {
+      resolve: 'gatsby-plugin-valine',
+      options: {
+        appId: 'THSEEUpmt73ioQLUO7dO6sI8-9Nh9j0Va',
+        appKey: '2ko493HrmEBiJ5FFTpPnnrWg',
+        avatar: 'robohash',
+        visitor: true,
+        recordIP: true,
+        enableQQ: true,
+      },
+    },
   ],
 };

@@ -2,6 +2,7 @@ import { MDXProvider } from '@mdx-js/react';
 import clsx from 'clsx';
 import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
+import Valine from 'gatsby-plugin-valine';
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { FaTimes } from 'react-icons/fa';
@@ -12,6 +13,8 @@ import { HeaderIconButton } from '@components/layout/Header/HeaderIconButton';
 import { AfterPostTags, MDXComponents, TOC } from '@components/post';
 import { SEO } from '@components/SEO';
 import { GraphqlQueryDataType } from '@typings/graphql';
+
+import './index.css';
 import './article.css';
 import './codeblock-one-dark.css';
 import './codeblock-one-light.css';
@@ -20,6 +23,8 @@ const formatDate = (date: Date) =>
   `${date.getFullYear()}年${date.getMonth()}月${date.getDay()}日${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
 
 const formatDateString = (s: string) => formatDate(new Date(s));
+
+const isSSR = typeof window === 'undefined';
 
 export type PostTemplatePropsType = {
   data: GraphqlQueryDataType;
@@ -111,7 +116,15 @@ const PostTemplate: React.FC<PostTemplatePropsType> = ({ data }) => {
                 </>
               )}
               {wordCount.words} WORDS &nbsp;·&nbsp; ~ {timeToRead || 0}
-              &nbsp;mins reading time&nbsp;|&nbsp;
+              &nbsp;mins reading time&nbsp;·&nbsp;
+              <span
+                id={isSSR ? '' : window.location?.pathname || ''}
+                className="leancloud_visitors"
+                data-flag-title={frontmatter?.title || '无标题'}
+              >
+                <span className="leancloud-visitors-count">0</span>
+              </span>
+              &nbsp; Visitors |&nbsp;
               <button
                 className="text-theme focus:outline-none"
                 onClick={toggleIsRawShow}
@@ -130,6 +143,7 @@ const PostTemplate: React.FC<PostTemplatePropsType> = ({ data }) => {
             )}
           </article>
           <AfterPostTags tags={frontmatter.tags} series={frontmatter.series} />
+          {frontmatter?.comment !== false && <Valine />}
         </main>
         {/* xl: aside and sticky; <xl: fixed */}
         <aside

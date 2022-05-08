@@ -64,6 +64,7 @@ export default defineConfig({
       'text-dark-50 text-opacity-70 dark:(text-white text-opacity-60)',
     // 'text-theme': 'text-theme-700 dark:(filter invert hue-rotate-180)',
     'text-theme': 'text-theme-700 dark:text-theme-300',
+    'border-theme': 'border-theme-700 dark:border-theme-300',
     // 'underline-theme': 'text-theme border-b border-theme-700',
     'underline-theme':
       'text-theme border-b border-theme-700 dark:border-theme-300',
