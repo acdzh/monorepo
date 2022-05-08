@@ -205,6 +205,7 @@ article {
 
   /* #region 链接 */
   a:not(.gatsby-resp-image-link) {
+    cursor: pointer;
     @apply text-theme;
     &:hover {
       @apply underline-theme;

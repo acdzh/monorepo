@@ -5,7 +5,7 @@ import { Codeblock } from './mdx-components';
 import {
   bilibili,
   codepen,
-  iframe,
+  iframe2,
   netease,
   pdf,
   section,
@@ -18,9 +18,9 @@ export const MDXComponents: MDXProviderComponentsProp = {
   del: (props) => <del title="被你发现了..." {...props} />,
   bilibili,
   codepen,
-  iframe,
+  iframe2,
   netease,
-  youtube,
-  section,
   pdf,
+  section,
+  youtube,
 };

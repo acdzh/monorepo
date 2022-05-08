@@ -429,10 +429,10 @@ $$
 指定宽高比的 iframe.
 
 ```md
-<iframe src="/about"></iframe>
+<iframe2 src="/about" width="32" height="9" />
 ```
 
-<iframe src="/about"></iframe>
+<iframe2 src="/about" width="32" height="9" />
 
 ## Section
 
