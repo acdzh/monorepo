@@ -3,11 +3,13 @@ import React from 'react';
 import {
   FaGithub,
   FaGithubAlt,
-  FaSteam,
-  FaTwitter,
   FaRegEnvelope,
   FaRss,
+  FaSteam,
+  FaTwitter,
 } from 'react-icons/fa';
+
+import { FooterIconButton } from './FooterIconButton';
 
 import { GraphqlQueryDataType } from '@typings/graphql';
 import { SiteMetadata } from '@typings/graphql/site';
@@ -17,8 +19,8 @@ const SocialLinks: React.FC<{
 }> = ({ social }) => {
   return (
     <>
-      <a
-        className="group text-lg px-0.4em hover:text-github"
+      <FooterIconButton
+        className="group mr-8px hover:text-github"
         href={`https://github.com/${social.github}`}
         target="_blank"
         rel="noreferrer"
@@ -26,43 +28,43 @@ const SocialLinks: React.FC<{
       >
         <FaGithub className="inline group-hover:hidden" />
         <FaGithubAlt className="hidden group-hover:inline" />
-      </a>
-      <a
-        className="text-lg px-0.4em hover:text-twitter"
+      </FooterIconButton>
+      <FooterIconButton
+        className="mr-8px hover:text-twitter"
         href={`https://twitter.com/${social.twitter}`}
         target="_blank"
         rel="noreferrer"
         title="Twitter"
       >
-        <FaTwitter className="inline" />
-      </a>
-      <a
-        className="text-lg px-0.4em hover:text-steam"
+        <FaTwitter />
+      </FooterIconButton>
+      <FooterIconButton
+        className="mr-8px hover:text-steam"
         href={`https://steamcommunity.com/id/${social.steam}`}
         target="_blank"
         rel="noreferrer"
         title="Steam"
       >
-        <FaSteam className="inline" />
-      </a>
-      <a
-        className="text-lg px-0.4em hover:text-mail"
+        <FaSteam />
+      </FooterIconButton>
+      <FooterIconButton
+        className="mr-8px hover:text-mail"
         href={`mailto:${social.mail}`}
         target="_blank"
         rel="noreferrer"
         title="Mail"
       >
-        <FaRegEnvelope className="inline" />
-      </a>
-      <a
-        className="text-lg px-0.4em hover:text-rss"
+        <FaRegEnvelope />
+      </FooterIconButton>
+      <FooterIconButton
+        className="hover:text-rss"
         href="/rss.xml"
         target="_blank"
         rel="noreferrer"
-        title="Mail"
+        title="RSS"
       >
-        <FaRss className="inline" />
-      </a>
+        <FaRss />
+      </FooterIconButton>
     </>
   );
 };
@@ -99,13 +101,10 @@ export const Footer: React.FC = () => {
           sm:flex sm:flex-row-reverse sm:justify-between
         "
     >
-      <section className="<sm:mb-8px">
+      <section className="<sm:mb-12px">
         <SocialLinks social={social} />
       </section>
-      <section
-        className="<sm:text-sm
-        "
-      >
+      <section className="<sm:text-sm">
         {title} © {new Date().getFullYear()} {author.name}
       </section>
     </footer>

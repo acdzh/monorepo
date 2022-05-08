@@ -45,16 +45,21 @@ const createConfig = ({
       {
         resolve: 'gatsby-plugin-mdx',
         options: {
+          remarkPlugins: [require('remark-math')],
+          rehypePlugins: [require('rehype-katex')],
           extensions: ['.mdx', '.md'],
           gatsbyRemarkPlugins: [
-            'gatsby-remark-images',
             {
-              resolve: 'gatsby-remark-autolink-headers',
+              resolve: 'gatsby-remark-images',
               options: {
-                // icon: false,
-                offsetY: 60,
+                showCaptions: true,
+                backgroundColor: 'transparent',
+                disableBgImageOnAlpha: true,
               },
             },
+            'gatsby-remark-autolink-headers',
+            'gatsby-remark-copy-linked-files',
+            'gatsby-remark-graphviz',
           ],
         },
       },

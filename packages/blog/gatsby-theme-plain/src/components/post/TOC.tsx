@@ -34,20 +34,41 @@ export const TOC: React.FC<TocPropsType> = ({ items }) => {
   const currentId = useCurrentElementById(ids);
   return (
     <ul>
+      <li>
+        <h3 className="font-600 pl-8px mb-8px">目录</h3>
+      </li>
       {flattenItems.map(({ id, url, title, depth }) => (
-        <li key={url} className="truncate">
-          <a
-            href={url}
-            className={clsx('transition-colors hover:text-theme', {
-              'text-sm': depth,
-              'text-theme': currentId === id,
-            })}
+        <li key={url}>
+          <button
+            className={clsx(
+              'block px-8px py-5px transition-colors duration-50 hover:text-theme',
+              'border-l-2 rounded-sm focus:outline-none',
+              'light:hover:bg-gray-100 dark:hover:bg-true-gray-700',
+              'light:active:shadow-inner',
+              {
+                'text-sm': depth,
+                'border-transparent': currentId !== id,
+                'text-theme light:shadow border-theme-300 dark:border-theme-700':
+                  currentId === id,
+              }
+            )}
             style={{
-              marginLeft: `${depth * 0.5}rem`,
+              marginLeft: `${depth}rem`,
+            }}
+            aria-label={title}
+            tab-index="0"
+            onClick={() => {
+              const element = document.getElementById(id);
+              if (element) {
+                window.scroll({
+                  top: element?.offsetTop - 60,
+                  behavior: 'smooth',
+                });
+              }
             }}
           >
             {title}
-          </a>
+          </button>
         </li>
       ))}
     </ul>

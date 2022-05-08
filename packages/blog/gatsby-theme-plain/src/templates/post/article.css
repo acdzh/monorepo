@@ -1,0 +1,264 @@
+article {
+  /* #region 标题 */
+  h1, h2, h3, h4, h5, h6 {
+    word-wrap: break-word;
+    margin-top: 0;
+    margin-bottom: 16px;
+    font-weight: 400;
+
+    a.anchor {
+      margin-right: 4px;
+      @apply text-primary fill-current hover:text-theme;
+    }
+  }
+
+  h1 {
+    font-size: 38px;
+    letter-spacing: -1px;
+  }
+  h2 {
+    font-size: 34px;
+    letter-spacing: -0.7px;
+  }
+  h3 {
+    font-size: 28px;
+    letter-spacing: -0.5px;
+  }
+  h4 {
+    font-size: 24px;
+    letter-spacing: -0.3px;
+  }
+  h5 {
+    font-size: 20px;
+    font-weight: 600;
+  }
+  h6 {
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  @media only screen and (max-width: 1536px) {
+    h1 {
+      font-size: 30px;
+      letter-spacing: -0.7px;
+    }
+    h2 {
+      font-size: 26px;
+      letter-spacing: -0.5px;
+    }
+    h3 {
+      font-size: 24px;
+      letter-spacing: -0.3px;
+    }
+    h4 {
+      font-size: 22px;
+      letter-spacing: -0.3px;
+    }
+    h5 {
+      font-size: 18px;
+      font-weight: 600;
+    }
+    h6 {
+      font-size: 16px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+  }
+  /* #endregion */
+
+  /* #region 正文 */
+  p,
+  dd {
+    font-size: 16px;
+    line-height: 1.8em;
+    margin-bottom: 1em;
+  }
+
+  del {
+    transition: color .13s linear;
+    @apply rounded text-true-gray-700 bg-true-gray-700;
+    &:hover {
+      color: unset;
+      background: unset;
+    }
+  }
+
+  u {
+    text-decoration: none;
+    border-color: currentColor;
+    @apply border-b;
+  }
+  /* #endregion */
+
+  /* #region 分隔 */
+  hr {
+    height: 0;
+    width: 100%;
+    border-bottom: 0.2em dashed;
+    overflow: visible;
+    position: relative;
+    margin-bottom: 1em;
+    /* text-theme */
+    @apply border-theme-300 dark:border-theme-700 light:shadow;
+  }
+  /* #endregion */
+
+  /* #region 脚注 */
+  sup {
+    a {
+      @apply hover:(text-theme underline);
+    }
+  }
+  /* #endregion */
+
+  /* #region 列表, Task List */
+  ol, ul {
+    font-size: 16px;
+    line-height: 1.8em;
+    padding: 0;
+    margin-left: 2em;
+  }
+
+  & > ol, & > ul {
+    margin-bottom: 1em;
+  }
+
+  ol {
+    list-style: decimal;
+  }
+
+  ul {
+    list-style: disc;
+  }
+
+  ul.contains-task-list {
+    list-style: none;
+  }
+ /* #endregion */
+
+  /* #region 区块引用 */
+  blockquote {
+    margin: 0 0 1em 0;
+    padding: 16px;
+    border-left: 4px solid;
+    @apply bg-theme-50 border-l-theme-300 dark:(bg-theme-900 bg-opacity-40 border-l-theme-700);
+    @apply rounded-md light:(border-t border-r border-b shadow);
+
+    p {
+      margin: 0;
+    }
+  }
+  /* #endregion */
+
+  /* #region 代码, 按钮 */
+  pre {
+    tab-size: 2;
+    padding: 16px 16px 16px 48px;
+    font-size: 14px;
+    overflow-x: auto;
+    margin-bottom: 1em;
+    @apply w-full rounded-md light:shadow;
+    @apply border dark:border-true-gray-700;
+    @apply bg-true-gray-100 dark:bg-true-gray-800;
+
+    .line-numbers {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 16px 0 16px 16px;
+      letter-spacing: -1px;
+      white-space: normal;
+      pointer-events: none;
+      user-select: none;
+
+      @apply border-r dark:border-true-gray-700;
+
+      .line-numbers-rows {
+        counter-increment: linenumber;
+        pointer-events: none;
+
+        span:before {
+          content: counter(linenumber);
+          display: block;
+          padding-right: 0.8em;
+          text-align: right;
+        }
+      }
+    }
+  }
+
+  :not(pre) > code,
+  kbd {
+    padding: 0.1em;
+    border-radius: 0.3em;
+    white-space: normal;
+    @apply text-theme;
+    @apply rounded border dark:border-true-gray-700;
+    @apply bg-true-gray-100 dark:bg-true-gray-800;
+  }
+
+  kbd {
+    @apply light:shadow;
+  }
+  /* #endregion */
+
+  /* #region 链接 */
+  p {
+    a:not(.gatsby-resp-image-link) {
+      cursor: pointer;
+      @apply text-theme;
+      &:hover {
+        @apply underline-theme;
+      }
+    }
+  }
+  /* #endregion */
+
+  /* #region 图片 */
+  .gatsby-resp-image-wrapper, p> img {
+    @apply rounded-md light:shadow;
+    @apply border dark:border-true-gray-700;
+    * {
+      @apply rounded-md;
+    }
+  }
+
+  p> img, p > figure {
+    max-width: min(100%, 650px);
+    @apply m-auto;
+  }
+
+  figcaption {
+    @apply text-center;
+  }
+  /* #endregion */
+
+  /* #region 表格 */
+  table {
+    font-size: 16px;
+    margin-bottom: 1em;
+    border-collapse: collapse;
+    @apply w-full rounded-md light:shadow;
+
+    & > tr:nth-child(odd),
+    thead > tr,
+    tbody > tr:nth-child(even) {
+      @apply bg-true-gray-100 dark:bg-true-gray-800;
+    }
+
+    th {
+      font-weight: 600;
+      padding: 12px 6px;
+      @apply border dark:border-true-gray-700;
+    }
+
+    td {
+      padding: 6px;
+      vertical-align: middle;
+      @apply border dark:border-true-gray-700;
+    }
+  }
+  /* #endregion */
+
+}

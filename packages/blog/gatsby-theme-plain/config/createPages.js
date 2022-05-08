@@ -42,7 +42,7 @@ module.exports = async function ({ graphql, actions }) {
 
   // create all post page
   // Define a template for blog post
-  const blogPost = path.join(__dirname, '../src/templates/post.tsx');
+  const blogPost = path.join(__dirname, '../src/templates/post/index.tsx');
   // Create blog posts pages
   // But only if there's at least one markdown file found at "content" (defined in gatsby-config.js)
   // `context` is available in the template as a prop and as a variable in GraphQL
@@ -63,7 +63,7 @@ module.exports = async function ({ graphql, actions }) {
   // create index pages
   // create homepage pagination
   const numPages = Math.ceil(posts.length / postsPerPage);
-  const homePaginate = path.join(__dirname, '../src/templates/index.tsx');
+  const homePaginate = path.join(__dirname, '../src/templates/index/index.tsx');
   Array.from({ length: numPages }).forEach((_, i) => {
     createPage({
       path: `/posts/${i + 1}`,

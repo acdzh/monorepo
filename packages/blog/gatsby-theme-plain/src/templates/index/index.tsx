@@ -1,10 +1,10 @@
-import { graphql, Link } from 'gatsby';
+import { graphql } from 'gatsby';
 import React from 'react';
 
 import { Featured } from '@components/Featured';
-import { Layout, Header, Content, Footer } from '@components/layout';
+import { Content, Footer, Header, Layout } from '@components/layout';
+import { Pagination } from '@components/Pagination';
 import { SEO } from '@components/SEO';
-import { WidthDebug } from '@components/WidthDebug';
 import { GraphqlQueryDataType } from '@typings/graphql';
 
 export type IndexPagePropsType = {
@@ -25,18 +25,25 @@ const IndexPage: React.FC<IndexPagePropsType> = ({ data, pageContext }) => {
       <SEO title="首页" />
       <Header />
       <Content className="w-full max-w-screen-xl mx-auto px-loose py-loose">
-        <WidthDebug />
-        <ul>
+        <ul
+          className="
+            px-4px py-16px sm:p-24px sm:py-24px sm:rounded-md
+            light:sm:border light:sm:shadow-md light:md:shadow-lg
+          "
+        >
           {nodes.map((node) => (
             <li
-              className="block mb-36px sm:mb-48px"
+              className="
+                block pb-16px mb-16px sm:pb-28px sm:mb-28px last:pb-0 last:mb-0 
+                border-b dark:border-true-gray-700 last:border-none
+              "
               key={node.frontmatter.title}
             >
               <Featured mdx={node} />
             </li>
           ))}
         </ul>
-        <div className="flex flex-row justify-between">
+        {/* <div className="flex flex-row justify-between">
           <span className="hover:text-theme hover:underline-theme">
             {currentPage > 1 && (
               <Link to={currentPage === 2 ? '/' : `/posts/${currentPage - 1}`}>
@@ -49,6 +56,9 @@ const IndexPage: React.FC<IndexPagePropsType> = ({ data, pageContext }) => {
               <Link to={`/posts/${currentPage + 1}`}>下一页 →</Link>
             )}
           </span>
+        </div> */}
+        <div className="mt-32px text-center">
+          <Pagination current={currentPage} total={totalPage} />
         </div>
       </Content>
       <Footer />

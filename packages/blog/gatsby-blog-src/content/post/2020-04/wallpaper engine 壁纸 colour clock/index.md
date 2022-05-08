@@ -47,7 +47,7 @@ cover: ./221316.png
 ​
 在线预览可以看这里: [colour-clock.netlify.com/](https://colour-clock.netlify.app/)
 
-<iframe title="colour-clock.netlify.com" width="100%" height="400" src="https://colour-clock.netlify.app/"> </iframe>
+<iframe2 title="colour-clock.netlify.com" src="https://colour-clock.netlify.app/" />
 
 大哥大嫂点个订阅吧 (逃
 

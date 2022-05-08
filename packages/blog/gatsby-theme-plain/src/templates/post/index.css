@@ -1,0 +1,47 @@
+/* valine comment panel */
+.v[data-class="v"] {
+  .vwrap {
+    border-color: inherit!important;
+    @apply !rounded-md !border !dark:border-true-gray-700 !light:shadow;
+
+    .vheader {
+      .vinput {
+        border-color: inherit!important;
+        @apply !border-b !dark:border-true-gray-700;
+      }
+    }
+  }
+  .vbtn:hover {
+    @apply !text-theme !border-theme;
+  }
+
+  .vcards {
+    @apply !rounded-md !p-16px !border !dark:border-true-gray-700 !light:shadow;
+    .vcard {
+      @apply !border-b !last:border-none !dark:border-true-gray-700;
+
+      .vimg {
+        border-color: inherit!important;
+        @apply !dark:border-true-gray-700 !light:shadow;
+      }
+
+      .vh {
+        border: none!important;
+        .vmeta {
+          .vat {
+            @apply !text-theme !hover:underline-theme;
+          }
+        }
+      }
+
+      .vcontent.expand {
+        @apply !rounded-md;
+      }
+    }
+  }
+
+  p, input, textarea {
+    /* color: inherit!important; */
+    @apply !text-primary;
+  }
+}
