@@ -51,7 +51,6 @@ export const Header: React.FC<HeaderPropsType> = ({
   const { siteMetadata } = site;
   const { theme, toggleTheme } = useTheme();
   const [isExpandNavShow, toggleIsExpandNavShow] = useToggle(false);
-  const [isQrDialogShow, toggleIsQrDialogShow] = useToggle(false);
 
   const { y } = useWindowScroll();
 
@@ -121,34 +120,32 @@ export const Header: React.FC<HeaderPropsType> = ({
             </HeaderIconButton>
           )}
           <HeaderIconButton
-            className="<sm:hidden mr-12px"
+            className="<sm:hidden mr-12px group"
             aria-label="显示二维码"
-            onClick={toggleIsQrDialogShow}
           >
             <FaQrcode />
-          </HeaderIconButton>
-          <div
-            className={clsx(
-              '<sm:hidden transition origin-top-right absolute top-64px right-36px rounded text-primary bg-primary light:shadow dark:border dark:border-true-gray-700 glass',
-              {
-                'opacity-0 transform scale-0': !isQrDialogShow,
-              }
-            )}
-          >
-            <div className="p-12px">
-              <img
-                src={`https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${
-                  isSSR ? '' : location.href
-                }`}
-                style={{
-                  width: 160,
-                  height: 160,
-                  maxWidth: 160,
-                }}
-                alt="qr code of this page"
-              ></img>
+            <div
+              className={clsx(
+                '<sm:hidden transition origin-top-right absolute top-64px right-36px rounded text-primary bg-primary light:shadow dark:border dark:border-true-gray-700 glass',
+                'opacity-0 transform scale-0',
+                'group-hover:opacity-100  group-hover:scale-100'
+              )}
+            >
+              <div className="p-12px">
+                <img
+                  src={`https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${
+                    isSSR ? '' : location.href
+                  }`}
+                  style={{
+                    width: 160,
+                    height: 160,
+                    maxWidth: 160,
+                  }}
+                  alt="qr code of this page"
+                ></img>
+              </div>
             </div>
-          </div>
+          </HeaderIconButton>
 
           <HeaderIconButton aria-label="切换主题" onClick={toggleTheme}>
             {theme === 'dark' ? <FaSun /> : <FaMoon />}
