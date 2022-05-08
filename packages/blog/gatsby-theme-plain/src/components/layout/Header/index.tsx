@@ -107,7 +107,13 @@ export const Header: React.FC<HeaderPropsType> = ({
               <FaArrowUp />
             </HeaderIconButton>
           )}
-          <HeaderIconButton className="mr-12px" aria-label="搜索">
+          <HeaderIconButton
+            className="mr-12px"
+            aria-label="搜索"
+            onClick={() =>
+              open(`https://www.google.com/search?q=site%3A${location.host}`)
+            }
+          >
             <FaSearch />
           </HeaderIconButton>
           {toggleIsFixedTocShow && (
