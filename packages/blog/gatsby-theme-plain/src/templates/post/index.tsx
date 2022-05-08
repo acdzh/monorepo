@@ -59,7 +59,13 @@ const PostTemplate: React.FC<PostTemplatePropsType> = ({ data }) => {
       />
       <Helmet>
         <link
-          href="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.15.1/katex.min.css"
+          href="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/firacode/6.2.0/fira_code.min.css"
+          type="text/css"
+          rel="stylesheet"
+        />
+        <link
+          href="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/KaTeX/0.15.2/katex.min.css"
+          type="text/css"
           rel="stylesheet"
         />
       </Helmet>
