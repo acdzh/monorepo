@@ -34,6 +34,7 @@ const PaginationItem: React.FC<PaginationItemPropsType> = ({
         },
         className
       )}
+      aria-label={to}
       disabled={disabled}
     >
       {children}
@@ -42,7 +43,13 @@ const PaginationItem: React.FC<PaginationItemPropsType> = ({
 
   return (
     <li className="inline">
-      {disabled ? inner : <Link to={to}>{inner}</Link>}
+      {disabled ? (
+        inner
+      ) : (
+        <Link to={to} aria-label={to}>
+          {inner}
+        </Link>
+      )}
     </li>
   );
 };
