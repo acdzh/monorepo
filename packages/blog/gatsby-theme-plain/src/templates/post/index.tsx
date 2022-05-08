@@ -9,11 +9,10 @@ import { useToggle } from 'react-use';
 
 import { Content, Footer, Header, Layout } from '@components/layout';
 import { HeaderIconButton } from '@components/layout/Header/HeaderIconButton';
-import { MDXComponents, TOC } from '@components/post';
+import { AfterPostTags, MDXComponents, TOC } from '@components/post';
 import { SEO } from '@components/SEO';
 import { GraphqlQueryDataType } from '@typings/graphql';
-
-import './index.css';
+import './article.css';
 import './codeblock-one-dark.css';
 import './codeblock-one-light.css';
 
@@ -81,54 +80,57 @@ const PostTemplate: React.FC<PostTemplatePropsType> = ({ data }) => {
           <xl:overflow-hidden
         "
       >
-        <article
+        <main
           className="
             flex-1 min-w-0
             <sm:py-16px <sm:px-4px sm:p-24px sm:rounded-md
             light:sm:border light:sm:shadow-md light:md:shadow-lg
           "
         >
-          <h1
-            className="
+          <article>
+            <h1
+              className="
               mb-12px leading-snug tracking-tight
               text-2xl md:text-3xl 2xl:text-4xl
             "
-          >
-            {frontmatter.title}
-          </h1>
-          <p className="text-secondary text-sm uppercase mb-12px">
-            by&nbsp;
-            {frontmatter?.from ? (
-              <a href={frontmatter?.from}>{frontmatter?.author}</a>
-            ) : (
-              frontmatter?.author || meta?.author?.name || 'UNKNOWN'
-            )}
-            &nbsp;·&nbsp;
-            {frontmatter.date && (
-              <>
-                {formatDateString(frontmatter.date)}
-                &nbsp;·&nbsp;
-              </>
-            )}
-            {wordCount.words} WORDS &nbsp;·&nbsp; ~ {timeToRead || 0}
-            &nbsp;mins reading time&nbsp;|&nbsp;
-            <button
-              className="text-theme focus:outline-none"
-              onClick={toggleIsRawShow}
             >
-              {isRawShow ? 'SRC' : 'RAW'}
-            </button>
-          </p>
-          {isRawShow ? (
-            <pre className="whitespace-pre-wrap">
-              <code className="font-mono">{rawBody}</code>
-            </pre>
-          ) : (
-            <MDXProvider components={MDXComponents}>
-              <MDXRenderer>{body}</MDXRenderer>
-            </MDXProvider>
-          )}
-        </article>
+              {frontmatter.title}
+            </h1>
+            <p className="text-secondary text-sm uppercase mb-12px">
+              by&nbsp;
+              {frontmatter?.from ? (
+                <a href={frontmatter?.from}>{frontmatter?.author}</a>
+              ) : (
+                frontmatter?.author || meta?.author?.name || 'UNKNOWN'
+              )}
+              &nbsp;·&nbsp;
+              {frontmatter.date && (
+                <>
+                  {formatDateString(frontmatter.date)}
+                  &nbsp;·&nbsp;
+                </>
+              )}
+              {wordCount.words} WORDS &nbsp;·&nbsp; ~ {timeToRead || 0}
+              &nbsp;mins reading time&nbsp;|&nbsp;
+              <button
+                className="text-theme focus:outline-none"
+                onClick={toggleIsRawShow}
+              >
+                {isRawShow ? 'SRC' : 'RAW'}
+              </button>
+            </p>
+            {isRawShow ? (
+              <pre className="whitespace-pre-wrap">
+                <code className="font-mono">{rawBody}</code>
+              </pre>
+            ) : (
+              <MDXProvider components={MDXComponents}>
+                <MDXRenderer>{body}</MDXRenderer>
+              </MDXProvider>
+            )}
+          </article>
+          <AfterPostTags tags={frontmatter.tags} series={frontmatter.series} />
+        </main>
         {/* xl: aside and sticky; <xl: fixed */}
         <aside
           className={clsx(

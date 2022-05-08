@@ -9,6 +9,7 @@ export const FooterIconButton: React.FC<
     <a
       {...props}
       className={clsx(
+        // eslint-disable-next-line react/prop-types
         props.className,
         'inline-flex text-lg justify-center items-center',
         'p-0.4em rounded-lg',
