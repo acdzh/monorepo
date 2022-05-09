@@ -95,18 +95,19 @@ export const Header: React.FC<HeaderPropsType> = ({
 
         {/* right buttons */}
         <div className="relative flex flex-row justify-center items-center">
-          {y > 1000 && (
-            <HeaderIconButton
-              className="mr-12px"
-              aria-label="回到顶部"
-              onClick={() => {
-                document.body.scrollTop = 0;
-                document.documentElement.scrollTop = 0;
-              }}
-            >
-              <FaArrowUp />
-            </HeaderIconButton>
-          )}
+          <HeaderIconButton
+            className={clsx('mr-12px', {
+              hidden: y < 1000,
+            })}
+            aria-label="回到顶部"
+            onClick={() => {
+              document.body.scrollTop = 0;
+              document.documentElement.scrollTop = 0;
+            }}
+          >
+            <FaArrowUp />
+          </HeaderIconButton>
+
           <HeaderIconButton
             className="mr-12px"
             aria-label="搜索"
