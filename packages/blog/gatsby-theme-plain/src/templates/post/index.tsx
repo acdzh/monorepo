@@ -143,7 +143,7 @@ const PostTemplate: React.FC<PostTemplatePropsType> = ({ data }) => {
             )}
           </article>
           <AfterPostTags tags={frontmatter.tags} series={frontmatter.series} />
-          {frontmatter?.comment !== false && <Valine />}
+          {!isSSR && frontmatter?.comment !== false && <Valine />}
         </main>
         {/* xl: aside and sticky; <xl: fixed */}
         <aside

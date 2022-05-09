@@ -10,6 +10,11 @@ article {
       margin-right: 4px;
       @apply text-primary fill-current hover:text-theme;
     }
+
+    &:target {
+      padding-top: 60px;
+      margin-top: -60px;
+    }
   }
 
   h1 {

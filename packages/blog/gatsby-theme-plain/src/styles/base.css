@@ -27,8 +27,3 @@ html.dark {
 }
 
 ::selection { @apply text-shadow-none bg-theme-100 dark:bg-gray-700  }
-
-*:target {
-  padding-top: 60px;
-  margin-top: -60px;
-}

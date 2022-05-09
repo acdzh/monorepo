@@ -18,7 +18,9 @@
   .vcards {
     @apply !rounded-md !p-16px !border !dark:border-true-gray-700 !light:shadow;
     .vcard {
-      @apply !border-b !last:border-none !dark:border-true-gray-700;
+      &:not(:last-child) {
+        @apply !border-b !dark:border-true-gray-700;
+      }
 
       .vimg {
         border-color: inherit!important;
