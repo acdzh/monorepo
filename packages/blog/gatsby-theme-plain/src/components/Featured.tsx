@@ -8,7 +8,7 @@ export type FeaturedProps = {
 };
 
 const formatDate = (date: Date) =>
-  `${date.getFullYear()}年${date.getMonth()}月${date.getDay()}日`;
+  `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`;
 
 const formatDateString = (s: string) => formatDate(new Date(s));
 

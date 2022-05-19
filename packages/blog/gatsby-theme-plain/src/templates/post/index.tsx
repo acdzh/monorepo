@@ -20,7 +20,9 @@ import './codeblock-one-dark.css';
 import './codeblock-one-light.css';
 
 const formatDate = (date: Date) =>
-  `${date.getFullYear()}年${date.getMonth()}月${date.getDay()}日${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+  `${date.getFullYear()}年${
+    date.getMonth() + 1
+  }月${date.getDate()}日${date.getHours()}:${date.getMinutes()}`;
 
 const formatDateString = (s: string) => formatDate(new Date(s));
 
@@ -156,19 +158,24 @@ const PostTemplate: React.FC<PostTemplatePropsType> = ({ data }) => {
             }
           )}
         >
-          <div
-            className="xl:sticky xl:top-86px xl:w-280px <xl:max-w-280px xl:pl-32px overflow-y-auto overscroll-y-contain"
-            style={{ height: 'calc(100vh - 86px - 32px - 44px)' }}
-          >
-            <TOC items={tableOfContents.items} />
-          </div>
-          <HeaderIconButton
-            className="xl:hidden absolute top-4px right-8px"
-            aria-label="显示/隐藏目录"
-            onClick={toggleIsFixedTocShow}
-          >
-            <FaTimes />
-          </HeaderIconButton>
+          {tableOfContents.items && (
+            <>
+              <div
+                className="xl:sticky xl:top-86px xl:w-280px <xl:max-w-280px xl:pl-32px overflow-y-auto overscroll-y-contain"
+                style={{ height: 'calc(100vh - 86px - 32px - 44px)' }}
+              >
+                <TOC items={tableOfContents.items} />
+              </div>
+
+              <HeaderIconButton
+                className="xl:hidden absolute top-4px right-8px"
+                aria-label="显示/隐藏目录"
+                onClick={toggleIsFixedTocShow}
+              >
+                <FaTimes />
+              </HeaderIconButton>
+            </>
+          )}
         </aside>
       </Content>
       <Footer />

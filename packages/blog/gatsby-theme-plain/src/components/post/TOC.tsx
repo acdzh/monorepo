@@ -28,7 +28,7 @@ export type TocPropsType = {
   items: TableOfContentsItemType[];
 };
 
-export const TOC: React.FC<TocPropsType> = ({ items }) => {
+export const TOC: React.FC<TocPropsType> = ({ items = [] }) => {
   const flattenItems = useMemo(() => flatten(items), [items]);
   const ids = useMemo(() => flattenItems.map(({ id }) => id), [flattenItems]);
   const currentId = useCurrentElementById(ids);

@@ -52,7 +52,7 @@ const a = new A();
 window.postMessage('test');
 ```
 
-## 历史记录
+----
 
 |Version| Action|Time|
 |:-------:|:--------:|:-----------:|
