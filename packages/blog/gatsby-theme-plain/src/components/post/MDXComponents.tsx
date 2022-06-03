@@ -9,6 +9,7 @@ import {
   netease,
   pdf,
   section,
+  shadertoy,
   youtube,
 } from './shortcodes';
 
@@ -22,5 +23,6 @@ export const MDXComponents: MDXProviderComponentsProp = {
   netease,
   pdf,
   section,
+  shadertoy,
   youtube,
 };

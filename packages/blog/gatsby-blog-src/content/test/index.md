@@ -529,6 +529,24 @@ html 包裹用元素.
 
 <codepen id="jOZWLdE" />
 
+## [ShaderToy](https://www.shadertoy.com)
+
+|参数|类型|默认值|说明|
+|:-----:|:----:|:----:|:----:|
+|`id`|`string`||eg. `"fstyD4"`|
+|`gui?`|`boolean`|`true`|是否展示控制栏|
+|`t?`|`number`|`0`|开始的秒数|
+|`paused?`|`boolean`|`isMobile ? false : true`|是否自动播放|
+|`muted?`|`boolean`|`true`|是否静音|
+|`width?`|`number`|`16`|视频宽度(比例)|
+|`height?`|`number`|`9`|视频高度(比例)|
+
+```tsx
+<shadertoy id="fstyD4" />
+```
+
+<shadertoy id="fstyD4" />
+
 ## PDF
 
 ```tsx

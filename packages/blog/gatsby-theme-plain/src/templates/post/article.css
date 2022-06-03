@@ -209,8 +209,8 @@ article {
   /* #endregion */
 
   /* #region 链接 */
-  p {
-    a:not(.gatsby-resp-image-link) {
+  p, h1, h2, h3, h4, h5, h6 {
+    a:not(.gatsby-resp-image-link):not(.anchor) {
       cursor: pointer;
       @apply text-theme;
       &:hover {
