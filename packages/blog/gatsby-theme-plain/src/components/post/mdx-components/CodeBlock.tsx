@@ -1,12 +1,15 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import clsx from 'clsx';
 import Highlight, { Language, Prism } from 'prism-react-renderer';
 import React from 'react';
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import prismCsharp from './prism-components/csharp';
+// @ts-ignore
+import prismGlsl from './prism-components/glsl';
 
 prismCsharp(Prism);
+prismGlsl(Prism);
 
 type CodeblockPropsType = {
   children: string;
