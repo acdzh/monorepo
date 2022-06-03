@@ -7,7 +7,8 @@
     "dev": "gatsby develop -H 0.0.0.0",
     "dev:clean": "rimraf ./.cache && rimraf ./public && gatsby develop -H 0.0.0.0",
     "build": "gatsby build",
-    "build:clean": "rimraf ./.cache && rimraf ./public && gatsby build"
+    "build:clean": "rimraf ./.cache && rimraf ./public && gatsby build",
+    "new": "node ./scripts/new.js"
   },
   "dependencies": {
     "gatsby": "^3.13.0",
