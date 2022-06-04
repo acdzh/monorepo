@@ -1,0 +1,516 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+  <title>Embed - Shadertoy BETA</title>
+  <style>
+    .uiButton {
+      border: none;
+      outline: none;
+      margin: 0px;
+      padding: 0px;
+      width: 22px;
+      height: 22px;
+      position: absolute;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .uiButton:hover {
+      box-shadow: inset 0px 0px 1px 1px #808080, 0px 0px 1px 1px #808080;
+    }
+
+    body {
+      background-color: #000000;
+      color: #c0c0c0;
+      font-size: 12px;
+      font-style: normal;
+      font-family: Tahoma, Arial;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      margin: 0;
+      overflow: hidden;
+      position: absolute;
+      user-select: none;
+      -moz-user-select: -moz-none;
+      -webkit-user-select: none;
+    }
+
+    div#player {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      margin: 0;
+    }
+
+    .playerCanvas {
+      left: 0px;
+      top: 0px;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+    }
+
+    div#noWebGL {
+      left: 0px;
+      top: 0px;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      position: absolute;
+      border: 0px;
+      border-radius: 4px 4px 0px 0px;
+      background-color: #000000;
+      visibility: hidden;
+    }
+
+    img#noWebGL_ShaderImage {
+      left: 0px;
+      top: 0px;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      border: 0px;
+      border-radius: 4px 4px 0px 0px;
+    }
+
+    span#noWebGL_Text {
+      left: 8px;
+      font-size: 1.5em;
+      border: 0px;
+      color: #ff0000;
+      position: absolute;
+    }
+
+    div#playerBar {
+      left: 0px;
+      bottom: 0px;
+      position: absolute;
+      width: 100%;
+      height: 30px;
+      background-color: rgba(0, 0, 0, 0.8);
+      margin: 0px;
+      padding: 0px;
+
+      transition: bottom .5s;
+      -webkit-transition: bottom .5s;
+      /* Safari */
+    }
+
+    div#playerBar.isVisible {
+      bottom: 0px;
+    }
+
+    div#playerBar.isNotVisible {
+      bottom: -31px;
+    }
+
+    .myFull {
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+    }
+
+    .playerCanvas_full-screen,
+    .playerCanvas:full-screen,
+    .playerCanvas:fullscreen,
+    .playerCanvas:-webkit-full-screen,
+    .playerCanvas:-moz-full-screen {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+    }
+  </style>
+
+  <script>
+    var query = new URLSearchParams(window.location.search);
+    var gShaderID = "";
+    var gInvisIfFail = null;
+    var gTime = query.get("t") || "0";
+    var gShowGui = query.get("gui") === "true";
+    var gPaused = query.get("paused") === "true";
+    var gMuted = query.get("muted") === "true";
+    var gCode = "void mainImage( out vec4 fragColor, in vec2 fragCoord ){\nvec2 uv = fragCoord/iResolution.xy;\nvec3 col = 0.5 + 0.5*cos(iTime+uv.xyx+vec3(0,2,4));\nfragColor = vec4(col,1.0);\n}";
+  </script>
+
+  <script src="https://www.shadertoy.com/lib/piLibs.js?v=86"></script>
+  <script src="https://www.shadertoy.com/js/effect.js?v=86"></script>
+
+  <script>"use strict"
+
+    var gShaderToy = null;
+
+    function ShaderToy(parentElement) {
+      if (parentElement === null) return;
+
+      this.mAudioContext = null;
+      this.mCreated = false;
+      this.mHttpReq = null;
+      this.mEffect = null;
+      this.mTo = null;
+      this.mTOffset = gTime * 1000;
+      this.mCanvas = null;
+      this.mFpsFrame = 0;
+      this.mFpsTo = null;
+      this.mIsPaused = gPaused;
+      this.mForceFrame = true;
+      this.mInfo = null;
+      this.mCode = null;
+
+      this.mCanvas = document.getElementById("demogl");
+      this.mCanvas.tabIndex = "0";
+
+      var ww = parentElement.offsetWidth;
+      var hh = parentElement.offsetHeight;
+
+      var me = this;
+      this.mCanvas.width = ww;
+      this.mCanvas.height = hh;
+
+      this.mHttpReq = new XMLHttpRequest();
+      this.mTo = getRealTime();
+      this.mTf = this.mTOffset;
+      this.mFpsTo = this.mTo;
+      this.mMouseIsDown = false;
+      this.mMouseOriX = 0;
+      this.mMouseOriY = 0;
+      this.mMousePosX = 0;
+      this.mMousePosY = 0;
+
+
+      // --- audio context ---------------------
+
+      this.mAudioContext = piCreateAudioContext();
+
+      if (this.mAudioContext == null) {
+        //alert( "no audio!" );
+      }
+
+      this.mCanvas.onmousedown = function (ev) {
+        var pos = piGetCoords(me.mCanvas);
+        me.mMouseOriX = (ev.pageX - pos.mX) * me.mCanvas.width / me.mCanvas.offsetWidth;
+        me.mMouseOriY = me.mCanvas.height - (ev.pageY - pos.mY) * me.mCanvas.height / me.mCanvas.offsetHeight;
+        me.mMousePosX = me.mMouseOriX;
+        me.mMousePosY = me.mMouseOriY;
+        me.mMouseIsDown = true;
+        if (me.mIsPaused) me.mForceFrame = true;
+      }
+      this.mCanvas.onmousemove = function (ev) {
+        if (me.mMouseIsDown) {
+          var pos = piGetCoords(me.mCanvas);
+          me.mMousePosX = (ev.pageX - pos.mX) * me.mCanvas.width / me.mCanvas.offsetWidth;
+          me.mMousePosY = me.mCanvas.height - (ev.pageY - pos.mY) * me.mCanvas.height / me.mCanvas.offsetHeight;
+          if (me.mIsPaused) me.mForceFrame = true;
+        }
+      }
+      this.mCanvas.onmouseup = function (ev) {
+        me.mMouseIsDown = false;
+        me.mMouseOriX = -Math.abs(me.mMouseOriX);
+        me.mMouseOriY = -Math.abs(me.mMouseOriY);
+        if (me.mIsPaused) me.mForceFrame = true;
+      }
+
+      this.mCanvas.onkeydown = function (ev) {
+        me.mEffect.SetKeyDown(0, ev.keyCode);
+        if (me.mIsPaused) me.mForceFrame = true;
+      }
+      this.mCanvas.onkeyup = function (ev) {
+        me.mEffect.SetKeyUp(0, ev.keyCode);
+        if (me.mIsPaused) me.mForceFrame = true;
+      }
+
+      document.getElementById("myResetButton").onclick = function (ev) {
+        me.resetTime();
+      }
+      document.getElementById("myPauseButton").onclick = function (ev) {
+        me.pauseTime();
+      }
+
+      this.mCanvas.ondblclick = function (ev) {
+        if (piIsFullScreen() == false) {
+          piRequestFullScreen(me.mCanvas);
+          me.mCanvas.focus(); // put mouse/keyboard focus on canvas
+        }
+        else {
+          piExitFullScreen();
+        }
+      }
+
+      document.getElementById("myFullScreen").onclick = function (ev) {
+        piRequestFullScreen(me.mCanvas);
+        me.mCanvas.focus(); // put mouse/keyboard focus on canvas
+      }
+
+      var resizeCB = function (xres, yres) { me.mForceFrame = true; };
+      var crashCB = function () { /*iReportCrash(gShaderID);*/ };
+      this.mEffect = new Effect(null, this.mAudioContext, this.mCanvas, this.RefreshTexturThumbail, this, gMuted, false, resizeCB, crashCB);
+      this.mCreated = true;
+
+    }
+
+    ShaderToy.prototype.startRendering = function () {
+      var me = this;
+
+      function renderLoop2() {
+        requestAnimFrame(renderLoop2);
+
+        if (me.mIsPaused && !me.mForceFrame) {
+          me.mEffect.UpdateInputs(0, false);
+          return;
+        }
+
+        me.mForceFrame = false;
+        var time = getRealTime();
+        var ltime = me.mTOffset + time - me.mTo;
+
+        if (me.mIsPaused) ltime = me.mTf; else me.mTf = ltime;
+
+        var dtime = 1000.0 / 60.0;
+
+        me.mEffect.Paint(ltime / 1000.0, dtime / 1000.0, 60, me.mMouseOriX, me.mMouseOriY, me.mMousePosX, me.mMousePosY, me.mIsPaused);
+
+        me.mFpsFrame++;
+
+        document.getElementById("myTime").textContent = (ltime / 1000.0).toFixed(2);
+        if ((time - me.mFpsTo) > 1000) {
+          var ffps = 1000.0 * me.mFpsFrame / (time - me.mFpsTo);
+          document.getElementById("myFramerate").textContent = ffps.toFixed(1) + " fps";
+          me.mFpsFrame = 0;
+          me.mFpsTo = time;
+        }
+      }
+
+      renderLoop2();
+    }
+
+    //---------------------------------
+
+    ShaderToy.prototype.Stop = function () {
+      document.getElementById("myPauseButton").style.background = "url('https://www.shadertoy.com/img/playEmbed.png')";
+      this.mIsPaused = true;
+      this.mEffect.StopOutputs();
+    }
+
+    ShaderToy.prototype.pauseTime = function () {
+      var time = getRealTime();
+      if (!this.mIsPaused) {
+        this.Stop();
+      }
+      else {
+        document.getElementById("myPauseButton").style.background = "url('https://www.shadertoy.com/img/pauseEmbed.png')";
+        this.mTOffset = this.mTf;
+        this.mTo = time;
+        this.mIsPaused = false;
+        this.mEffect.ResumeOutputs();
+        this.mCanvas.focus(); // put mouse/keyboard focus on canvas
+      }
+    }
+
+    ShaderToy.prototype.resetTime = function () {
+      this.mTOffset = 0;
+      this.mTo = getRealTime();
+      this.mTf = 0;
+      this.mFpsTo = this.mTo;
+      this.mFpsFrame = 0;
+      this.mForceFrame = true;
+      this.mEffect.ResetTime();
+      this.mCanvas.focus(); // put mouse/keyboard focus on canvas
+    }
+
+
+    ShaderToy.prototype.PauseInput = function (id) {
+      return this.mEffect.PauseInput(0, id);
+    }
+
+    ShaderToy.prototype.MuteInput = function (id) {
+      return this.mEffect.MuteInput(0, id);
+    }
+
+    ShaderToy.prototype.RewindInput = function (id) {
+      this.mEffect.RewindInput(0, id);
+      this.mCanvas.focus(); // put mouse/keyboard focus on canvas
+    }
+
+    ShaderToy.prototype.SetTexture = function (slot, url) {
+      this.mEffect.NewTexture(0, slot, url);
+    }
+
+    ShaderToy.prototype.RefreshTexturThumbail = function (myself, slot, img, forceFrame, gui, guiID, time) {
+      myself.mForceFrame = forceFrame;
+    }
+
+    ShaderToy.prototype.GetTotalCompilationTime = function () {
+      return this.mEffect.GetTotalCompilationTime();
+    }
+
+    ShaderToy.prototype.Load = function (jsn) {
+      try {
+        var res = this.mEffect.Load(jsn, false);
+        this.mCode = res.mShader;
+
+        if (res.mFailed === false) {
+          //this.resetTime();
+          this.mForceFrame = true;
+        }
+
+        this.mInfo = jsn.info;
+
+        return {
+          mFailed: false,
+          mDate: jsn.info.date,
+          mViewed: jsn.info.viewed,
+          mName: jsn.info.name,
+          mUserName: jsn.info.username,
+          mDescription: jsn.info.description,
+          mLikes: jsn.info.likes,
+          mPublished: jsn.info.published,
+          mHasLiked: jsn.info.hasliked,
+          mTags: jsn.info.tags
+        };
+
+      }
+      catch (e) {
+        return { mFailed: true };
+      }
+    }
+
+    ShaderToy.prototype.Compile = function (onResolve) {
+      this.mEffect.Compile(true, onResolve);
+    }
+
+    function iCompileAndStart(viewerParent, jsnShader) {
+      gShaderToy = new ShaderToy(viewerParent, null);
+      if (!gShaderToy.mCreated) {
+        if (gInvisIfFail !== null) {
+          var div = document.createElement("img");
+          div.src = gInvisIfFail;
+          var root = document.getElementsByTagName("body")[0];
+          root.replaceChild(div, viewerParent);
+        }
+        return;
+      }
+
+      var gRes = gShaderToy.Load(jsnShader[0])
+      if (gRes.mFailed) {
+        gShaderToy.pauseTime();
+        gShaderToy.resetTime();
+      }
+      else {
+        gShaderToy.Compile(function (worked) {
+          if (!worked) return;
+
+          if (gShaderToy.mIsPaused) {
+            gShaderToy.Stop();
+          }
+
+          gShaderToy.startRendering();
+        });
+      }
+
+    }
+
+    function render() {
+      var jsnShader = [
+        {
+          "ver": "0.1",
+          "info": {
+            "id": "",
+            "date": "0",
+            "viewed": 1,
+            "name": "",
+            "username": "",
+            "description": "t",
+            "likes": 0,
+            "published": 0,
+            "flags": 0,
+            "usePreview": 0,
+            "tags": []
+          },
+          "renderpass": [
+            {
+              "inputs": [],
+              "outputs": [
+                {
+                  "id": "4dfGRr",
+                  "channel": 0
+                }
+              ],
+              "code": gCode,
+              "name": "Image",
+              "description": "",
+              "type": "image"
+            }
+          ]
+        }
+      ];
+      iCompileAndStart(document.getElementById("player"), jsnShader);
+    };
+
+    function watchInit() {
+      var viewerParent = document.getElementById("player");
+
+      if (gShowGui === true) {
+        viewerParent.addEventListener("mouseover", function (e) {
+          document.getElementById('playerBar').className = 'isVisible';
+        }, true);
+
+        viewerParent.addEventListener("mouseout", function (e) {
+          var tt = e.relatedTarget || e.toElement;
+          if (tt !== null) return;
+
+          document.getElementById('playerBar').className = 'isNotVisible';
+        }, true);
+      }
+
+      document.body.addEventListener("keydown", function (e) {
+        var ele = piGetSourceElement(e)
+        if (e.keyCode === 8 && ele === document.body)
+          e.preventDefault();
+      });
+
+      // render();
+    }
+
+    window.addEventListener('message', function (event) {
+      if (event.data.type === 'set_code') {
+        gCode = atob(event.data.code);
+        render();
+      }
+    });
+  </script>
+</head>
+
+<body onload="watchInit()">
+  <!-- content ================================================================================== -->
+
+  <div id="player">
+    <canvas id="demogl" class="playerCanvas"></canvas>
+    <div id="noWebGL"><img id="noWebGL_ShaderImage"></img><span id="noWebGL_Text">No WebGL available :(</span></div>
+
+    <div id="playerBar" class="isNotVisible">
+      <div id="myResetButton" class="uiButton" title="reset time"
+        style="left: 16px;top:4px;cssFloat:left;background:url('https://www.shadertoy.com/img/rewindEmbed.png');"></div>
+      <div id="myPauseButton" class="uiButton" title="pause/resume"
+        style="left: 44px;top:4px;cssFloat:left;background:url('https://www.shadertoy.com/img/playEmbed.png');"></div>
+      <span id="myTime"
+        style="left: 88px;top:6px;position:absolute;margin:0px;padding:0px;font:italic normal 14px arial,serif">0</span>
+      <span id="myFramerate"
+        style="left:164px;top:6px;position:absolute;margin:0px;padding:0px;font:italic normal 14px arial,serif">0
+        fps</span>
+      <div id="myFullScreen" class="uiButton" title="go full screen!"
+        style="right:16px;top:4px;cssFloat:left;background:url('https://www.shadertoy.com/img/fullscreenEmbed.png');">
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
